@@ -12,7 +12,7 @@ import java.sql.*;
 public class DBManager implements IDBManager {
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:../main/resources/DataBase.db";
+        String url = "jdbc:sqlite:DB/DataBase.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -25,12 +25,11 @@ public class DBManager implements IDBManager {
     /*
     creating a new user with the parameters (already checked the data)
      */
-
+    @Override
     public void Create(ProfileObject profileObject) {
         String sql = "INSERT INTO Users(USERNAME,PASSWORD,FIRSTNAME,LASTNAME,BIRTHDATE,CITY,PICTURE) VALUES(?,?,?,?,?,?,?)";
-        try {
-            Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, profileObject.Username);
             pstmt.setString(2, profileObject.Password);
             pstmt.setString(3, profileObject.FirstName);
@@ -52,14 +51,13 @@ public class DBManager implements IDBManager {
      else there is one record with the same username.
      note:checking only non-deleted usernames
      */
-
+    @Override
     public boolean Read(String username) {
         String sql = "SELECT username FROM Users WHERE USERNAME=\"" + username + "\"";
 
-        try {
-            Connection conn = this.connect();
+        try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
             if (rs.next()) {
@@ -99,7 +97,7 @@ public class DBManager implements IDBManager {
         return fileContent;
     }
 
-
+    @Override
     public void Update(String user, ProfileObject profileObject) {
         //  if(field==UserFields.PROFILE_PIC){
         //    String sql = "UPDATE Users SET PICTURE" + "= ? , "
@@ -119,9 +117,8 @@ public class DBManager implements IDBManager {
         // else{
         String sql = "UPDATE Users SET USERNAME=? , PASSWORD=?, FIRSTNAME=?,LASTNAME=?, BIRTHDATE=?,CITY=? "
                 + "WHERE USERNAME = \"" + user + "\"";
-        try {
-            Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // set the corresponding param
             pstmt.setString(1, profileObject.Username);
             pstmt.setString(2, profileObject.Password);
@@ -137,13 +134,12 @@ public class DBManager implements IDBManager {
 
 
 
-
+    @Override
     public void Delete(String currentuser, String reason, String RegistrD) {
         String sql = "DELETE FROM Users WHERE USERNAME = \""+currentuser+"\"";
 
-        try {
-            Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // execute the delete statement
             pstmt.executeUpdate();
@@ -158,11 +154,10 @@ public class DBManager implements IDBManager {
      * we keep the function so we can change it and create new databases according to
      * the tables needed
      */
-
+    @Override
     public void CreateDB() {
-        String url = "jdbc:sqlite:src/main/resources/DataBase.db";
-        try {
-            Connection conn = DriverManager.getConnection(url);
+        String url = "jdbc:sqlite:DB/DataBase.db";
+        try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
             }
@@ -188,8 +183,7 @@ public class DBManager implements IDBManager {
 
     private void createTable(String sql) {
         String url = "jdbc:sqlite:DB/DataBase.db";
-        try{
-            Connection conn = DriverManager.getConnection(url);
+        try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
             }
@@ -197,9 +191,8 @@ public class DBManager implements IDBManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        try {
-            Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement();
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -208,9 +201,8 @@ public class DBManager implements IDBManager {
 
     void CreateReason (String username , String RID, String RegistrD){
         String sql = "INSERT INTO Reasons(username,RID,RegistrationDuration) VALUES(?,?,?)";
-        try {
-            Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, username);
             pstmt.setString(2, RID);
             pstmt.setString(3, RegistrD);
@@ -229,10 +221,9 @@ public class DBManager implements IDBManager {
      */
     public String getpassword(String username) {
         String sql = "SELECT PASSWORD FROM Users WHERE USERNAME=\"" + username+"\"";
-        try {
-            Connection conn = this.connect();
+        try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
             if (rs.next()) {
@@ -246,13 +237,13 @@ public class DBManager implements IDBManager {
 
     }
 
-     public String[] getFields(String currentUser) {
+    @Override
+    public String[] getFields(String currentUser) {
         String[] fields=new String[6];
         String sql = "SELECT * FROM Users WHERE USERNAME=\"" + currentUser+"\"";
-        try {
-            Connection conn = this.connect();
+        try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);
+             ResultSet rs = stmt.executeQuery(sql)) {
             int i=0;
             // loop through the result set
             if (rs.next()) {
@@ -268,13 +259,12 @@ public class DBManager implements IDBManager {
         return null;
     }
 
-
+    @Override
     public byte[] getphoto(String username) {
         String sql = "SELECT PICTURE FROM Users WHERE USERNAME=\"" + username+"\"";
-        try {
-             Connection conn = this.connect();
+        try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
             if (rs.next()) {

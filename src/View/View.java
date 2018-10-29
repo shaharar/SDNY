@@ -88,7 +88,7 @@ public class View implements IView {
                 Parent root = fxmlLoader.load(getClass().getResource("../main/resources/website.fxml").openStream());
                 Scene scene = new Scene(root, 1024, 600);
                 Mainstage.setScene(scene);
-                scene.getStylesheets().add(getClass().getResource("Background.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("../main/resources/Background.css").toExternalForm());
                 Mainstage.show();
 //                btn_search_W.requestFocus();
             } catch (Exception e) {
@@ -131,7 +131,7 @@ public class View implements IView {
                 Scene scene = new Scene(root, 1024, 600);
                 stage.setScene(scene);
                 //  stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
-                scene.getStylesheets().add(getClass().getResource("Background.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("../main/resources/Background.css").toExternalForm());
                 stage.show();
 //                btn_search_W.requestFocus();
             } catch (Exception e) {
@@ -146,6 +146,7 @@ public class View implements IView {
     public void Update() {
         controller.openwindow("Update.fxml", null);
     }
+
     public void saveChanges() {
         String [] fields= { txtfld_username_U.getText(), pswfld_password_U.getText(), txtfld_firstName_U.getText(), txtfld_lastName_U.getText(), DP_birthdate_U.getValue().toString(),txtfld_city_U.getText(),null};
         // controller.Update(UserFields.USERNAME, txtfld_username_U.getText());
@@ -313,9 +314,10 @@ public class View implements IView {
 
     public void ViewPhoto(){
         byte[]baytearr = controller.getphoto(null);
-        ByteArrayInputStream in= new ByteArrayInputStream(baytearr);
-        Img_profile_P.setImage(new Image(in));
-
+        if(baytearr!=null){
+            ByteArrayInputStream in= new ByteArrayInputStream(baytearr);
+            Img_profile_P.setImage(new Image(in));
+        }
     }
 
     public void attention(){
