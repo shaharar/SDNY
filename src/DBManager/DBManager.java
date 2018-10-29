@@ -272,7 +272,7 @@ public class DBManager implements IDBManager {
     public byte[] getphoto(String username) {
         String sql = "SELECT PICTURE FROM Users WHERE USERNAME=\"" + username+"\"";
         try {
-            Connection conn = this.connect();
+             Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql);
 
