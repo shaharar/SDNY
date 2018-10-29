@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+    <center>
+        <VBox maxHeight="280.0" maxWidth="550.0" prefHeight="178.0" prefWidth="550.0" translateX="10.0" translateY="20.0" translateZ="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="51.0" prefWidth="550.0">
+                    <children>
+                        <Label prefHeight="21.0" prefWidth="550.0" text="Before you leave, we would appreciate if you will answer the following questions:">
+                            <font>
+                                <Font name="Calibri Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox maxWidth="350.0" prefHeight="34.0" prefWidth="250.0" translateX="50.0">
+                    <children>
+                        <Label maxWidth="300.0" prefHeight="38.0" prefWidth="240.0" text="For how long have you been registered?">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font></Label>
+                        <TextField fx:id="txtfld_regDuration" prefHeight="30.0" prefWidth="94.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="10.0" maxWidth="350.0" prefHeight="35.0" prefWidth="600.0" translateX="50.0">
+                    <children>
+                        <Label prefHeight="38.0" prefWidth="160.0" text="Why do you want to quit?">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font></Label>
+                        <ChoiceBox fx:id="chobx_reason" onMouseEntered="#setChoiceBoxItems" prefHeight="25.0" prefWidth="174.0" translateY="3.0" />
+                    </children>
+                </HBox>
+                <Button mnemonicParsing="false" onAction="#Quit" text="Quit" textFill="#141414" translateX="225.0" translateY="25.0">
+                    <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                    </font>
+                </Button>
+                <Button cancelButton="true" defaultButton="true" mnemonicParsing="false" onAction="#goToWebsite" text="I regret,take me back" translateX="155.0" translateY="65.0">
+                    <font>
+                        <Font name="Calibri Bold Italic" size="20.0" />
+                    </font>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                </Button>
+            </children>
+        </VBox>
+    </center>
+    <top>
+        <Label prefHeight="41.0" prefWidth="294.0" text="Delete your profile" textFill="#c30d0d" translateY="38.0" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="Calibri Bold Italic" size="36.0" />
+            </font>
+        </Label>
+    </top>
+</BorderPane>

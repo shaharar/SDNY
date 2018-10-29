@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+    <center>
+        <VBox alignment="CENTER" maxHeight="300.0" maxWidth="250.0" minHeight="240.0" minWidth="288.0" prefHeight="300.0" prefWidth="250.0" translateZ="10.0" BorderPane.alignment="TOP_LEFT">
+            <children>
+                <TextArea maxHeight="300.0" maxWidth="290.0" minHeight="184.0" minWidth="100.0" prefHeight="300.0" prefWidth="250.0" text="You must be 18+ years old in order to use this application!&#10;Please notice the following instructions for registration:&#10;&#10;1. Username must contain 8 characters (english letters anddigits only).&#10;&#10;2. Password should contain onlyenglish letters, digits and specialcharacters.&#10;&#10;3. Make sure that your first and last name are no longer than 20 characters (english letters)." wrapText="true">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Calibri Bold Italic" size="16.0" />
+                    </font>
+                </TextArea>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

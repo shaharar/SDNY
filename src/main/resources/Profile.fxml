@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+    <center>
+        <VBox alignment="CENTER" maxHeight="200.0" maxWidth="240.0" prefHeight="200.0" prefWidth="200.0" translateX="-65.0" translateY="-15.0" translateZ="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="35.0" prefWidth="600.0">
+                    <children>
+                        <Label prefHeight="38.0" prefWidth="63.0" text="Username:" />
+                        <TextField fx:id="txtfld_username_P" prefHeight="30.0" prefWidth="149.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="115.0" prefHeight="35.0" prefWidth="600.0">
+                    <children>
+                        <Label prefHeight="38.0" prefWidth="63.0" text="First Name:" />
+                        <TextField fx:id="txtfld_firstName_P" prefHeight="30.0" prefWidth="149.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
+                    <children>
+                        <Label prefHeight="38.0" prefWidth="63.0" text="Last Name:" />
+                        <TextField fx:id="txtfld_lastName_P" prefHeight="30.0" prefWidth="149.0" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="35.0" prefWidth="600.0">
+                    <children>
+                        <Label prefHeight="38.0" prefWidth="63.0" text="Birthdate:" />
+                        <TextField fx:id="txtfld_birthdate_P" prefHeight="30.0" prefWidth="149.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
+                    <children>
+                        <Label prefHeight="38.0" prefWidth="63.0" text="City:" />
+                        <TextField fx:id="txtfld_city_P" prefHeight="30.0" prefWidth="149.0" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+    <top>
+        <Label prefHeight="41.0" prefWidth="130.0" text="Profile" textFill="#e869dd" translateY="25.0" BorderPane.alignment="TOP_CENTER">
+            <font>
+                <Font name="Calibri Bold Italic" size="42.0" />
+            </font>
+        </Label>
+    </top>
+    <left>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="Img_profile_P" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="70.0" />
+            </children></HBox>
+    </left>
+</BorderPane>
