@@ -68,7 +68,7 @@
         </Button>
     </bottom>
     <right>
-        <Button mnemonicParsing="false" onAction="#uploadimage" prefHeight="25.0" prefWidth="123.0" text="Update Your Image" translateX="-80.0" translateY="70.0">
+        <Button mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="123.0" text="Update Your Image" translateX="-80.0" translateY="70.0">
             <font>
                 <Font name="Calibri Bold Italic" size="12.0" />
             </font>

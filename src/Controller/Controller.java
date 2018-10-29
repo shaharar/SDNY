@@ -68,10 +68,10 @@ public class Controller implements IController{
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
         if(fxmlfile.equals("Update.fxml")){
-            NewView.textfieldupdate();
+            NewView.textFieldUpdate();
         }
         else if(fxmlfile.equals("Profile.fxml")) {
-            NewView.textfielprofile(usernametosearch);
+            NewView.textFielProfile(usernametosearch);
         }
     }
 

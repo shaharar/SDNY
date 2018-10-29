@@ -10,8 +10,8 @@ public interface IDBManager {
     void Update (String username, ProfileObject profileObject);
     void  Delete(String currentuser, String reason, String RegistrD);
     void CreateDB();
-    String getpassword(String username);
+    String getPassword(String username);
     String[] getFields(String currentUser);
 
-    byte[] getphoto(String currentUser);
+    byte[] getPhoto(String currentUser);
 }

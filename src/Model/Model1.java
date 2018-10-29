@@ -18,14 +18,14 @@ public class Model1 implements IModel {
 
 
     public boolean Create (ProfileObject profileObject) {
-        if(isdatacorrect(profileObject)){
+        if(isDataCorrect(profileObject)){
             DBM.Create(profileObject);
             return true;
         }
         return false;
     }
     //we will check the special constraints accordingly
-    private boolean isdatacorrect(ProfileObject profileObject) {
+    private boolean isDataCorrect(ProfileObject profileObject) {
         //username
         if(profileObject.Username.length() > 8 || !(profileObject.Username.matches("[a-zA-Z0-9]*")) ){
             controller.showalert("Your username is illegal");
@@ -73,7 +73,7 @@ public class Model1 implements IModel {
 
 
     public boolean Update(ProfileObject profileObject) {
-        if(isdatacorrect(profileObject)) {
+        if(isDataCorrect(profileObject)) {
             DBM.Update(currentUser,profileObject);
             return true;
         }
@@ -105,7 +105,7 @@ public class Model1 implements IModel {
 
     public boolean Login(String username, String password) {
         if(DBM.Read(username)){
-            String realpass=DBM.getpassword(username);
+            String realpass=DBM.getPassword(username);
             if( realpass.equals(password)){
                 currentUser =  username;
                 return true;
@@ -139,7 +139,7 @@ public class Model1 implements IModel {
 
     public byte[] getPhoto(String user) {
         if (user==null){
-            return DBM.getphoto(currentUser);
+            return DBM.getPhoto(currentUser);
         }
 
         return new byte[0];

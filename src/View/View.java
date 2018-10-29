@@ -149,15 +149,8 @@ public class View implements IView {
 
     public void saveChanges() {
         String [] fields= { txtfld_username_U.getText(), pswfld_password_U.getText(), txtfld_firstName_U.getText(), txtfld_lastName_U.getText(), DP_birthdate_U.getValue().toString(),txtfld_city_U.getText(),null};
-        // controller.Update(UserFields.USERNAME, txtfld_username_U.getText());
-        //controller.Update(UserFields.PASSWORD, pswfld_password_U.getText());
-        //controller.Update(UserFields.FIRSTNAME, txtfld_firstName_U.getText());
-        //controller.Update(UserFields.LASTNAME, txtfld_lastName_U.getText());
-        //controller.Update(UserFields.BIRTHDATE, DP_birthdate_U.getValue().toString());
-        //controller.Update(UserFields.CITY, txtfld_city_U.getText());
         if(controller.Update(fields))
             this.stage.close();
-        // controller.Update(UserFields.PROFILE_PIC,fileselected==null?null:fileselected.getPath());
     }
     /*
      the window changed to the delete user screen
@@ -170,7 +163,6 @@ public class View implements IView {
             Scene scene = new Scene(root, 1024, 600);
             Mainstage.setScene(scene);
             Mainstage.show();
-            //txtfld_regDuration.setText("");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -241,7 +233,7 @@ public class View implements IView {
 
     }
 
-    public void textfieldupdate() {
+    public void textFieldUpdate() {
         DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy-MM-dd"); //needed by the date picker
         String[] fields = controller.getFields(null);
         txtfld_username_U.setText(fields[0]);
@@ -275,7 +267,7 @@ public class View implements IView {
         DP_birthdate_U.getEditor().setDisable(true);
     }
 
-    public void uploadimage() {
+    public void uploadImage() {
         FileChooser fc = new FileChooser();
         fileselected = fc.showOpenDialog(stage);
         try {
@@ -287,7 +279,7 @@ public class View implements IView {
     }
 
 
-    public void textfielprofile(String usernametosearch) {
+    public void textFielProfile(String usernametosearch) {
         String[] fields = controller.getFields(usernametosearch);
         txtfld_username_P.setPromptText(fields[0]);
         //txtfld_Password_P.setPromptText(fields[1]);
@@ -337,6 +329,4 @@ public class View implements IView {
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
     }
-
-
 }

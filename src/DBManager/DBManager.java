@@ -99,22 +99,6 @@ public class DBManager implements IDBManager {
 
     @Override
     public void Update(String user, ProfileObject profileObject) {
-        //  if(field==UserFields.PROFILE_PIC){
-        //    String sql = "UPDATE Users SET PICTURE" + "= ? , "
-        //          + "WHERE USERNAME = ?";
-        //try (Connection conn = this.connect();
-        //   PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        // set the corresponding param
-
-        //pstmt.setBytes(1, convertFileContentToBlob(value));
-        //pstmt.executeUpdate();
-        //} catch (SQLException e) {
-        //  System.out.println(e.getMessage());
-        //} catch (IOException e) {
-        //  e.printStackTrace();
-        //}
-        // }
-        // else{
         String sql = "UPDATE Users SET USERNAME=? , PASSWORD=?, FIRSTNAME=?,LASTNAME=?, BIRTHDATE=?,CITY=? "
                 + "WHERE USERNAME = \"" + user + "\"";
         try (Connection conn = this.connect();
@@ -219,7 +203,7 @@ public class DBManager implements IDBManager {
      If by some reason there is an expection we will return "". it should not
      get to return null in no case
      */
-    public String getpassword(String username) {
+    public String getPassword(String username) {
         String sql = "SELECT PASSWORD FROM Users WHERE USERNAME=\"" + username+"\"";
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
@@ -260,7 +244,7 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public byte[] getphoto(String username) {
+    public byte[] getPhoto(String username) {
         String sql = "SELECT PICTURE FROM Users WHERE USERNAME=\"" + username+"\"";
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
