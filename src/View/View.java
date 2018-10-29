@@ -75,7 +75,7 @@ public class View implements IView {
         this.controller = controller;
     }
 
-    @Override
+
     /*
     1. controller gets data from fields and send it to the model
     2. website is opened
@@ -85,7 +85,7 @@ public class View implements IView {
         if (controller.SignUp(fieldsArr)) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                Parent root = fxmlLoader.load(getClass().getResource("website.fxml").openStream());
+                Parent root = fxmlLoader.load(getClass().getResource("../main/resources/website.fxml").openStream());
                 Scene scene = new Scene(root, 1024, 600);
                 Mainstage.setScene(scene);
                 scene.getStylesheets().add(getClass().getResource("Background.css").toExternalForm());
@@ -98,18 +98,18 @@ public class View implements IView {
     }
 
 
-    @Override
+
     public void viewMyProfile() {
         controller.openwindow("Profile.fxml", null);
     }
 
-    @Override
+
     public void showProfile(String username) {
         controller.openwindow("Profile.fxml", username);
     }
 
 
-    @Override
+
     public void Search() {
         if (controller.Search(txtfld_username_W.getText())) {
             showProfile(txtfld_username_W.getText());
@@ -118,7 +118,7 @@ public class View implements IView {
         }
     }
 
-    @Override
+
     /*
     if the username matches the passeord the website will open
     else an alert pops up
@@ -127,7 +127,7 @@ public class View implements IView {
         if (controller.Login(txtfld_username_login_L.getText(), pswfld_password_login_L.getText())) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                Parent root = fxmlLoader.load(getClass().getResource("website.fxml").openStream());
+                Parent root = fxmlLoader.load(getClass().getResource("../main/resources/website.fxml").openStream());
                 Scene scene = new Scene(root, 1024, 600);
                 stage.setScene(scene);
                 //  stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
@@ -142,7 +142,7 @@ public class View implements IView {
         }
     }
 
-    @Override
+
     public void Update() {
         controller.openwindow("Update.fxml", null);
     }
@@ -161,11 +161,11 @@ public class View implements IView {
     /*
      the window changed to the delete user screen
      */
-    @Override
+
     public void Delete() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("Delete.fxml").openStream());
+            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/Delete.fxml").openStream());
             Scene scene = new Scene(root, 1024, 600);
             Mainstage.setScene(scene);
             Mainstage.show();
@@ -174,7 +174,7 @@ public class View implements IView {
             e.printStackTrace();
         }
     }
-    @Override
+
     /**
      * Delete the profile of the user and check if he answered the questions
      */
@@ -253,14 +253,14 @@ public class View implements IView {
 
     }
 
-    @Override
+
     public void goToWebsite() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("website.fxml").openStream());
+            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/website.fxml").openStream());
             Scene scene = new Scene(root, 1024, 600);
             Mainstage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("Background.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("../main/resources/Background.css").toExternalForm());
             Mainstage.show();
             btn_search_W.requestFocus();
         } catch (Exception e) {
@@ -301,10 +301,10 @@ public class View implements IView {
         controller.LogOut();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("Login.fxml").openStream());
+            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/Login.fxml").openStream());
             Scene scene = new Scene(root, 1024, 600);
             Mainstage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("ViewStyle.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("../main/resources/ViewStyle.css").toExternalForm());
             Mainstage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -322,7 +322,7 @@ public class View implements IView {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;
         try {
-            root = fxmlLoader.load(getClass().getResource("Attention.fxml").openStream());
+            root = fxmlLoader.load(getClass().getResource("../main/resources/Attention.fxml").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

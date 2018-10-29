@@ -1,6 +1,6 @@
 .root{
 
-    -fx-background-image: url("../../../../DB/Loginpic.jpg");
+    /*-fx-background-image: url("../../../../DB/Loginpic.jpg");*/
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }

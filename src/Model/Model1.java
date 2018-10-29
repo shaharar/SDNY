@@ -3,7 +3,7 @@ package Model;
 import DBManager.IDBManager;
 import DBManager.DBManager;
 import Controller.IController;
-import org.sqlite.core.DB;
+
 
 public class Model1 implements IModel {
 
@@ -16,7 +16,7 @@ public class Model1 implements IModel {
         this.controller = controller;
     }
 
-    @Override
+
     public boolean Create (ProfileObject profileObject) {
         if(isdatacorrect(profileObject)){
             DBM.Create(profileObject);
@@ -65,13 +65,13 @@ public class Model1 implements IModel {
 
     }
 
-    @Override
+
     public boolean Read(String username) {
         return DBM.Read(username);
 
     }
 
-    @Override
+
     public boolean Update(ProfileObject profileObject) {
         if(isdatacorrect(profileObject)) {
             DBM.Update(currentUser,profileObject);
@@ -80,7 +80,7 @@ public class Model1 implements IModel {
         return false;
     }
 
-    @Override
+
     public void Delete(String registrationDuration, Reason reason) {
         switch (reason) {
             case I_FOUND_WHAT_I_WAS_LOOKING_FOR:
@@ -102,7 +102,7 @@ public class Model1 implements IModel {
 
     }
 
-    @Override
+
     public boolean Login(String username, String password) {
         if(DBM.Read(username)){
             String realpass=DBM.getpassword(username);
@@ -117,18 +117,18 @@ public class Model1 implements IModel {
 
     }
 
-    @Override
+
     public void Logout() {
         currentUser = null;
 
     }
 
-    @Override
+
     public void CreateDB() {
         DBM.CreateDB();
     }
 
-    @Override
+
     public String[] getFields(String username) {
         if (username == null) {
             return DBM.getFields(currentUser);
@@ -136,7 +136,7 @@ public class Model1 implements IModel {
         return DBM.getFields(username);
     }
 
-    @Override
+
     public byte[] getPhoto(String user) {
         if (user==null){
             return DBM.getphoto(currentUser);

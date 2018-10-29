@@ -24,7 +24,7 @@ public class Main extends Application {
         view.setMainStage(primaryStage);
         Controller con = new Controller(view);
         view.setController(con);
-        scene.getStylesheets().add(getClass().getResource("ViewStyle.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../main/resources/ViewStyle.css").toExternalForm());
         String[] firstuser=new String[7];
         firstuser[0]="abcdefgh";
         firstuser[1]="12121212";

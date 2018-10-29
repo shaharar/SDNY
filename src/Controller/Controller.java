@@ -20,7 +20,7 @@ public class Controller implements IController{
         this.Model=new Model1(this);
         this.View= view;
     }
-    @Override
+
     public boolean Login(String username, String password) {
         return  (Model.Login(username, password));
     }
@@ -30,12 +30,12 @@ public class Controller implements IController{
     public String[] getFields(String username){
         return Model.getFields(username);
     }
-    @Override
+
     public boolean Update(String [] fields) {
         return Model.Update(new ProfileObject(fields));
     }
 
-    @Override
+
     public boolean SignUp(String[] fields) {
         ProfileObject po=new ProfileObject(fields);
         if(Model.Create(po)){
@@ -45,7 +45,7 @@ public class Controller implements IController{
         return false;
     }
 
-    @Override
+
     public void Delete(String registrationDuration, Reason reason) {
         Model.Delete(registrationDuration, reason);
     }
@@ -67,17 +67,11 @@ public class Controller implements IController{
         NewView.setStage(newStage);
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
-        switch (fxmlfile){
-
-            case "Update.fxml":
-
-                NewView.textfieldupdate();
-
-                break;
-
-            case "Profile.fxml":
-                NewView.textfielprofile(usernametosearch);
-                break;
+        if(fxmlfile.equals("Update.fxml")){
+            NewView.textfieldupdate();
+        }
+        else if(fxmlfile.equals("Profile.fxml")) {
+            NewView.textfielprofile(usernametosearch);
         }
     }
 
@@ -93,7 +87,7 @@ public class Controller implements IController{
         return Model.getPhoto(username);
     }
 
-    @Override
+
     public void showalert(String alert) {
         View.showAlert(alert);
     }
