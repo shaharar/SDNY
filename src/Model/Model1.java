@@ -16,7 +16,6 @@ public class Model1 implements IModel {
         this.controller = controller;
     }
 
-
     public boolean Create (ProfileObject profileObject) {
         if(isDataCorrect(profileObject)){
             DBM.Create(profileObject);
@@ -27,7 +26,7 @@ public class Model1 implements IModel {
     //we will check the special constraints accordingly
     private boolean isDataCorrect(ProfileObject profileObject) {
         //username
-        if(profileObject.Username.length() > 8 || !(profileObject.Username.matches("[a-zA-Z0-9]*")) ){
+        if(profileObject.Username.length() > 8 || profileObject.Username.equals("")|| !(profileObject.Username.matches("[a-zA-Z0-9]*")) ){
             controller.showalert("Your username is illegal");
             return false;
         }else
@@ -52,7 +51,10 @@ public class Model1 implements IModel {
             return false;
         }
         //birthdate
-        //Lastname
+        if(profileObject.BirthDate==null){
+            controller.showalert("Sorry, you have to fill your birthdate");
+            return false;
+        }
         if(Integer.parseInt(profileObject.BirthDate.substring(0,4))> 2000){
             controller.showalert("Sorry, you are too young");
             return false;
@@ -65,12 +67,9 @@ public class Model1 implements IModel {
 
     }
 
-
     public boolean Read(String username) {
         return DBM.Read(username);
-
     }
-
 
     public boolean Update(ProfileObject profileObject) {
         if(isDataCorrect(profileObject)) {
@@ -80,7 +79,6 @@ public class Model1 implements IModel {
         }
         return false;
     }
-
 
     public void Delete(String registrationDuration, Reason reason) {
         switch (reason) {
@@ -100,36 +98,30 @@ public class Model1 implements IModel {
                 DBM.Delete(currentUser, "5",registrationDuration);
                 break;
         }
-
     }
 
-
     public boolean Login(String username, String password) {
-        if(DBM.Read(username)){
+        if(DBM.Read(username)){ //if found in db
             String realpass=DBM.getPassword(username);
             if( realpass.equals(password)){
                 currentUser =  username;
                 return true;
             }
-
-
         }
         return false;
-
     }
 
 
     public void Logout() {
         currentUser = null;
-
     }
-
 
     public void CreateDB() {
         DBM.CreateDB();
     }
-
-
+    /*
+    gets user record devided to fields
+     */
     public String[] getFields(String username) {
         if (username == null) {
             return DBM.getFields(currentUser);
@@ -137,18 +129,15 @@ public class Model1 implements IModel {
         return DBM.getFields(username);
     }
 
-
+/*
+get user's photo - did not use this yet
+ */
     public byte[] getPhoto(String user) {
         if (user==null){
             return DBM.getPhoto(currentUser);
         }
-
         return new byte[0];
     }
-
-
-
-
 }
 
 

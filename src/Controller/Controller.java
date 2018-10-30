@@ -30,27 +30,24 @@ public class Controller implements IController{
     public String[] getFields(String username){
         return Model.getFields(username);
     }
-
     public boolean Update(String [] fields) {
         return Model.Update(new ProfileObject(fields));
     }
-
-
     public boolean SignUp(String[] fields) {
         ProfileObject po=new ProfileObject(fields);
-        if(Model.Create(po)){
+        if(Model.Create(po)){ //if managed to create the profileObject
             Model.Login(po.Username,po.Password);
             return true;
         }
         return false;
     }
 
-
     public void Delete(String registrationDuration, Reason reason) {
         Model.Delete(registrationDuration, reason);
     }
-
-
+    /*
+    get fxml file and opens a new window on top of the main window(which stays untouchable)
+     */
     public void openwindow(String fxmlfile,String usernametosearch){
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;
