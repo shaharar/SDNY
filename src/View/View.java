@@ -20,36 +20,23 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class View implements IView {
+public class View implements IView,Iwindow {
 
     @FXML
     public static IController controller;
     public TextField txtfld_username_W;
     public TextField txtfld_username_login_L;
     public TextField txtfld_username_reg_L;
-    public TextField txtfld_username_U;
-    public TextField txtfld_username_P;
-    public PasswordField pswfld_password_U;
     public PasswordField pswfld_password_login_L;
     public PasswordField pswfld_password_reg_L;
     public DatePicker DP_birthdate_L;
-    public DatePicker DP_birthdate_U;
-    public TextField txtfld_birthdate_P;
-    public TextField txtfld_city_U;
     public TextField txtfld_city_L;
-    public TextField txtfld_city_P;
-    public TextField txtfld_firstName_U;
     public TextField txtfld_firstName_L;
-    public TextField txtfld_firstName_P;
-    public TextField txtfld_lastName_U;
     public TextField txtfld_lastName_L;
-    public TextField txtfld_lastName_P;
     public TextField txtfld_regDuration;
     public Button btn_Login;
     public Button btn_search_W;
-    public Button btn_saveChanges_U;
     public javafx.scene.image.ImageView Img_profile_L;
-    public javafx.scene.image.ImageView Img_profile_P;
     public ChoiceBox chobx_reason;
     public static Stage stage;
     public File fileselected = null;
@@ -134,14 +121,7 @@ A stage for secondary windows
     public void Update() {
         controller.openwindow("Update.fxml", null);
     }
-/*
-after filling fields in te update window the info is sent to be checked and updated
- */
-    public void saveChanges() {
-        String [] fields= { txtfld_username_U.getText(), pswfld_password_U.getText(), txtfld_firstName_U.getText(), txtfld_lastName_U.getText(), DP_birthdate_U.getValue().toString(),txtfld_city_U.getText(),null};
-        if(controller.Update(fields))
-            this.stage.close(); //auto closin window if the data is not problematic
-    }
+
 
     /*
      the window changed to the delete user screen
@@ -224,18 +204,7 @@ after filling fields in te update window the info is sent to be checked and upda
 /*
 when opening update window the fields should have their current state for the user to see
  */
-    public void textFieldUpdate() {
-        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy-MM-dd"); //needed by the date picker
-        String[] fields = controller.getFields(null);
-        txtfld_username_U.setText(fields[0]);
-        pswfld_password_U.setText(fields[1]);
-        txtfld_firstName_U.setText(fields[2]);
-        txtfld_lastName_U.setText(fields[3]);
-        DP_birthdate_U.setValue(LocalDate.parse(fields[4],dtf));
-        txtfld_city_U.setText(fields[5]);
-        btn_saveChanges_U.requestFocus();
 
-    }
 
     public void goToWebsite() {
         try {
@@ -253,10 +222,6 @@ when opening update window the fields should have their current state for the us
 /*
 this function is unnecessery because it is defaulted on true but we might need this in the future
  */
-    public void setDateDisable() {
-        DP_birthdate_L.getEditor().setDisable(true);
-        DP_birthdate_U.getEditor().setDisable(true);
-    }
 
     public void uploadImage() {
         FileChooser fc = new FileChooser();
@@ -267,20 +232,6 @@ this function is unnecessery because it is defaulted on true but we might need t
         } catch (Exception e) {
             //e.printStackTrace();
         }
-    }
-
-/*
-we would like the profile to get the most updated info on the profile from the database
- */
-    public void textFielProfile(String usernametosearch) {
-        String[] fields = controller.getFields(usernametosearch);
-        txtfld_username_P.setPromptText(fields[0]);
-        //txtfld_Password_P.setPromptText(fields[1]);
-        txtfld_firstName_P.setPromptText(fields[2]);
-        txtfld_lastName_P.setPromptText(fields[3]);
-        txtfld_birthdate_P.setPromptText(fields[4]);
-        txtfld_city_P.setPromptText(fields[5]);
-        ViewPhoto();
     }
 
     public void Logout() {
@@ -297,13 +248,6 @@ we would like the profile to get the most updated info on the profile from the d
         }
     }
 
-    public void ViewPhoto(){
-        byte[]baytearr = controller.getphoto(null);
-        if(baytearr!=null){
-            ByteArrayInputStream in= new ByteArrayInputStream(baytearr);
-            Img_profile_P.setImage(new Image(in));
-        }
-    }
 
     public void attention(){
         FXMLLoader fxmlLoader = new FXMLLoader();

@@ -15,8 +15,6 @@ public interface IView {
     void showProfile(String username);
     void Quit();
     void setStage(Stage stage);
-    void textFieldUpdate();
-    void textFielProfile(String usernametosearch);
     void showAlert(String showalert);
     public void attention();
 }

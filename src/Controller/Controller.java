@@ -1,8 +1,7 @@
 package Controller;
 
 import Model.*;
-import View.IView;
-import View.View;
+import View.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,11 +13,11 @@ import java.io.IOException;
 public class Controller implements IController{
 
     public IModel Model;
-    public IView View;
+    public IView MyView;
 
-    public Controller(View view){
+    public Controller(View myView){
         this.Model=new Model1(this);
-        this.View= view;
+        this.MyView = myView;
     }
 
     public boolean Login(String username, String password) {
@@ -60,15 +59,18 @@ public class Controller implements IController{
         Scene scene = new Scene(root, 720, 404);
         newStage.setScene(scene);
 
-        View NewView=fxmlLoader.getController();
-        NewView.setStage(newStage);
+        Iwindow NewWindow=fxmlLoader.getController();
+        NewWindow.setStage(newStage);
+        NewWindow.setController(this);
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
         if(fxmlfile.equals("Update.fxml")){
-            NewView.textFieldUpdate();
+            UpdateWindowView wind=(UpdateWindowView) NewWindow;
+            wind.textFieldUpdate();
         }
         else if(fxmlfile.equals("Profile.fxml")) {
-            NewView.textFielProfile(usernametosearch);
+           ProfileWindowView wind=(ProfileWindowView) NewWindow;
+            wind.textFieldProfile(usernametosearch);
         }
     }
 
@@ -86,7 +88,7 @@ public class Controller implements IController{
 
 
     public void showalert(String alert) {
-        View.showAlert(alert);
+        MyView.showAlert(alert);
     }
 }
 
