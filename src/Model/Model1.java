@@ -12,6 +12,9 @@ public class Model1 implements IModel {
     IController controller;
     IDBManager DBM;
     String currentUser;
+    int PaymentId;
+    int VacationId;
+    int RequestID;
 
     public Model1(IController controller) {
         this.DBM = new DBManager();
@@ -152,7 +155,11 @@ get user's photo - did not use this yet
     }
 
     public ArrayList<VacationObject> GetSearchResult(VacationObject vacationObject){
-      ArrayList<VacationObject> searchResults=DBM.SearchResults(vacationObject);
+    if(!IsVacationDetailsValid(vacationObject)){
+        return null;
+    }
+
+        ArrayList<VacationObject> searchResults=DBM.SearchResults(vacationObject);
       return searchResults;
 
     }
@@ -162,15 +169,50 @@ get user's photo - did not use this yet
 
     }
     public boolean ConfirmPayment(PaymentObject paymentObject){
+        if(paymentObject.Useridoc.length()!=9 || !paymentObject.Useridoc.matches("[0-9]") ){
+            controller.showalert("Your Id number invalid. make sure you added the check digits");
+            return false;
+        }
+       else if(paymentObject.LastName.length()>20){
+            controller.showalert("Your last name is too long");
+            return false;
+        }
+       else if(paymentObject.FirstName.length()>20){
+            controller.showalert("Your first name is too long");
+            return false;
+        }
+        else if(paymentObject.CardNumber.length()!=16 || !paymentObject.CardNumber.matches("[0-9]")){
+            controller.showalert("Your credit number is invalid. please enter 16 digits");
+            return false;
+        }
+        int month=Integer.parseInt(paymentObject.ExpirationDate.substring(0,2));
+        int year=Integer.parseInt(paymentObject.ExpirationDate.substring(2,4));
+        if(year<18 || month>12 ||month<0){
+            controller.showalert("Your Expiration Date invalid. enter in format dd/yy");
+            return false;
+        }
+        else if(paymentObject.SecurityCode.length()!=3 || !paymentObject.SecurityCode.matches("[0-9]")){
+            controller.showalert("Your security code  is invalid. please enter 3 digits");
+            return false;
+        }
+
+        paymentObject.PaymentID=""+PaymentId;
+        PaymentId++;
        return DBM.InsertPayment(paymentObject);
 
     }
 
     public boolean InsertVacation(VacationObject vacationObject){
+        if( !IsVacationDetailsValid(vacationObject)){
+            return false;
+        }
         return DBM.InsertVacation(vacationObject);
 
     }
     public boolean UpdateVacation(VacationObject vacationObject){
+        if( !IsVacationDetailsValid(vacationObject)){
+            return false;
+        }
         return DBM.UpdateVacation(vacationObject);
     }
 
@@ -178,6 +220,42 @@ get user's photo - did not use this yet
          DBM.DeleteVacation(VacationID);
     }
 
+
+
+    public boolean IsVacationDetailsValid(VacationObject vacationObject){
+        if(vacationObject.TicketType.length()>20){
+            controller.showalert("Choose Ticket Type Again");
+            return false;
+        }
+        else if(vacationObject.FlightCompany.length()>10){
+            controller.showalert("Your Flight Company name is too long");
+            return false;
+        }
+        else if(vacationObject.Destination.length()>30){
+            controller.showalert("Your Destination is too long");
+            return false;
+        }
+        int startdate=Integer.parseInt(vacationObject.VacationDate.substring(0,2));
+        int startamonth=Integer.parseInt(vacationObject.VacationDate.substring(2,4));
+        int startyear=Integer.parseInt(vacationObject.VacationDate.substring(4,8));
+        int finishdate=Integer.parseInt(vacationObject.VacationDate.substring(8,10));
+        int finishmonth=Integer.parseInt(vacationObject.VacationDate.substring(10,12));
+        int finishyear=Integer.parseInt(vacationObject.VacationDate.substring(12,16));
+
+        if(finishyear<startyear || (finishyear==startyear && finishdate<startamonth)||(finishyear==startyear && finishdate==startamonth && finishdate<startdate )) {
+            controller.showalert("Your Dates are no valid, choose again");
+            return false;
+        }
+        else if(vacationObject.NumberOfSuitcases>5){
+            controller.showalert("Max number of suitcases per person is 5");
+            return false;
+        }
+        else if(vacationObject.MaxWeight>30){
+            controller.showalert("Max Weight of suitcases is 30 kg");
+            return false;
+        }
+        return true;
+    }
 }
 
 

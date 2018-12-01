@@ -188,7 +188,7 @@ public class DBManager implements IDBManager {
                 + "	TicketType CHAR(20) NOT NULL,\n"//adult/child/baby
                 + " BuyAll INTEGER NOT NULL, \n"    //boolean
                 + " FlightCompany CHAR(10) NOT NULL, \n"
-                + " Destination CHAR(10) NOT NULL, \n"
+                + " Destination CHAR(30) NOT NULL, \n"
                 + " VacationDate CHAR(16) NOT NULL, \n"//ddmmyyyy-ddmmyyy
                 + " NumberOfSuitcases INTEGER NOT NULL, \n"
                 + " MaxWeight INTEGER NOT NULL, \n"
