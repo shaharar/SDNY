@@ -31,7 +31,7 @@ public class DBManager implements IDBManager {
     creating a new user with the parameters (already checked the data)
      */
     @Override
-    public void Create(ProfileObject profileObject) {
+    public void InsertProfile(ProfileObject profileObject) {
         String sql = "INSERT INTO Users(USERNAME,PASSWORD,FIRSTNAME,LASTNAME,BIRTHDATE,CITY,PICTURE) VALUES(?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -57,7 +57,7 @@ public class DBManager implements IDBManager {
      note:checking only non-deleted usernames
      */
     @Override
-    public boolean Read(String username) {
+    public boolean ReadProfile(String username) {
         String sql = "SELECT username FROM Users WHERE USERNAME=\"" + username + "\"";
 
         try (Connection conn = this.connect();
@@ -122,8 +122,8 @@ public class DBManager implements IDBManager {
     }
 
 
-    @Override
-    public void Delete(String currentuser, String reason, String RegistrD) {
+
+    public void DeleteProfile(String currentuser, String reason, String RegistrD) {
         String sql = "DELETE FROM Users WHERE USERNAME = \"" + currentuser + "\"";
 
         try (Connection conn = this.connect();
@@ -135,8 +135,8 @@ public class DBManager implements IDBManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        AddReason(currentuser, reason, RegistrD);
     }
+
 
     /**
      * should only be called one time by the programmer to create the database,
@@ -192,7 +192,7 @@ public class DBManager implements IDBManager {
                 + " VacationDate CHAR(16) NOT NULL, \n"//ddmmyyyy-ddmmyyy
                 + " NumberOfSuitcases INTEGER NOT NULL, \n"
                 + " MaxWeight INTEGER NOT NULL, \n"
-                + " VacationTyape CHAR(10) , \n"
+                + " VacationType CHAR(10) , \n"
                 + " RoomType CHAR(8) , \n"
                 + " RoomIncluded INTEGER , \n" //boolean
                 + " RoomRank INTEGER , \n"     //1-10
@@ -209,7 +209,7 @@ public class DBManager implements IDBManager {
 
     }
 
-    private void createTable(String sql) {
+    public void createTable(String sql) {
         String url = "jdbc:sqlite:DB/DataBase.db";
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
@@ -227,7 +227,7 @@ public class DBManager implements IDBManager {
         }
     }
 
-    void AddReason(String username, String RID, String RegistrD) {
+   public void AddReason(String username, String RID, String RegistrD) {
         String sql = "INSERT INTO Reasons(username,RID,RegistrationDuration) VALUES(?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -372,7 +372,6 @@ public class DBManager implements IDBManager {
 
 
     public void ChooseVacation(String VacationID ,  String BuyerUserName ){
-    UpdateVacationStatus(VacationStatus.WAITTING_FOR_APPROVAL,VacationID);
         String sql = "INSERT INTO Requests(VacationID,SellerUserName_fk,BuyerUserName_fk,RequestDate,RequestHour,Status) VALUES(?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -388,7 +387,7 @@ public class DBManager implements IDBManager {
         }
     }
 
-    private String GetSeller(String vacationID) {
+    public String GetSeller(String vacationID) {
         String sql = "SELECT UserName_fk FROM Vacations WHERE VacationID=\"" + vacationID + "\"";
 
         try (Connection conn = this.connect();
@@ -420,7 +419,7 @@ public class DBManager implements IDBManager {
 
     }
 
-    public void InsertPayment(PaymentObject paymentObject){
+    public boolean InsertPayment(PaymentObject paymentObject){
         String sql = "INSERT INTO Payments(PaymentID,VacationID_fk,UserName_fk,Useridoc,LastName,FirstName,CardNumber,ExpirationDate,SecurityCode,Methods) VALUES(?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -436,16 +435,86 @@ public class DBManager implements IDBManager {
             pstmt.setString(10, paymentObject.Methods);
             pstmt.executeUpdate();
         } catch (SQLException e) {
+
             System.out.println(e.getMessage());
+            return false;
         }
+        return true;
     }
 
 
+    public boolean InsertVacation(VacationObject vacationObject) {
+        String sql = "INSERT INTO Vacations(VacationID,UserName_fk,HotVacation,Status,TicketType,BuyAll,FlightCompany,Destination,VacationDate,NumberOfSuitcases,MaxWeight,VacationType,RoomType,RoomIncluded,RoomRank,IsConnection) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, vacationObject.VacationID);
+            pstmt.setString(2, vacationObject.UserName_fk);
+            pstmt.setBoolean(3,vacationObject.HotVacation);
+            pstmt.setString(4, vacationObject.Status);
+            pstmt.setString(5, vacationObject.TicketType);
+            pstmt.setBoolean(6, vacationObject.BuyAll);
+            pstmt.setString(7, vacationObject.FlightCompany);
+            pstmt.setString(8, vacationObject.Destination);
+            pstmt.setString(9, vacationObject.VacationDate);
+            pstmt.setInt(10, vacationObject.NumberOfSuitcases);
+            pstmt.setInt(11, vacationObject.MaxWeight);
+            pstmt.setString(12, null);
+            pstmt.setString(13, null);
+            pstmt.setString(14,null);
+            pstmt.setString(15, null);
+            pstmt.setString(16, null);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    return true;
+    }
 
+    public boolean UpdateVacation(VacationObject vacationObject) {
+        String sql = "UPDATE Vacations SET VacationID=? , UserName_fk=?, HotVacation=?,Status=?, TicketType=?,BuyAll=?,FlightCompany=?,Destination=?,VacationDate=?,NumberOfSuitcases=?,MaxWeight=? "
+                + "WHERE VacationID = \"" + vacationObject.VacationID + "\"";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // set the corresponding param
+            pstmt.setString(1, vacationObject.VacationID);
+            pstmt.setString(2, vacationObject.UserName_fk);
+            pstmt.setBoolean(3,vacationObject.HotVacation);
+            pstmt.setString(4, vacationObject.Status);
+            pstmt.setString(5, vacationObject.TicketType);
+            pstmt.setBoolean(6, vacationObject.BuyAll);
+            pstmt.setString(7, vacationObject.FlightCompany);
+            pstmt.setString(8, vacationObject.Destination);
+            pstmt.setString(9, vacationObject.VacationDate);
+            pstmt.setInt(10, vacationObject.NumberOfSuitcases);
+            pstmt.setInt(11, vacationObject.MaxWeight);
+            pstmt.setString(12, null);
+            pstmt.setString(13, null);
+            pstmt.setString(14,null);
+            pstmt.setString(15, null);
+            pstmt.setString(16, null);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
 
+    public void DeleteVacation(String VacationID) {
+        String sql = "DELETE FROM Vacations WHERE VacationID = \"" + VacationID + "\"";
 
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            // execute the delete statement
+            pstmt.executeUpdate();
 
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 
 

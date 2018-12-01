@@ -126,7 +126,7 @@ A stage for secondary windows
     public void Delete() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/Delete.fxml").openStream());
+            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/DeleteProfile.fxml").openStream());
             Scene scene = new Scene(root, 1024, 600);
             Mainstage.setScene(scene);
             Mainstage.show();
@@ -136,7 +136,7 @@ A stage for secondary windows
     }
 
     /*
-     * Delete the profile of the user and check if he answered the questions
+     * DeleteProfile the profile of the user and check if he answered the questions
      */
     public void Quit() {
         Reason reason = Reason.NO_ANSWER;
