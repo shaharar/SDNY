@@ -1,13 +1,18 @@
 package DBManager;
 
+import Model.PaymentObject;
 import Model.ProfileObject;
 import Model.VacationObject;
+import Model.VacationStatus;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DBManager implements IDBManager {
     private Connection connect() {
@@ -167,7 +172,7 @@ public class DBManager implements IDBManager {
                 + "	PaymentID CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
                 + "	VacationID_fk CHAR(8) NOT NULL,\n"
                 + " UserName_fk CHAR(8) NOT NULL, \n"
-                + " Useridoc CHAR(9) NOT NULL, \n"
+                + " Useridoc CHAR(9) NOT NULL, \n" //user real id (teodat zeout)
                 + "	LastName CHAR(20) NOT NULL,\n"
                 + " FirstName CHAR(20) NOT NULL, \n"
                 + " CardNumber CHAR(16) NOT NULL, \n"
@@ -365,34 +370,75 @@ public class DBManager implements IDBManager {
         return searchresults;
     }
 
-    public void ChooseVacation(String VacationID ,  String BuyerUserName_fk ){
 
-
-
-
-
-
-
-    }
-
-    public void UpdateVacationStatus(String status) {
-        String sql = "UPDATE Vacation SET USERNAME=? , PASSWORD=?, FIRSTNAME=?,LASTNAME=?, BIRTHDATE=?,CITY=? "
-                + "WHERE USERNAME = \"" + user + "\"";
+    public void ChooseVacation(String VacationID ,  String BuyerUserName ){
+    UpdateVacationStatus(VacationStatus.WAITTING_FOR_APPROVAL,VacationID);
+        String sql = "INSERT INTO Requests(VacationID,SellerUserName_fk,BuyerUserName_fk,RequestDate,RequestHour,Status) VALUES(?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            // set the corresponding param
-            pstmt.setString(1, profileObject.Username);
-            pstmt.setString(2, profileObject.Password);
-            pstmt.setString(3, profileObject.FirstName);
-            pstmt.setString(4, profileObject.LastName);
-            pstmt.setString(5, profileObject.BirthDate);
-            pstmt.setString(6, profileObject.City);
+            pstmt.setString(1,VacationID);
+            pstmt.setString(2, GetSeller(VacationID));
+            pstmt.setString(3, BuyerUserName);
+            pstmt.setString(4, LocalDateTime.now().toString());
+            pstmt.setString(5, ZonedDateTime.now().toString());
+            pstmt.setString(6, VacationStatus.WAITTING_FOR_APPROVAL.toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    private String GetSeller(String vacationID) {
+        String sql = "SELECT UserName_fk FROM Vacations WHERE VacationID=\"" + vacationID + "\"";
+
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            if (rs.next()) {
+                return rs.getString(0);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "";
+        }
+        return "";
+    }
+
+    public void UpdateVacationStatus(VacationStatus status, String VacationID) {
+        String sql = "UPDATE Vacations SET Status=? "
+                + "WHERE VacationID = \"" + VacationID + "\"";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // set the corresponding param
+            pstmt.setString(1, status.toString());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void InsertPayment(PaymentObject paymentObject){
+        String sql = "INSERT INTO Payments(PaymentID,VacationID_fk,UserName_fk,Useridoc,LastName,FirstName,CardNumber,ExpirationDate,SecurityCode,Methods) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,paymentObject.PaymentID);
+            pstmt.setString(2, paymentObject.VacationID_fk);
+            pstmt.setString(3, paymentObject.UserName_fk);
+            pstmt.setString(4, paymentObject.Useridoc);
+            pstmt.setString(5, paymentObject.LastName);
+            pstmt.setString(6, paymentObject.FirstName);
+            pstmt.setString(7, paymentObject.CardNumber);
+            pstmt.setString(8, paymentObject.ExpirationDate);
+            pstmt.setString(9, paymentObject.SecurityCode);
+            pstmt.setString(10, paymentObject.Methods);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 
 
