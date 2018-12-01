@@ -59,7 +59,7 @@ public class Controller implements IController{
         Scene scene = new Scene(root, 720, 404);
         newStage.setScene(scene);
 
-        Iwindow NewWindow=fxmlLoader.getController();
+        Awindow NewWindow=fxmlLoader.getController();
         NewWindow.setStage(newStage);
         NewWindow.setController(this);
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes

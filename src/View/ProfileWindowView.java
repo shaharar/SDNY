@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 
-public class ProfileWindowView implements Iwindow{
+public class ProfileWindowView extends Awindow{
     Stage stage;
     Controller.IController controller;
     public TextField txtfld_username_P;
@@ -21,10 +21,6 @@ public class ProfileWindowView implements Iwindow{
         this.stage=stage;
     }
 
-    @Override
-    public void setController(IController controller) {
-        this.controller=controller;
-    }
 
     /*
 we would like the profile to get the most updated info on the profile from the database

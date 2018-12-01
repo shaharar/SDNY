@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.zip.GZIPInputStream;
 
-public class UpdateWindowView implements Iwindow {
+public class UpdateWindowView extends Awindow {
     public TextField txtfld_username_U;
     public PasswordField pswfld_password_U;
     public DatePicker DP_birthdate_U;
@@ -39,10 +39,6 @@ public class UpdateWindowView implements Iwindow {
         } catch (Exception e) {
             //e.printStackTrace();
         }
-    }
-    @Override
-    public void setController(IController controller) {
-        this.controller=controller;
     }
 
     public void textFieldUpdate() {

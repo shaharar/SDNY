@@ -56,9 +56,6 @@ A stage for secondary windows
         this.Mainstage = stage;
     }
 
-    public void setController(IController controller) {
-        this.controller = controller;
-    }
 
 
     /*

@@ -8,7 +8,7 @@ public abstract class Awindow {
  static IController controller;
  Stage stage;
 
-    void setStage(Stage stage){
+    public void setStage(Stage stage){
         this.stage=stage;
 
     };
