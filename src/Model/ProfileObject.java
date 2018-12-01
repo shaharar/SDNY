@@ -27,4 +27,5 @@ public class ProfileObject {
         City = fields[5];
         PhotoPath = fields[6];
     }
+
 }

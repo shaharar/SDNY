@@ -73,7 +73,7 @@ public class Model1 implements IModel {
 
     public boolean Update(ProfileObject profileObject) {
         if(isDataCorrect(profileObject)) {
-            DBM.Update(currentUser,profileObject);
+            DBM.UpdateProfile(currentUser,profileObject);
             currentUser=profileObject.Username;
             return true;
         }

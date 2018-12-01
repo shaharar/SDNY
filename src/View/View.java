@@ -20,7 +20,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class View implements IView,Iwindow {
+public class View extends Awindow implements IView {
 
     @FXML
     public static IController controller;
