@@ -51,7 +51,7 @@ public class Controller implements IController{
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;
         try {
-            root = fxmlLoader.load(getClass().getResource("../main/resources/"+fxmlfile).openStream());
+            root = fxmlLoader.load(getClass().getClassLoader().getResource(fxmlfile).openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

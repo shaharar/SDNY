@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 import java.io.ByteArrayInputStream;
 
 public class ProfileWindowView extends Awindow{
-    Stage stage;
-    Controller.IController controller;
     public TextField txtfld_username_P;
     public TextField txtfld_birthdate_P;
     public TextField txtfld_city_P;

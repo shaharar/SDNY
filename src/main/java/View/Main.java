@@ -15,16 +15,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(getClass().getResource("../main/resources/Login.fxml").openStream());
+        Parent root = fxmlLoader.load(getClass().getClassLoader().getResource("Login.fxml").openStream());
         primaryStage.setTitle("Welcome to Vacation4U");
         Scene scene = new Scene(root, 1024, 600);
         primaryStage.setScene(scene);
         view = fxmlLoader.getController();
+        view.setMainStage(primaryStage);
         view.setStage(primaryStage);
         view.setMainStage(primaryStage);
         Controller con = new Controller(view);
-        view.setController(con);
-        scene.getStylesheets().add(getClass().getResource("../main/resources/ViewStyle.css").toExternalForm());
+        Awindow.setController(con);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
         primaryStage.show();
         view.btn_Login.requestFocus();
     }

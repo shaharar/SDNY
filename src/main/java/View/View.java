@@ -12,18 +12,16 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import Controller.IController;
+
 import java.io.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class View extends Awindow implements IView {
 
     @FXML
-    public static IController controller;
     public TextField txtfld_username_W;
     public TextField txtfld_username_login_L;
     public TextField txtfld_username_reg_L;
@@ -35,27 +33,20 @@ public class View extends Awindow implements IView {
     public TextField txtfld_lastName_L;
     public TextField txtfld_regDuration;
     public Button btn_Login;
+    public AnchorPane Anchorpane;
     public Button btn_search_W;
     public javafx.scene.image.ImageView Img_profile_L;
     public ChoiceBox chobx_reason;
-    public static Stage stage;
+    public Button btnSearch_Vacation_L;
+    public Button btnSearch_Vacation_W;
     public File fileselected = null;
     private ObservableList<String> quitReasons = FXCollections.observableArrayList("I found what i was looking for", "Disappointed from the service", "I found a better service", "other");
-    private static Stage Mainstage;
 /*
 A stage for secondary windows
  */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
-    /*
-    the main stage for any use by view
-     */
-    public void setMainStage(Stage stage) {
-        this.Mainstage = stage;
-    }
-
 
 
     /*
@@ -65,16 +56,7 @@ A stage for secondary windows
     public void signUp() {
         String[] fieldsArr = new String[]{txtfld_username_reg_L.getText(), pswfld_password_reg_L.getText(), txtfld_firstName_L.getText(), txtfld_lastName_L.getText(),DP_birthdate_L.getValue()==null?null: DP_birthdate_L.getValue().toString(), txtfld_city_L.getText(), fileselected == null ? null : fileselected.getPath()};
         if (controller.SignUp(fieldsArr)) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                Parent root = fxmlLoader.load(getClass().getResource("../main/resources/website.fxml").openStream());
-                Scene scene = new Scene(root, 1024, 600);
-                Mainstage.setScene(scene);
-                scene.getStylesheets().add(getClass().getResource("../main/resources/Background.css").toExternalForm());
-                Mainstage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+           ChangeScene("website.fxml");
         }
     }
 
@@ -100,16 +82,7 @@ A stage for secondary windows
      */
     public void Login() {
         if (controller.Login(txtfld_username_login_L.getText(), pswfld_password_login_L.getText())) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                Parent root = fxmlLoader.load(getClass().getResource("../main/resources/website.fxml").openStream());
-                Scene scene = new Scene(root, 1024, 600);
-                stage.setScene(scene);
-                scene.getStylesheets().add(getClass().getResource("../main/resources/Background.css").toExternalForm());
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ChangeScene("website.fxml");
         } else {
             showAlert("Incorrect Username/Password. Please try Again");
         }
@@ -124,15 +97,7 @@ A stage for secondary windows
      the window changed to the delete user screen
      */
     public void Delete() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/DeleteProfile.fxml").openStream());
-            Scene scene = new Scene(root, 1024, 600);
-            Mainstage.setScene(scene);
-            Mainstage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ChangeScene("Delete.fxml");
     }
 
     /*
@@ -204,17 +169,7 @@ when opening update window the fields should have their current state for the us
 
 
     public void goToWebsite() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/website.fxml").openStream());
-            Scene scene = new Scene(root, 1024, 600);
-            Mainstage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("../main/resources/Background.css").toExternalForm());
-            Mainstage.show();
-            btn_search_W.requestFocus();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+       ChangeScene("website.fxml");
     }
 /*
 this function is unnecessery because it is defaulted on true but we might need this in the future
@@ -233,16 +188,7 @@ this function is unnecessery because it is defaulted on true but we might need t
 
     public void Logout() {
         controller.LogOut();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("../main/resources/Login.fxml").openStream());
-            Scene scene = new Scene(root, 1024, 600);
-            Mainstage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("../main/resources/ViewStyle.css").toExternalForm());
-            Mainstage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+       ChangeScene("Login.fxml");
     }
 
 
@@ -263,4 +209,7 @@ this function is unnecessery because it is defaulted on true but we might need t
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
     }
+        public void OpenSearchScreen(){
+       controller.openwindow("VacationSearch.fxml",null);
+        }
 }

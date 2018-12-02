@@ -23,8 +23,6 @@ public class UpdateWindowView extends Awindow {
     public TextField txtfld_firstName_U;
     public TextField txtfld_lastName_U;
     public Button btn_saveChanges_U;
-    private IController controller;
-    private Stage stage;
 
 
     public void setStage(Stage stage) {

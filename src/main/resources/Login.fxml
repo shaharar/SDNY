@@ -8,12 +8,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
     <top>
         <HBox prefHeight="80.0" prefWidth="434.0" BorderPane.alignment="CENTER">
             <children>
@@ -38,6 +39,8 @@
                             </right></BorderPane>
                     </children>
                 </VBox>
+            <Button fx:id="btnSearch_Vacation_L" onAction="#OpenSearchScreen" mnemonicParsing="false" text="Search Vacation" />
+            <AnchorPane fx:id="Anchorpane" prefHeight="200.0" prefWidth="200.0" />
             </children>
         </HBox>
     </top>
