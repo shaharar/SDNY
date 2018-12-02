@@ -48,7 +48,7 @@
     <right>
         <VBox maxHeight="50.0" maxWidth="116.0" prefHeight="50.0" prefWidth="116.0" BorderPane.alignment="TOP_RIGHT">
             <children>
-                <Button fx:id="btn_search_W" maxWidth="150.0" mnemonicParsing="false" onAction="#Search" prefHeight="25.0" prefWidth="75.0" text="Search" />
+                <Button fx:id="btn_search_W" maxWidth="150.0" mnemonicParsing="false" onAction="#SearchProfile" prefHeight="25.0" prefWidth="75.0" text="Search" />
             <Button fx:id="btnSearch_Vacation_W" onAction="#OpenSearchScreen" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Search Vacation" />
             </children>
         </VBox>

@@ -235,18 +235,20 @@ get user's photo - did not use this yet
             controller.showalert("Your Destination is too long");
             return false;
         }
-        int startdate=Integer.parseInt(vacationObject.VacationDate.substring(0,2));
-        int startamonth=Integer.parseInt(vacationObject.VacationDate.substring(2,4));
-        int startyear=Integer.parseInt(vacationObject.VacationDate.substring(4,8));
-        int finishdate=Integer.parseInt(vacationObject.VacationDate.substring(8,10));
-        int finishmonth=Integer.parseInt(vacationObject.VacationDate.substring(10,12));
-        int finishyear=Integer.parseInt(vacationObject.VacationDate.substring(12,16));
+        int startdate=Integer.parseInt(vacationObject.VacationDate.substring(8,10));
+        int startamonth=Integer.parseInt(vacationObject.VacationDate.substring(5,7));
+        int startyear=Integer.parseInt(vacationObject.VacationDate.substring(0,4));
+        int finishdate=Integer.parseInt(vacationObject.VacationDate.substring(18,20));
+        int finishmonth=Integer.parseInt(vacationObject.VacationDate.substring(15,17));
+        int finishyear=Integer.parseInt(vacationObject.VacationDate.substring(10,14));
 
         if(finishyear<startyear || (finishyear==startyear && finishdate<startamonth)||(finishyear==startyear && finishdate==startamonth && finishdate<startdate )) {
             controller.showalert("Your Dates are no valid, choose again");
             return false;
+        }else{
+            vacationObject.VacationDate=""+startdate+"-"+startamonth+"-"+startyear+"-"+finishdate+"-"+finishmonth+"-"+finishyear;
         }
-        else if(vacationObject.NumberOfSuitcases>5){
+        if(vacationObject.NumberOfSuitcases>5){
             controller.showalert("Max number of suitcases per person is 5");
             return false;
         }

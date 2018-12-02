@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public interface IModel {
 
 
@@ -11,6 +13,7 @@ public interface IModel {
     boolean Login(String username, String password);
     void Logout();
     void CreateDB();
+    ArrayList<VacationObject> GetSearchResult(VacationObject vacationObject);
 
     String[] getFields(String username);
 

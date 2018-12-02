@@ -68,7 +68,7 @@ A stage for secondary windows
         controller.openwindow("Profile.fxml", username);
     }
 
-    public void Search() {
+    public void SearchProfile() {
         if (controller.Search(txtfld_username_W.getText())) { //if found in db
             showProfile(txtfld_username_W.getText());
         } else {
@@ -157,12 +157,6 @@ A stage for secondary windows
     public void setChoiceBoxItems() {
         chobx_reason.setItems(quitReasons);
     }
-
-    public void showAlert(String alertMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(alertMessage);
-        alert.show();
-    }
 /*
 when opening update window the fields should have their current state for the user to see
  */
@@ -210,6 +204,7 @@ this function is unnecessery because it is defaulted on true but we might need t
         newStage.show();
     }
         public void OpenSearchScreen(){
-       controller.openwindow("VacationSearch.fxml",null);
+        controller.openwindow("VacationSearch.fxml",null);
+
         }
 }

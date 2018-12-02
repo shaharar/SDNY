@@ -72,6 +72,10 @@ public class Controller implements IController{
            ProfileWindowView wind=(ProfileWindowView) NewWindow;
             wind.textFieldProfile(usernametosearch);
         }
+        else if(fxmlfile.equals("VacationSearch.fxml")){
+            SearchWindowView window=(SearchWindowView) NewWindow;
+            window.SetLists();
+        }
     }
 
 
@@ -84,6 +88,19 @@ public class Controller implements IController{
     public byte[] getphoto( String username){
 
         return Model.getPhoto(username);
+    }
+
+    @Override
+    public boolean SearchVacation(boolean buyAll, String[] TextFields) {
+        try{
+            int numOfSuitcases= Integer.parseInt(TextFields[7]);
+            int maxWeight= Integer.parseInt(TextFields[8]);
+            Model.GetSearchResult(new VacationObject(null,null,null,false,"adu-"+TextFields[0]+"chi-"+TextFields[1]+"bab-"+TextFields[2],buyAll,TextFields[3],TextFields[4],TextFields[5]+TextFields[6],numOfSuitcases,maxWeight));
+        }catch (Exception e){
+            showalert("Try entering again");
+            return false;
+        }
+        return true;
     }
 
 

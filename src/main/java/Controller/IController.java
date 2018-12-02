@@ -15,6 +15,7 @@ public interface IController {
     void openwindow(String fxmlfile, String usernametosearch);
     void LogOut();
     byte[] getphoto( String username);
+    boolean SearchVacation(boolean buyAll,String[] TextFields);
 
     void showalert(String alert);
 }

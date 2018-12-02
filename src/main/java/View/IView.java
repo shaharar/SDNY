@@ -6,7 +6,7 @@ import Model.Reason;
 
 public interface IView {
     void signUp();
-    void Search();
+    void SearchProfile();
     void Update();
     void Delete();
     void Login();
