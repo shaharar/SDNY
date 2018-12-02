@@ -149,7 +149,7 @@ get user's photo - did not use this yet
 
     public ArrayList<String> GetNewRequest(){
 
-     ArrayList<String> VacationRequest= DBM.GetUserRequest(DBM.GetUserVacatuon(currentUser));//List  reqested vacations
+     ArrayList<String> VacationRequest= DBM.GetUserRequest(DBM.GetUserVacation(currentUser));//List  reqested vacations
         return VacationRequest;
 
     }
