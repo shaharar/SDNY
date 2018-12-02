@@ -9,6 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Controller implements IController{
 
@@ -106,6 +107,11 @@ public class Controller implements IController{
 
     public void showalert(String alert) {
         MyView.showAlert(alert);
+    }
+
+    @Override
+    public ArrayList<String> GetNewRequests() {
+        return Model.GetNewRequests();
     }
 }
 

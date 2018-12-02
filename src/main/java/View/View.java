@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class View extends Awindow implements IView {
 
@@ -86,6 +87,11 @@ A stage for secondary windows
         } else {
             showAlert("Incorrect Username/Password. Please try Again");
         }
+       /* showAlert("no new messages");
+        ArrayList<String> requests=controller.GetNewRequests();
+        for (int i = 0; i <requests.size() ; i++) {
+            showAlert(requests.get(i));
+        }*/
     }
 
     public void Update() {
@@ -185,7 +191,9 @@ this function is unnecessery because it is defaulted on true but we might need t
        ChangeScene("Login.fxml");
     }
 
-
+    public void lookForNewRequests(){
+        controller.openwindow("Requests.fxml",null);
+    }
     public void attention(){
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;

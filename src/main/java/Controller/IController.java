@@ -4,6 +4,8 @@ import Model.Reason;
 import Model.UserFields;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public interface IController {
 
     boolean Login(String username, String password);
@@ -18,4 +20,6 @@ public interface IController {
     boolean SearchVacation(boolean buyAll,String[] TextFields);
 
     void showalert(String alert);
+
+    ArrayList<String> GetNewRequests();
 }

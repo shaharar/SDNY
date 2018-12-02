@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
     <top>
         <HBox maxHeight="100.0" maxWidth="600.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
             <children>
@@ -46,10 +46,11 @@
         </VBox>
     </center>
     <right>
-        <VBox maxHeight="50.0" maxWidth="116.0" prefHeight="50.0" prefWidth="116.0" BorderPane.alignment="TOP_RIGHT">
+        <VBox maxHeight="75.0" maxWidth="150.0" prefHeight="75.0" prefWidth="150.0" BorderPane.alignment="TOP_RIGHT">
             <children>
                 <Button fx:id="btn_search_W" maxWidth="150.0" mnemonicParsing="false" onAction="#SearchProfile" prefHeight="25.0" prefWidth="75.0" text="Search" />
-            <Button fx:id="btnSearch_Vacation_W" onAction="#OpenSearchScreen" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Search Vacation" />
+            <Button fx:id="btnSearch_Vacation_W" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="25.0" prefWidth="151.0" text="Search Vacation" />
+            <Button onAction="#lookForNewRequests" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Look For New Requests" />
             </children>
         </VBox>
     </right>

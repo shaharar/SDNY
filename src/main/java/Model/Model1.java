@@ -147,7 +147,7 @@ get user's photo - did not use this yet
         return new byte[0];
     }
 
-    public ArrayList<String> GetNewRequest(){
+    public ArrayList<String> GetNewRequests(){
 
      ArrayList<String> VacationRequest= DBM.GetUserRequest(DBM.GetUserVacation(currentUser));//List  reqested vacations
         return VacationRequest;
@@ -219,8 +219,6 @@ get user's photo - did not use this yet
     public void DeleteVacation(String VacationID){
          DBM.DeleteVacation(VacationID);
     }
-
-
 
     public boolean IsVacationDetailsValid(VacationObject vacationObject){
         if(vacationObject.TicketType.length()>20){

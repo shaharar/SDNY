@@ -14,6 +14,7 @@ public interface IModel {
     void Logout();
     void CreateDB();
     ArrayList<VacationObject> GetSearchResult(VacationObject vacationObject);
+    ArrayList<String> GetNewRequests();
 
     String[] getFields(String username);
 
