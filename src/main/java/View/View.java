@@ -41,6 +41,7 @@ public class View extends Awindow implements IView {
     public Button btnSearch_Vacation_L;
     public Button btnSearch_Vacation_W;
     public File fileselected = null;
+    public AnchorPane resultvac;
     private ObservableList<String> quitReasons = FXCollections.observableArrayList("I found what i was looking for", "Disappointed from the service", "I found a better service", "other");
 /*
 A stage for secondary windows
@@ -84,6 +85,7 @@ A stage for secondary windows
     public void Login() {
         if (controller.Login(txtfld_username_login_L.getText(), pswfld_password_login_L.getText())) {
             ChangeScene("website.fxml");
+            resultvac.getChildren().add(new VacationDisplay());
         } else {
             showAlert("Incorrect Username/Password. Please try Again");
         }

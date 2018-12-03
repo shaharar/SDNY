@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -50,8 +51,11 @@
             <children>
                 <Button fx:id="btn_search_W" maxWidth="150.0" mnemonicParsing="false" onAction="#SearchProfile" prefHeight="25.0" prefWidth="75.0" text="Search" />
             <Button fx:id="btnSearch_Vacation_W" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="25.0" prefWidth="151.0" text="Search Vacation" />
-            <Button onAction="#lookForNewRequests" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Look For New Requests" />
+            <Button mnemonicParsing="false" onAction="#lookForNewRequests" prefHeight="25.0" prefWidth="170.0" text="Look For New Requests" />
             </children>
         </VBox>
     </right>
+   <left>
+      <AnchorPane fx:id="resultvac" prefHeight="541.0" prefWidth="601.0" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>
