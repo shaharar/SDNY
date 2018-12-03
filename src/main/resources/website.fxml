@@ -55,7 +55,4 @@
             </children>
         </VBox>
     </right>
-   <left>
-      <AnchorPane fx:id="resultvac" prefHeight="541.0" prefWidth="601.0" BorderPane.alignment="CENTER" />
-   </left>
 </BorderPane>

@@ -85,7 +85,6 @@ A stage for secondary windows
     public void Login() {
         if (controller.Login(txtfld_username_login_L.getText(), pswfld_password_login_L.getText())) {
             ChangeScene("website.fxml");
-            resultvac.getChildren().add(new VacationDisplay());
         } else {
             showAlert("Incorrect Username/Password. Please try Again");
         }

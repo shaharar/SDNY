@@ -21,10 +21,18 @@ public class SearchWindowView extends Awindow {
     private ObservableList<String> adultsList = FXCollections.observableArrayList("1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14","15","16");
     private ObservableList<String> childrenList = FXCollections.observableArrayList("1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14","15","16");
     private ObservableList<String> babiesList =  FXCollections.observableArrayList("1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14","15","16");
+
+
+
+
+
+
+
     public void SearchVacation() {
         String[] values={(String)Adults.getValue(),(String)Children.getValue(),(String)Babies.getValue(),FlightCompany.getText(),Destination.getText(),dtpcker_From.getValue().toString(),dtpcker_To.getValue().toString(),NumberOfSuitCases.getText(),MaxWeight.getText()};
         if(controller.SearchVacation(BuyAll.isSelected(),values)){
-         //stage.close();
+            stage.close();
+            controller.openwindow("SearchResult.fxml",null);
         }
     }
 
