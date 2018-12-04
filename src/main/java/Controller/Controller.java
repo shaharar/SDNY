@@ -97,10 +97,30 @@ public class Controller implements IController{
             int numOfSuitcases= Integer.parseInt(TextFields[7]);
             int maxWeight= Integer.parseInt(TextFields[8]);
             ArrayList<VacationObject > vacationObjects= Model.GetSearchResult(new VacationObject(null,null,null,false,"adu-"+TextFields[0]+"chi-"+TextFields[1]+"bab-"+TextFields[2],buyAll,TextFields[3],TextFields[4],TextFields[5]+TextFields[6],numOfSuitcases,maxWeight));
+            if( vacationObjects!=null){
+                for (int i = 0; i <vacationObjects.size() ; i++) {
+                    String[] values=new String[10];
+                    values[0]=vacationObjects.get(i).VacationID;
+                    String[] adultTicketsArr=vacationObjects.get(i).VacationID.split("adu");
+                    String[] childrenArr=adultTicketsArr[1].split("chi");
+                    String[] babyArr=childrenArr[1].split("bab");
+                    values[1]=childrenArr[1] ;
+                    values[2]=babyArr[0] ;
+                    values[3]= babyArr[1];
+                    values[4]=""+vacationObjects.get(i).BuyAll;
+                    values[5]= vacationObjects.get(i).FlightCompany;
+                    values[6]= vacationObjects.get(i).Destination;
+                    values[7]= vacationObjects.get(i).VacationDate;
+                    values[8]= ""+vacationObjects.get(i).NumberOfSuitcases;
+                    values[9]=""+vacationObjects.get(i).MaxWeight ;
 
+                }
+                return null;
+            }
+            return null;
         }catch (Exception e){
             showalert("Try entering again");
-            return false;
+            return null;
         }
 
     }

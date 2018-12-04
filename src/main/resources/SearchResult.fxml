@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.SearchResult"
+            fx:controller="View.SearchResultView"
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <Label layoutX="26.0" layoutY="28.0" prefHeight="27.0" prefWidth="179.0" text="VacationID " fx:id="VacationId"/>

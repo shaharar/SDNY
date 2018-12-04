@@ -13,8 +13,8 @@ public class Model1 implements IModel {
     IDBManager DBM;
     String currentUser;
     int PaymentId;
-    int VacationId;
-    int RequestID;
+    int VacationId; //counter for next id
+    int RequestID; //counter for next id
 
     public Model1(IController controller) {
         this.DBM = new DBManager();
@@ -240,7 +240,7 @@ get user's photo - did not use this yet
         int finishmonth=Integer.parseInt(vacationObject.VacationDate.substring(15,17));
         int finishyear=Integer.parseInt(vacationObject.VacationDate.substring(10,14));
 
-        if(finishyear<startyear || (finishyear==startyear && finishdate<startamonth)||(finishyear==startyear && finishdate==startamonth && finishdate<startdate )) {
+        if(finishyear<startyear || (finishyear==startyear && finishmonth<startamonth)||(finishyear==startyear && finishmonth==startamonth && finishdate<startdate )) {
             controller.showalert("Your Dates are no valid, choose again");
             return false;
         }else{

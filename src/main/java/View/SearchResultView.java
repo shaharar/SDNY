@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 
-public class SearchResult {
+public class SearchResultView extends Awindow{
 
     public Label VacationId;
     public Label Destination;
