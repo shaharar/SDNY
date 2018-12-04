@@ -1,8 +1,6 @@
 package Controller;
 
 import Model.Reason;
-import Model.UserFields;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -22,4 +20,6 @@ public interface IController {
     void showalert(String alert);
 
     ArrayList<String> GetNewRequests();
+
+    boolean CreateVacation(String[] strings, boolean selected);
 }

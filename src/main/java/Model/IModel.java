@@ -15,6 +15,7 @@ public interface IModel {
     void CreateDB();
     ArrayList<VacationObject> GetSearchResult(VacationObject vacationObject);
     ArrayList<String> GetNewRequests();
+    boolean InsertVacation(VacationObject vacationObject);
 
     String[] getFields(String username);
 

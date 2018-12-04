@@ -212,6 +212,19 @@ this function is unnecessery because it is defaulted on true but we might need t
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
     }
+   public void CreateVac_btn() {
+       controller.openwindow("CreateVacation.fxml", null);
+   }
+
+
+
+
+
+
+
+
+
+
         public void OpenSearchScreen(){
         controller.openwindow("VacationSearch.fxml",null);
 

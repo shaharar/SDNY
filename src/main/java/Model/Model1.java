@@ -206,6 +206,10 @@ get user's photo - did not use this yet
         if( !IsVacationDetailsValid(vacationObject)){
             return false;
         }
+        vacationObject.VacationID=""+VacationId;
+        VacationId++;
+        vacationObject.UserName_fk=currentUser;
+        vacationObject.Status=""+VacationStatus.FOR_SALE;
         return DBM.InsertVacation(vacationObject);
 
     }

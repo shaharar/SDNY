@@ -29,16 +29,20 @@ public class SearchWindowView extends Awindow {
 
 
 
-    public void SearchVacation() {
-        String[] values={(String)Adults.getValue(),(String)Children.getValue(),(String)Babies.getValue(),FlightCompany.getText(),Destination.getText(),dtpcker_From.getValue().toString(),dtpcker_To.getValue().toString(),NumberOfSuitCases.getText(),MaxWeight.getText()};
-        ArrayList<String> results=controller.SearchVacation(BuyAll.isSelected(),values);
+    public void SendToController() {
+        ArrayList<String> results=controller.SearchVacation(BuyAll.isSelected(),GetValues());
         if(results==null){
             stage.close();
             controller.openwindow("SearchResult.fxml",null);
         }
 
-    }
 
+    }
+    public String[] GetValues (){
+        String[] values={(String)Adults.getValue(),(String)Children.getValue(),(String)Babies.getValue(),FlightCompany.getText(),Destination.getText(),dtpcker_From.getValue().toString(),dtpcker_To.getValue().toString(),NumberOfSuitCases.getText(),MaxWeight.getText()};
+
+    return values;
+    }
     public void SetLists() {
         Adults.setItems(adultsList);
         Children.setItems(childrenList);

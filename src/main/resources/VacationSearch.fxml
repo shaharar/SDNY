@@ -29,6 +29,6 @@
       <DatePicker fx:id="dtpcker_To" layoutX="178.0" layoutY="248.0" prefHeight="25.0" prefWidth="149.0" />
       <TextField fx:id="NumberOfSuitCases" layoutX="176.0" layoutY="320.0" />
       <TextField fx:id="MaxWeight" layoutX="178.0" layoutY="284.0" />
-      <Button  fx:id="SendSearch" onAction="#SearchVacation" layoutX="383.0" layoutY="231.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" text="Search Vacation" />
+      <Button fx:id="SendSearch" onAction="#SendToController" layoutX="383.0" layoutY="231.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" text="Search Vacation" />
    </children>
 </AnchorPane>

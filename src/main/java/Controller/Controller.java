@@ -73,7 +73,7 @@ public class Controller implements IController{
            ProfileWindowView wind=(ProfileWindowView) NewWindow;
             wind.textFieldProfile(usernametosearch);
         }
-        else if(fxmlfile.equals("VacationSearch.fxml")){
+        else if(fxmlfile.equals("VacationSearch.fxml")||fxmlfile.equals("CreateVacation.fxml")){
             SearchWindowView window=(SearchWindowView) NewWindow;
             window.SetLists();
         }
@@ -133,6 +133,20 @@ public class Controller implements IController{
     @Override
     public ArrayList<String> GetNewRequests() {
         return Model.GetNewRequests();
+    }
+
+    @Override
+    public boolean CreateVacation(String[] strings, boolean selected) {
+   return Model.InsertVacation(ConvertToVacation(strings,selected));
+    }
+    public VacationObject ConvertToVacation(String [] GuiValues,boolean buyAll){
+        int numOfSuitcases= Integer.parseInt(GuiValues[7]);
+        int maxWeight= Integer.parseInt(GuiValues[8]);
+        return new VacationObject(null,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5]+GuiValues[6],numOfSuitcases,maxWeight);
+
+
+
+
     }
 }
 
