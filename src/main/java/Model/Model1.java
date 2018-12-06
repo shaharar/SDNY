@@ -164,8 +164,14 @@ get user's photo - did not use this yet
 
     }
     public void ChooseVacation(String VacationID){
-       DBM.UpdateVacationStatus(VacationStatus.WAITTING_FOR_APPROVAL,VacationID);
-       DBM.ChooseVacation(VacationID,currentUser);
+        if(currentUser==null){
+            controller.showalert("You need to sign in");
+        }
+        else {
+            DBM.UpdateVacationStatus(VacationStatus.WAITTING_FOR_APPROVAL,VacationID);
+            DBM.ChooseVacation(VacationID,currentUser);
+        }
+
 
     }
 

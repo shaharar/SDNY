@@ -12,6 +12,8 @@ public class DeleteVacationView extends Awindow{
 
     public void deletevacation(){
         controller.DeleteVacation(InsertVacID.getText());
+        stage.close();
+        showAlert("Delete Succesful");
 
     }
 

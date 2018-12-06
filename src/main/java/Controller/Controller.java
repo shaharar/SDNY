@@ -5,7 +5,6 @@ import View.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,7 +24,7 @@ public class Controller implements IController{
     public boolean Login(String username, String password) {
         return  (Model.Login(username, password));
     }
-    public boolean Search(String username) {
+    public boolean SearchProfile(String username) {
         return  (Model.Read(username));
     }
     public String[] getFields(String username){
@@ -48,7 +47,7 @@ public class Controller implements IController{
     }
 
    /* get fxml file and opens a new window on top of the main window(which stays untouchable)*/
-     public void openwindow(String fxmlfile,String Parameter){
+     public void openwindow(String fxmlfile,Object Parameter){
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;
         try {
@@ -71,7 +70,7 @@ public class Controller implements IController{
         }
         else if(fxmlfile.equals("Profile.fxml")) {
            ProfileWindowView wind=(ProfileWindowView) NewWindow;
-           wind.textFieldProfile(Parameter);
+           wind.textFieldProfile((String)Parameter);
         }
         else if(fxmlfile.equals("VacationSearch.fxml")||fxmlfile.equals("CreateVacation.fxml")){
             AVacationWindow window=(AVacationWindow) NewWindow;
@@ -80,8 +79,12 @@ public class Controller implements IController{
         else if(fxmlfile.equals("UpdateVacation.fxml")){
             UpdateVacationView window=(UpdateVacationView) NewWindow;
             window.SetLists();
-            VacationObject currentVacation=Model.getVacationFields(Parameter);
+            VacationObject currentVacation=Model.getVacationFields((String)Parameter);
             window.SetValues(VacToStringArr(currentVacation),currentVacation.BuyAll);
+        }
+        else if(fxmlfile.equals("ShowResult.fxml")){
+            ShowResultView window=(ShowResultView) NewWindow;
+            window.SetResults((String [][])Parameter);
         }
     }
 
@@ -97,9 +100,8 @@ public class Controller implements IController{
     @Override
     public String[][] SearchVacation(boolean buyAll, String[] TextFields) {
         try{
-            int numOfSuitcases= Integer.parseInt(TextFields[7]);
-            int maxWeight= Integer.parseInt(TextFields[8]);
-            ArrayList<VacationObject > vacationObjects= Model.GetSearchResult(new VacationObject(null,null,null,false,"adu-"+TextFields[0]+"chi-"+TextFields[1]+"bab-"+TextFields[2],buyAll,TextFields[3],TextFields[4],TextFields[5]+TextFields[6],numOfSuitcases,maxWeight));
+
+            ArrayList<VacationObject > vacationObjects= Model.GetSearchResult(StringArrToVac(TextFields,buyAll));
             String[][] allResults=new String[vacationObjects.size()][];
             if( vacationObjects!=null){
                 for (int i = 0; i <vacationObjects.size() ; i++) {
@@ -110,6 +112,7 @@ public class Controller implements IController{
             }
             return null;
         }catch (Exception e){
+            System.out.println(e);
             showalert("Try entering again");
             return null;
         }
@@ -144,17 +147,25 @@ public class Controller implements IController{
         Model.ChooseVacation(vacationId);
     }
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
-        int numOfSuitcases= Integer.parseInt(GuiValues[7]);
-        int maxWeight= Integer.parseInt(GuiValues[8]);
+        int numOfSuitcases= -1;
+        int maxWeight= -1;
+        try{
+           numOfSuitcases= Integer.parseInt(GuiValues[7]);
+             maxWeight= Integer.parseInt(GuiValues[8]);
+        }catch (Exception e){
+            showalert("Please enter numbers");
+            return null;
+        }
+
         return new VacationObject(null,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5]+GuiValues[6],numOfSuitcases,maxWeight);
     }
     public String [] VacToStringArr(VacationObject vacationObject){
         String[] values=new String[10];
         values[0]=vacationObject.VacationID;
-        String[] adultTicketsArr=vacationObject.VacationID.split("adu");
-        String[] childrenArr=adultTicketsArr[1].split("chi");
-        String[] babyArr=childrenArr[1].split("bab");
-        values[1]=childrenArr[1] ;
+        String[] adultTicketsArr=vacationObject.TicketType.split("adu-");
+        String[] childrenArr=adultTicketsArr[1].split("chi-");
+        String[] babyArr=childrenArr[1].split("bab-");
+        values[1]=childrenArr[0] ;
         values[2]=babyArr[0] ;
         values[3]= babyArr[1];
         values[4]=""+vacationObject.BuyAll;

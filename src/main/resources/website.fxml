@@ -48,7 +48,7 @@
     <right>
         <VBox maxHeight="186.0" maxWidth="171.0" prefHeight="186.0" prefWidth="171.0" BorderPane.alignment="TOP_RIGHT">
             <children>
-                <Button fx:id="btn_search_W" maxWidth="170.0" mnemonicParsing="false" onAction="#SearchProfile" prefHeight="46.0" prefWidth="170.0" text="Search" />
+                <Button fx:id="btn_search_W" maxWidth="170.0" mnemonicParsing="false" onAction="#SearchProfile" prefHeight="46.0" prefWidth="170.0" text="Search Profile" />
             <Button fx:id="btnSearch_Vacation_W" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="49.0" prefWidth="170.0" text="Search Vacation" />
             <Button mnemonicParsing="false" onAction="#lookForNewRequests" prefHeight="50.0" prefWidth="170.0" text="Look For New Requests" />
             <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="170.0" text="Creat New Vacation"  onAction="#CreateVac_btn"/>

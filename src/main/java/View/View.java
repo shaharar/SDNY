@@ -69,7 +69,7 @@ A stage for secondary windows
     }
 
     public void SearchProfile() {
-        if (controller.Search(txtfld_username_W.getText())) { //if found in db
+        if (controller.SearchProfile(txtfld_username_W.getText())) { //if found in db
             showProfile(txtfld_username_W.getText());
         } else {
             showAlert("Username doesn't exist. Please try Again");
