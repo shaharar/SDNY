@@ -52,6 +52,10 @@ public abstract class Awindow {
         alert.setContentText(alertMessage);
         alert.show();
     }
+
+    public void CloseWindow(){
+        stage.close();
+    }
 }
 
 

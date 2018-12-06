@@ -221,7 +221,10 @@ get user's photo - did not use this yet
     }
 
     public void DeleteVacation(String VacationID){
-         DBM.DeleteVacation(VacationID);
+       if(DBM.GetSeller(VacationID).equals(currentUser)){
+           DBM.DeleteVacation(VacationID);
+       }
+      else controller.showalert("The vacation id is not valid.Try again");
     }
 
     public boolean IsVacationDetailsValid(VacationObject vacationObject){

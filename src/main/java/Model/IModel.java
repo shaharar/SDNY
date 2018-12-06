@@ -16,8 +16,7 @@ public interface IModel {
     ArrayList<VacationObject> GetSearchResult(VacationObject vacationObject);
     ArrayList<String> GetNewRequests();
     boolean InsertVacation(VacationObject vacationObject);
-
+    void DeleteVacation(String VacationID);
     String[] getFields(String username);
-
     byte[] getPhoto(String user);
 }

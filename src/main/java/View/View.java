@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
@@ -18,7 +17,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class View extends Awindow implements IView {
 
@@ -96,7 +94,7 @@ A stage for secondary windows
     }
 
     public void Update() {
-        controller.openwindow("Update.fxml", null);
+        controller.openwindow("UpdateProfile.fxml", null);
     }
 
 
@@ -104,7 +102,7 @@ A stage for secondary windows
      the window changed to the delete user screen
      */
     public void Delete() {
-        ChangeScene("Delete.fxml");
+        ChangeScene("DeleteProfile.fxml");
     }
 
     /*

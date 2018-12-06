@@ -22,4 +22,6 @@ public interface IController {
     ArrayList<String> GetNewRequests();
 
     boolean CreateVacation(String[] strings, boolean selected);
+
+    void DeleteVacation(String vacationId);
 }

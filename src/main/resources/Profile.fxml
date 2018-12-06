@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProfileWindowView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProfileWindowView">
     <center>
-        <VBox alignment="CENTER" maxHeight="200.0" maxWidth="240.0" prefHeight="200.0" prefWidth="200.0" translateX="-65.0" translateY="-15.0" translateZ="10.0" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" maxHeight="228.0" maxWidth="332.0" prefHeight="228.0" prefWidth="332.0" translateX="-65.0" translateY="-15.0" translateZ="10.0" BorderPane.alignment="CENTER">
             <children>
                 <HBox prefHeight="35.0" prefWidth="600.0">
                     <children>
@@ -42,6 +44,11 @@
                         <TextField fx:id="txtfld_city_P" prefHeight="30.0" prefWidth="149.0" />
                     </children>
                 </HBox>
+            <AnchorPane prefHeight="102.0" prefWidth="250.0">
+               <children>
+                  <Button layoutX="69.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Delete a Vacation" onAction="#DeleteVacation" />
+               </children>
+            </AnchorPane>
             </children>
         </VBox>
     </center>
@@ -55,7 +62,7 @@
     <left>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="Img_profile_P" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="70.0" />
+                <ImageView fx:id="Img_profile_P" fitHeight="147.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="70.0" />
             </children></HBox>
     </left>
 </BorderPane>

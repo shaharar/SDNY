@@ -65,7 +65,7 @@ public class Controller implements IController{
         NewWindow.setController(this);
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
-        if(fxmlfile.equals("Update.fxml")){
+        if(fxmlfile.equals("UpdateProfile.fxml")){
             UpdateWindowView wind=(UpdateWindowView) NewWindow;
             wind.textFieldUpdate();
         }
@@ -74,7 +74,7 @@ public class Controller implements IController{
             wind.textFieldProfile(usernametosearch);
         }
         else if(fxmlfile.equals("VacationSearch.fxml")||fxmlfile.equals("CreateVacation.fxml")){
-            SearchWindowView window=(SearchWindowView) NewWindow;
+            View.AVacationWindow window=(View.AVacationWindow) NewWindow;
             window.SetLists();
         }
     }
@@ -141,6 +141,12 @@ public class Controller implements IController{
     public boolean CreateVacation(String[] strings, boolean selected) {
    return Model.InsertVacation(ConvertToVacation(strings,selected));
     }
+
+    @Override
+    public void DeleteVacation(String vacationId) {
+        Model.DeleteVacation(vacationId);
+    }
+
     public VacationObject ConvertToVacation(String [] GuiValues,boolean buyAll){
         int numOfSuitcases= Integer.parseInt(GuiValues[7]);
         int maxWeight= Integer.parseInt(GuiValues[8]);

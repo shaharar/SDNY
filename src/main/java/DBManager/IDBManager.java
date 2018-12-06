@@ -25,4 +25,5 @@ public interface IDBManager {
      boolean InsertVacation(VacationObject vacationObject);
      boolean UpdateVacation(VacationObject vacationObject);
      void DeleteVacation(String VacationID);
+
 }

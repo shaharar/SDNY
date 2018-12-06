@@ -1,6 +1,6 @@
 package View;
 
-public class CreateVacationView extends SearchWindowView{
+public class CreateVacation extends View.AVacationWindow {
 
 
 

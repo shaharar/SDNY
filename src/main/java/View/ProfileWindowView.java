@@ -41,4 +41,9 @@ we would like the profile to get the most updated info on the profile from the d
             Img_profile_P.setImage(new Image(in));
         }
     }
+
+
+    public void DeleteVacation(){
+        controller.openwindow("DeleteVacation.fxml",null);
+    }
 }
