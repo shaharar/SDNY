@@ -24,4 +24,7 @@ public interface IController {
     boolean CreateVacation(String[] strings, boolean selected);
 
     void DeleteVacation(String vacationId);
+
+    void UpdateVacation(String[] strings, boolean selected);
+
 }

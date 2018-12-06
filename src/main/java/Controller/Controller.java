@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 import View.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,10 +46,9 @@ public class Controller implements IController{
     public void Delete(String registrationDuration, Reason reason) {
         Model.Delete(registrationDuration, reason);
     }
-    /*
-    get fxml file and opens a new window on top of the main window(which stays untouchable)
-     */
-    public void openwindow(String fxmlfile,String usernametosearch){
+
+   /* get fxml file and opens a new window on top of the main window(which stays untouchable)*/
+     public void openwindow(String fxmlfile,String Parameter){
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;
         try {
@@ -71,20 +71,24 @@ public class Controller implements IController{
         }
         else if(fxmlfile.equals("Profile.fxml")) {
            ProfileWindowView wind=(ProfileWindowView) NewWindow;
-            wind.textFieldProfile(usernametosearch);
+           wind.textFieldProfile(Parameter);
         }
         else if(fxmlfile.equals("VacationSearch.fxml")||fxmlfile.equals("CreateVacation.fxml")){
-            View.AVacationWindow window=(View.AVacationWindow) NewWindow;
+            AVacationWindow window=(AVacationWindow) NewWindow;
             window.SetLists();
         }
+        else if(fxmlfile.equals("UpdateVacation.fxml")){
+            UpdateVacationView window=(UpdateVacationView) NewWindow;
+            window.SetLists();
+            VacationObject currentVacation=Model.getVacationFields(Parameter);
+            S
+            window.SetValues(,currentVacation.BuyAll);
+        }
     }
-
 
     public void LogOut(){
         Model.Logout();
     }
-
-
 
     public byte[] getphoto( String username){
 
@@ -124,9 +128,7 @@ public class Controller implements IController{
             showalert("Try entering again");
             return null;
         }
-
     }
-
 
     public void showalert(String alert) {
         MyView.showAlert(alert);
@@ -147,15 +149,19 @@ public class Controller implements IController{
         Model.DeleteVacation(vacationId);
     }
 
+    @Override
+    public void UpdateVacation(String[] strings, boolean selected) {
+        Model.UpdateVacation(ConvertToVacation(strings,selected));
+    }
+    public void ChooseVacation(String vacationId){
+        Model.ChooseVacation(vacationId);
+    }
     public VacationObject ConvertToVacation(String [] GuiValues,boolean buyAll){
         int numOfSuitcases= Integer.parseInt(GuiValues[7]);
         int maxWeight= Integer.parseInt(GuiValues[8]);
         return new VacationObject(null,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5]+GuiValues[6],numOfSuitcases,maxWeight);
-
-
-
-
     }
+
 }
 
 

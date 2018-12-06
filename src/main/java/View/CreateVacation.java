@@ -1,6 +1,6 @@
 package View;
 
-public class CreateVacation extends View.AVacationWindow {
+public class CreateVacation extends AVacationWindow {
 
 
 

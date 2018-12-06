@@ -19,4 +19,7 @@ public interface IModel {
     void DeleteVacation(String VacationID);
     String[] getFields(String username);
     byte[] getPhoto(String user);
+    boolean UpdateVacation(VacationObject vacationObject);
+    void ChooseVacation(String VacationID);
+    VacationObject getVacationFields(String parameter);
 }
