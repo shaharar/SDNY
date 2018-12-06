@@ -47,7 +47,10 @@ public class ShowResultView extends Awindow {
 
 
     }
-    public void ChooseVacation(){
-        controller.ChooseVacation(VacationId.getText());
+    public void ChooseVacation() {
+        if (controller.ChooseVacation(VacationId.getText().substring(13))) {
+            showAlert("Your request sand.please wait for  the seller to confirm");
+            stage.close();
+        }
     }
 }

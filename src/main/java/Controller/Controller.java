@@ -143,8 +143,9 @@ public class Controller implements IController{
     }
 
 
-    public void ChooseVacation(String vacationId){
-        Model.ChooseVacation(vacationId);
+    public boolean ChooseVacation(String vacationId){
+       Model.ChooseVacation(vacationId);
+        return true;
     }
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
         int numOfSuitcases= -1;

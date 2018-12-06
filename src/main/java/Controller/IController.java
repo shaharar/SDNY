@@ -28,5 +28,5 @@ public interface IController {
 
     void UpdateVacation(String[] strings, boolean selected);
 
-    void ChooseVacation(String vacationId);
+    boolean ChooseVacation(String vacationId);
 }
