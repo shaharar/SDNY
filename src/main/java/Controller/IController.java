@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Reason;
+import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 
@@ -27,4 +28,5 @@ public interface IController {
 
     void UpdateVacation(String[] strings, boolean selected);
 
+    void ChooseVacation(String vacationId);
 }

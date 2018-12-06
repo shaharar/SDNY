@@ -13,6 +13,7 @@ public class ProfileWindowView extends Awindow{
     public TextField txtfld_city_P;
     public TextField txtfld_lastName_P;
     public TextField txtfld_firstName_P;
+    public TextField updatevacation;
     public javafx.scene.image.ImageView Img_profile_P;
     @Override
     public void setStage(Stage stage) {
@@ -45,5 +46,10 @@ we would like the profile to get the most updated info on the profile from the d
 
     public void DeleteVacation(){
         controller.openwindow("DeleteVacation.fxml",null);
+    }
+
+
+    public void UpdateVacation(){
+        controller.openwindow("UpdateVacation.fxml",updatevacation.getText());
     }
 }

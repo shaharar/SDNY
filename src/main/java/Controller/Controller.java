@@ -5,6 +5,7 @@ import View.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -137,6 +138,8 @@ public class Controller implements IController{
     public void UpdateVacation(String[] strings, boolean selected) {
         Model.UpdateVacation(StringArrToVac(strings,selected));
     }
+
+
     public void ChooseVacation(String vacationId){
         Model.ChooseVacation(vacationId);
     }

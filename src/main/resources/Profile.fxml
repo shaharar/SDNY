@@ -46,7 +46,10 @@
                 </HBox>
             <AnchorPane prefHeight="102.0" prefWidth="250.0">
                <children>
-                  <Button layoutX="69.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Delete a Vacation" onAction="#DeleteVacation" />
+                  <Button layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onAction="#DeleteVacation" prefHeight="25.0" prefWidth="200.0" text="Click here to Delete a Vacation"  />
+                  <Label layoutX="5.0" layoutY="7.0" prefHeight="22.0" prefWidth="204.0" text="Insert Vacation id to update vacation"  />
+                  <TextField  fx:id="updatevacation" layoutX="209.0" layoutY="6.0" prefHeight="25.0" prefWidth="107.0" />
+                  <Button onAction="#UpdateVacation" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="198.0" text="Click here to update vacation" />
                </children>
             </AnchorPane>
             </children>
