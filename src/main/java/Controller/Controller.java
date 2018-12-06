@@ -92,11 +92,12 @@ public class Controller implements IController{
     }
 
     @Override
-    public ArrayList<String> SearchVacation(boolean buyAll, String[] TextFields) {
+    public String[][] SearchVacation(boolean buyAll, String[] TextFields) {
         try{
             int numOfSuitcases= Integer.parseInt(TextFields[7]);
             int maxWeight= Integer.parseInt(TextFields[8]);
             ArrayList<VacationObject > vacationObjects= Model.GetSearchResult(new VacationObject(null,null,null,false,"adu-"+TextFields[0]+"chi-"+TextFields[1]+"bab-"+TextFields[2],buyAll,TextFields[3],TextFields[4],TextFields[5]+TextFields[6],numOfSuitcases,maxWeight));
+            String[][] allResults=new String[vacationObjects.size()][];
             if( vacationObjects!=null){
                 for (int i = 0; i <vacationObjects.size() ; i++) {
                     String[] values=new String[10];
@@ -113,9 +114,10 @@ public class Controller implements IController{
                     values[7]= vacationObjects.get(i).VacationDate;
                     values[8]= ""+vacationObjects.get(i).NumberOfSuitcases;
                     values[9]=""+vacationObjects.get(i).MaxWeight ;
+                    allResults[i]=values;
 
                 }
-                return null;
+                return allResults;
             }
             return null;
         }catch (Exception e){
