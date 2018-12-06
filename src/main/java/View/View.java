@@ -215,7 +215,14 @@ this function is unnecessery because it is defaulted on true but we might need t
    public void CreateVac_btn() {
        controller.openwindow("CreateVacation.fxml", null);
    }
-
+    public void UpdateVacation() {
+        controller.openwindow(
+                "UpdateVacation.fxml", null); //need to change to update
+    }
+    public void DeleteVacation() {
+        controller.openwindow(
+                "DeleteVacation.fxml", null); //need to change to update
+    }
 
 
 
