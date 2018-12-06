@@ -168,6 +168,12 @@ get user's photo - did not use this yet
        DBM.ChooseVacation(VacationID,currentUser);
 
     }
+
+    @Override
+    public VacationObject getVacationFields(String VacationID) {
+        return DBM.GetVacation(VacationID);
+    }
+
     public boolean ConfirmPayment(PaymentObject paymentObject){
         if(paymentObject.Useridoc.length()!=9 || !paymentObject.Useridoc.matches("[0-9]") ){
             controller.showalert("Your Id number invalid. make sure you added the check digits");

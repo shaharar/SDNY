@@ -26,4 +26,5 @@ public interface IDBManager {
      boolean UpdateVacation(VacationObject vacationObject);
      void DeleteVacation(String VacationID);
 
+    VacationObject GetVacation(String vacationID);
 }

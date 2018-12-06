@@ -511,8 +511,24 @@ public class DBManager implements IDBManager {
 
     }
 
+    @Override
+    public VacationObject GetVacation(String vacationID) {
+        String sql = "SELECT * FROM Vacations WHERE VacationID=\"" + vacationID + "\"";
 
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
+            // loop through the result set
+            if (rs.next()) {
+              return(new VacationObject(rs.getString("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+        return null;
+    }
 
 
 }

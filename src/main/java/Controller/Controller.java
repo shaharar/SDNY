@@ -2,7 +2,6 @@ package Controller;
 
 import Model.*;
 import View.*;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -81,8 +80,7 @@ public class Controller implements IController{
             UpdateVacationView window=(UpdateVacationView) NewWindow;
             window.SetLists();
             VacationObject currentVacation=Model.getVacationFields(Parameter);
-            S
-            window.SetValues(,currentVacation.BuyAll);
+            window.SetValues(VacToStringArr(currentVacation),currentVacation.BuyAll);
         }
     }
 
@@ -104,21 +102,7 @@ public class Controller implements IController{
             String[][] allResults=new String[vacationObjects.size()][];
             if( vacationObjects!=null){
                 for (int i = 0; i <vacationObjects.size() ; i++) {
-                    String[] values=new String[10];
-                    values[0]=vacationObjects.get(i).VacationID;
-                    String[] adultTicketsArr=vacationObjects.get(i).VacationID.split("adu");
-                    String[] childrenArr=adultTicketsArr[1].split("chi");
-                    String[] babyArr=childrenArr[1].split("bab");
-                    values[1]=childrenArr[1] ;
-                    values[2]=babyArr[0] ;
-                    values[3]= babyArr[1];
-                    values[4]=""+vacationObjects.get(i).BuyAll;
-                    values[5]= vacationObjects.get(i).FlightCompany;
-                    values[6]= vacationObjects.get(i).Destination;
-                    values[7]= vacationObjects.get(i).VacationDate;
-                    values[8]= ""+vacationObjects.get(i).NumberOfSuitcases;
-                    values[9]=""+vacationObjects.get(i).MaxWeight ;
-                    allResults[i]=values;
+                    allResults[i]= VacToStringArr(vacationObjects.get(i));
 
                 }
                 return allResults;
@@ -141,7 +125,7 @@ public class Controller implements IController{
 
     @Override
     public boolean CreateVacation(String[] strings, boolean selected) {
-   return Model.InsertVacation(ConvertToVacation(strings,selected));
+   return Model.InsertVacation(StringArrToVac(strings,selected));
     }
 
     @Override
@@ -151,15 +135,32 @@ public class Controller implements IController{
 
     @Override
     public void UpdateVacation(String[] strings, boolean selected) {
-        Model.UpdateVacation(ConvertToVacation(strings,selected));
+        Model.UpdateVacation(StringArrToVac(strings,selected));
     }
     public void ChooseVacation(String vacationId){
         Model.ChooseVacation(vacationId);
     }
-    public VacationObject ConvertToVacation(String [] GuiValues,boolean buyAll){
+    public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
         int numOfSuitcases= Integer.parseInt(GuiValues[7]);
         int maxWeight= Integer.parseInt(GuiValues[8]);
         return new VacationObject(null,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5]+GuiValues[6],numOfSuitcases,maxWeight);
+    }
+    public String [] VacToStringArr(VacationObject vacationObject){
+        String[] values=new String[10];
+        values[0]=vacationObject.VacationID;
+        String[] adultTicketsArr=vacationObject.VacationID.split("adu");
+        String[] childrenArr=adultTicketsArr[1].split("chi");
+        String[] babyArr=childrenArr[1].split("bab");
+        values[1]=childrenArr[1] ;
+        values[2]=babyArr[0] ;
+        values[3]= babyArr[1];
+        values[4]=""+vacationObject.BuyAll;
+        values[5]= vacationObject.FlightCompany;
+        values[6]= vacationObject.Destination;
+        values[7]= vacationObject.VacationDate;
+        values[8]= ""+vacationObject.NumberOfSuitcases;
+        values[9]=""+vacationObject.MaxWeight ;
+        return values;
     }
 
 }
