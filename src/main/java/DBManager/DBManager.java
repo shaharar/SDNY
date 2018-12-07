@@ -5,9 +5,7 @@ import Model.ProfileObject;
 import Model.VacationObject;
 import Model.VacationStatus;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -32,7 +30,7 @@ public class DBManager implements IDBManager {
      */
     @Override
     public void InsertProfile(ProfileObject profileObject) {
-        String sql = "INSERT INTO Users(USERNAME,PASSWORD,FIRSTNAME,LASTNAME,BIRTHDATE,CITY,PICTURE) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Users(USERNAME,PASSWORD,FIRSTNAME,LASTNAME,BIRTHDATE,CITY) VALUES(?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, profileObject.Username);
@@ -41,13 +39,11 @@ public class DBManager implements IDBManager {
             pstmt.setString(4, profileObject.LastName);
             pstmt.setString(5, profileObject.BirthDate);
             pstmt.setString(6, profileObject.City);
-            pstmt.setBytes(7, profileObject.PhotoPath == null ? null : convertFileContentToBlob(profileObject.PhotoPath));
             pstmt.executeUpdate();
-        } catch (SQLException e) {
+                 } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SavePhoto(profileObject.PhotoPath,profileObject.Username);
+    }
     }
 
     /*
@@ -75,32 +71,7 @@ public class DBManager implements IDBManager {
         return false;
     }
 
-    //taken from web!!
-    public static byte[] convertFileContentToBlob(String filePath) throws IOException {
-        byte[] fileContent = null;
-        // initialize string buffer to hold contents of file
-        StringBuffer fileContentStr = new StringBuffer("");
-        BufferedReader reader = null;
-        try {
-            // initialize buffered reader
-            reader = new BufferedReader(new FileReader(filePath));
-            String line = null;
-            // read lines of file
-            while ((line = reader.readLine()) != null) {
-                //append line to string buffer
-                fileContentStr.append(line).append("\n");
-            }
-            // convert string to byte array
-            fileContent = fileContentStr.toString().trim().getBytes();
-        } catch (IOException e) {
-            throw new IOException("Unable to convert file to byte array. " + e.getMessage());
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
-        }
-        return fileContent;
-    }
+
 
     @Override
     public void UpdateProfile(String user, ProfileObject profileObject) {
@@ -121,6 +92,31 @@ public class DBManager implements IDBManager {
         }
     }
 
+    private void SavePhoto(String photoPath,String Username) {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(new File(photoPath));
+            os = new FileOutputStream(new File("../DB/pictures/"+Username));
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
 
     public void DeleteProfile(String currentuser, String reason, String RegistrD) {
@@ -165,8 +161,7 @@ public class DBManager implements IDBManager {
                 + " FIRSTNAME CHAR(20) NOT NULL, \n"
                 + " LASTNAME CHAR(20) NOT NULL, \n"
                 + "	BIRTHDATE CHAR(8) NOT NULL,\n"   //ddmmyyyy
-                + " CITY CHAR(20) NOT NULL, \n"
-                + " PICTURE BLOB \n"
+                + " CITY CHAR(20) NOT NULL \n"
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS Payments (\n"
                 + "	PaymentID CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
@@ -271,7 +266,7 @@ public class DBManager implements IDBManager {
 
     @Override
     public String[] getFields(String currentUser) {
-        String[] fields = new String[6];
+        String[] fields = new String[7];
         String sql = "SELECT * FROM Users WHERE USERNAME=\"" + currentUser + "\"";
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
@@ -282,6 +277,7 @@ public class DBManager implements IDBManager {
                 for (int j = 0; j < 6; j++) {
                     fields[j] = rs.getString(j + 1); // j or j+1 ??
                 }
+                fields[6]="DB/pictures/"+fields[0];
                 return fields;
             }
         } catch (SQLException e) {
@@ -291,24 +287,6 @@ public class DBManager implements IDBManager {
         return null;
     }
 
-    @Override
-    public byte[] getPhoto(String username) {
-        String sql = "SELECT PICTURE FROM Users WHERE USERNAME=\"" + username + "\"";
-        try (Connection conn = this.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            // loop through the result set
-            if (rs.next()) {
-                return rs.getBytes("PICTURE");
-            }
-        } catch (SQLException e) {
-            return null;
-
-        }
-
-        return null;
-    }
 
     public ArrayList<String> GetUserVacation(String UserName) {
         String sql = "SELECT VacationID FROM Vacations WHERE UserName_fk=\"" + UserName + "\"";

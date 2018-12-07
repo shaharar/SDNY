@@ -14,7 +14,6 @@ public interface IDBManager {
     String getPassword(String username);
     String[] getFields(String currentUser);
     void AddReason(String currentuser, String reason, String RegistrD);
-    byte[] getPhoto(String currentUser);
     boolean InsertPayment(PaymentObject paymentObject);
     void UpdateVacationStatus(VacationStatus status, String VacationID);
     String GetSeller(String vacationID);

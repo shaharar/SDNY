@@ -15,7 +15,6 @@ public interface IController {
     void Delete(String registrationDuration, Reason reason);
     void openwindow(String fxmlfile, Object parameter);
     void LogOut();
-    byte[] getphoto( String username);
     String[][] SearchVacation(boolean buyAll, String[] TextFields);
 
     void showalert(String alert);

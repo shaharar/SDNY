@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class ProfileWindowView extends Awindow{
     public TextField txtfld_username_P;
@@ -33,16 +36,13 @@ we would like the profile to get the most updated info on the profile from the d
         txtfld_lastName_P.setPromptText(fields[3]);
         txtfld_birthdate_P.setPromptText(fields[4]);
         txtfld_city_P.setPromptText(fields[5]);
-        ViewPhoto();
-    }
-    public void ViewPhoto(){
-        byte[]baytearr = controller.getphoto(null);
-        if(baytearr!=null){
-            ByteArrayInputStream in= new ByteArrayInputStream(baytearr);
-            Img_profile_P.setImage(new Image(in));
+        try {
+           Img_profile_P.setImage( new Image(new FileInputStream(fields[6]))); //FIX LATER
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-    }
 
+    }
 
     public void DeleteVacation(){
         controller.openwindow("DeleteVacation.fxml",null);
