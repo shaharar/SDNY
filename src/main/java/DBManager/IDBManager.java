@@ -27,4 +27,6 @@ public interface IDBManager {
      void DeleteVacation(String VacationID);
 
     VacationObject GetVacation(String vacationID);
+
+    void InsertPaymentPaypal(String[] paypal);
 }

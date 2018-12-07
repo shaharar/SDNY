@@ -144,9 +144,20 @@ public class Controller implements IController{
 
 
     public boolean ChooseVacation(String vacationId){
-       Model.ChooseVacation(vacationId);
-        return true;
+       return Model.ChooseVacation(vacationId);
+
     }
+
+    @Override
+    public void GetPayVisa(String[] Visa) {
+       Model.ConfirmPaymentVisa(StringArrVisaToPay(Visa));
+    }
+
+    @Override
+    public void GetPayPaypal(String[] paypal) {
+    Model.ConfirmPaypal(paypal);
+    }
+
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
         int numOfSuitcases= -1;
         int maxWeight= -1;
@@ -176,6 +187,11 @@ public class Controller implements IController{
         values[8]= ""+vacationObject.NumberOfSuitcases;
         values[9]=""+vacationObject.MaxWeight ;
         return values;
+    }
+    public PaymentObject StringArrVisaToPay(String [] VisaValues){
+
+        return new PaymentObject(null,VisaValues[6],null,VisaValues[0],VisaValues[2],VisaValues[1],VisaValues[3],VisaValues[4],VisaValues[5]);
+
     }
 
 }

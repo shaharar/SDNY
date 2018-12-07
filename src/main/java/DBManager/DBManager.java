@@ -206,7 +206,10 @@ public class DBManager implements IDBManager {
                 + "	RequestHour CHAR(4) NOT NULL,\n"//hhmm
                 + " Status CHAR(10) NOT NULL \n"
                 + ");");
-
+        createTable("CREATE TABLE IF NOT EXISTS PaymentsPaypal (\n"
+                + "	UserName CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
+                + "	Password CHAR(8) NOT NULL,\n"
+                + ");");
     }
 
     public void createTable(String sql) {
@@ -420,7 +423,7 @@ public class DBManager implements IDBManager {
     }
 
     public boolean InsertPayment(PaymentObject paymentObject){
-        String sql = "INSERT INTO Payments(PaymentID,VacationID_fk,UserName_fk,Useridoc,LastName,FirstName,CardNumber,ExpirationDate,SecurityCode,Methods) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Payments(PaymentID,VacationID_fk,UserName_fk,Useridoc,LastName,FirstName,CardNumber,ExpirationDate,SecurityCode) VALUES(?,?,?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,paymentObject.PaymentID);
@@ -432,7 +435,6 @@ public class DBManager implements IDBManager {
             pstmt.setString(7, paymentObject.CardNumber);
             pstmt.setString(8, paymentObject.ExpirationDate);
             pstmt.setString(9, paymentObject.SecurityCode);
-            pstmt.setString(10, paymentObject.Methods);
             pstmt.executeUpdate();
         } catch (SQLException e) {
 
@@ -528,6 +530,22 @@ public class DBManager implements IDBManager {
             return null;
         }
         return null;
+    }
+
+    @Override
+    public void InsertPaymentPaypal(String[] paypal) {
+        String sql = "INSERT INTO PaymentsPaypal(UserName,Password) VALUES(?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,paypal[1]);
+            pstmt.setString(2, paypal[2]);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+        }
+
     }
 
 

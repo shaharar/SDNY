@@ -163,13 +163,15 @@ get user's photo - did not use this yet
       return searchResults;
 
     }
-    public void ChooseVacation(String VacationID){
+    public boolean ChooseVacation(String VacationID){
         if(currentUser==null){
             controller.showalert("You need to sign in");
+            return false;
         }
         else {
             DBM.UpdateVacationStatus(VacationStatus.WAITTING_FOR_APPROVAL,VacationID);
             DBM.ChooseVacation(VacationID,currentUser);
+            return true;
         }
 
 
@@ -180,7 +182,7 @@ get user's photo - did not use this yet
         return DBM.GetVacation(VacationID);
     }
 
-    public boolean ConfirmPayment(PaymentObject paymentObject){
+    public boolean ConfirmPaymentVisa(PaymentObject paymentObject){
         if(paymentObject.Useridoc.length()!=9 || !paymentObject.Useridoc.matches("[0-9]") ){
             controller.showalert("Your Id number invalid. make sure you added the check digits");
             return false;
@@ -212,6 +214,11 @@ get user's photo - did not use this yet
         PaymentId++;
        return DBM.InsertPayment(paymentObject);
 
+    }
+
+    @Override
+    public void ConfirmPaypal(String[] paypal) {
+        DBM.InsertPaymentPaypal(paypal);
     }
 
     public boolean InsertVacation(VacationObject vacationObject){

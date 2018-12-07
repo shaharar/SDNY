@@ -11,9 +11,9 @@ public 	String PaymentID;
     public 	String CardNumber;
     public 	String ExpirationDate;
     public 	String SecurityCode;
-    public 	String Methods;
 
-    public PaymentObject(String paymentID, String vacationID_fk, String userName_fk, String useridoc, String lastName, String firstName, String cardNumber, String expirationDate, String securityCode, String methods) {
+
+    public PaymentObject(String paymentID, String vacationID_fk, String userName_fk, String useridoc, String lastName, String firstName, String cardNumber, String expirationDate, String securityCode) {
         PaymentID = paymentID;
         VacationID_fk = vacationID_fk;
         UserName_fk = userName_fk;
@@ -23,6 +23,6 @@ public 	String PaymentID;
         CardNumber = cardNumber;
         ExpirationDate = expirationDate;
         SecurityCode = securityCode;
-        Methods = methods;
+
     }
 }

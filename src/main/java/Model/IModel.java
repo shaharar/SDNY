@@ -20,6 +20,9 @@ public interface IModel {
     String[] getFields(String username);
     byte[] getPhoto(String user);
     boolean UpdateVacation(VacationObject vacationObject);
-    void ChooseVacation(String VacationID);
+    boolean ChooseVacation(String VacationID);
     VacationObject getVacationFields(String parameter);
+    boolean ConfirmPaymentVisa(PaymentObject paymentObject);
+
+    void ConfirmPaypal(String[] paypal);
 }

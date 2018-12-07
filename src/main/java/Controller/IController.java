@@ -29,4 +29,8 @@ public interface IController {
     void UpdateVacation(String[] strings, boolean selected);
 
     boolean ChooseVacation(String vacationId);
+
+    void GetPayVisa(String [] Visa);
+
+    void GetPayPaypal(String[] paypal);
 }
