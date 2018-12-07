@@ -33,8 +33,8 @@ public class Tester {
         System.out.println("expecting a");
     }
     private static void test7(DBManager dBmanager) {
-        PaymentObject paymentObject=new PaymentObject("1","id","b","300948394","cohen","Avi","1234567812345678","1219","192","PayPal");
-        dBmanager.InsertPayment(paymentObject);
+    //    PaymentObject paymentObject=new PaymentObject("1","id","b","300948394","cohen","Avi","1234567812345678","1219","192","PayPal");
+     //   dBmanager.InsertPayment(paymentObject);
     }
     private static void test6(DBManager dBmanager) {
         VacationObject vacationObject=new VacationObject(null,null,null,false,"ADULT7BABY1",true,"EL-AL","Eilat","1112201813122018",3,1);

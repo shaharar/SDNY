@@ -1,5 +1,6 @@
 package View;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -20,20 +21,26 @@ public class ShowResultView extends Awindow {
     public Label MaxWeight;
     public Button NextRes;
     public String[][] SearchResult;
+    int i;
 
 
     public void SetResults(String[][] SearchResult) {
         this.SearchResult = SearchResult;
         if (this.SearchResult.length > 0) {
-            ShowResult(SearchResult[0]);
+            ShowResult();
+            NextRes.setDisable(false);
         }
-        NextRes.setDisable(false);
+        else{
+            stage.close();
+            showAlert("No Results were found");
+            NextRes.setDisable(true);
+        }
 
 
     }
 
-    private void ShowResult(String[] result) {
-
+    private void ShowResult() {
+        String[] result=SearchResult[i];
         VacationId.setText("Vacation Id: " + result[0]);
         AdultT.setText("Adult Tickets: " + result[1]);
         ChildT.setText("Child Tickets: " + result[2]);
@@ -44,7 +51,10 @@ public class ShowResultView extends Awindow {
         VacationDate.setText("Vacation Date: " + result[7]);
         NumOfSuitcases.setText("Number Of Suitcases: " + result[8]);
         MaxWeight.setText("Max Weight: " + result[9]);
-
+        i++;
+        if(SearchResult.length==i){
+            NextRes.setDisable(true);
+        }
 
     }
     public void ChooseVacation() {
@@ -52,5 +62,9 @@ public class ShowResultView extends Awindow {
             showAlert("Your request sand.please wait for  the seller to confirm");
             stage.close();
         }
+    }
+
+    public void NextOption() {
+        ShowResult();
     }
 }
