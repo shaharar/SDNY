@@ -24,6 +24,7 @@ public class Model1 implements IModel {
     public boolean Create (ProfileObject profileObject) {
         if(isDataCorrect(profileObject)){
             DBM.InsertProfile(profileObject);
+            currentUser=profileObject.Username;
             return true;
         }
         return false;
@@ -135,16 +136,6 @@ public class Model1 implements IModel {
             return DBM.getFields(currentUser);
         }
         return DBM.getFields(username);
-    }
-
-/*
-get user's photo - did not use this yet
- */
-    public byte[] getPhoto(String user) {
-        if (user==null){
-            return DBM.getPhoto(currentUser);
-        }
-        return new byte[0];
     }
 
     public ArrayList<String> GetNewRequests(){

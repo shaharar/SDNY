@@ -92,10 +92,6 @@ public class Controller implements IController{
         Model.Logout();
     }
 
-    public byte[] getphoto( String username){
-
-        return Model.getPhoto(username);
-    }
 
     @Override
     public String[][] SearchVacation(boolean buyAll, String[] TextFields) {

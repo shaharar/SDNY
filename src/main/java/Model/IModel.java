@@ -18,7 +18,6 @@ public interface IModel {
     boolean InsertVacation(VacationObject vacationObject);
     void DeleteVacation(String VacationID);
     String[] getFields(String username);
-    byte[] getPhoto(String user);
     boolean UpdateVacation(VacationObject vacationObject);
     void ChooseVacation(String VacationID);
     VacationObject getVacationFields(String parameter);

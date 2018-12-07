@@ -1,5 +1,6 @@
 package View;
 
+import DBManager.DBManager;
 import Model.ProfileObject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
