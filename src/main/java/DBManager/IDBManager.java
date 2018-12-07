@@ -30,4 +30,7 @@ public interface IDBManager {
     void InsertPaymentPaypal(String[] paypal);
 
     void UpdateRequestStatus(VacationStatus waitingForPayment, String vacationID);
+
+    ArrayList<String> GetNewPayments(String strings);
+
 }

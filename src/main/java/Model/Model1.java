@@ -226,6 +226,12 @@ public class Model1 implements IModel {
         }
     }
 
+    @Override
+    public ArrayList<String> GetNewPayments() {
+        ArrayList<String> VacationPayment= DBM.GetNewPayments(currentUser);//List  requested vacations
+        return VacationPayment;
+    }
+
     public boolean InsertVacation(VacationObject vacationObject){
         if( !IsVacationDetailsValid(vacationObject)){
             return false;

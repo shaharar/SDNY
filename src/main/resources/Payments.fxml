@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PaymentsView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PaymentsView">
    <children>
       <Label layoutX="29.0" layoutY="61.0" prefHeight="23.0" prefWidth="94.0" text="ID:" />
       <TextField fx:id="Id" layoutX="123.0" layoutY="60.0" />
@@ -27,8 +27,7 @@
       <Label layoutX="370.0" layoutY="93.0" prefHeight="23.0" prefWidth="94.0" text="Password" />
       <TextField fx:id="Password" layoutX="434.0" layoutY="93.0" prefHeight="25.0" prefWidth="149.0" />
       <CheckBox layoutX="-196.0" layoutY="-24.0" mnemonicParsing="false" text="CheckBox" />
-      <Button mnemonicParsing="false" text="Button" />
-      <Button layoutX="80.0" layoutY="303.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Confirm" onAction="#GetValuesVisa" />
-      <Button layoutX="414.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="confirrm" onAction="#GetValuesPaypal"/>
+      <Button layoutX="80.0" layoutY="303.0" mnemonicParsing="false" onAction="#GetValuesVisa" prefHeight="25.0" prefWidth="126.0" text="Confirm" />
+      <Button layoutX="414.0" layoutY="145.0" mnemonicParsing="false" onAction="#GetValuesPaypal" prefHeight="25.0" prefWidth="126.0" text="confirrm" />
    </children>
 </AnchorPane>

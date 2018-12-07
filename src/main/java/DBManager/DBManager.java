@@ -10,7 +10,6 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class DBManager implements IDBManager {
     private Connection connect() {
@@ -309,7 +308,7 @@ public class DBManager implements IDBManager {
     public ArrayList<String> GetUserRequest(ArrayList<String> vacations) {
         ArrayList<String> request = new ArrayList();
         for (int i = 0; i < vacations.size(); i++) {
-            String sql = "SELECT VacationID FROM Requests WHERE VacationID=\"" + vacations.get(i) + "\"";
+            String sql = "SELECT VacationID FROM Requests WHERE VacationID=\"" + vacations.get(i) + "\" AND Status=\"WAITTING_FOR_APPROVAL\"";
             try (Connection conn = this.connect();
                  Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery(sql)) {
@@ -540,6 +539,27 @@ public class DBManager implements IDBManager {
 
         }
     }
+
+    @Override
+    public ArrayList<String> GetNewPayments(String currUser) {
+        ArrayList<String> payments = new ArrayList();
+            String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currUser + "\" AND Status=\"WAITING_FOR_PAYMENT\"";
+            try (Connection conn = this.connect();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sql)) {
+                // loop through the result set
+                while (rs.next()) {
+                    payments.add(rs.getString(1));
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+                return payments;
+            }
+
+
+        return payments;
+    }
+
 
 }
 

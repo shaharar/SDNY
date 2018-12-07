@@ -31,4 +31,6 @@ public interface IController {
     void GetPayPaypal(String[] paypal);
 
     void SellerAnswer(boolean answer, String vacationID);
+
+    String[] GetnewPayments();
 }

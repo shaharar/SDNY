@@ -90,6 +90,11 @@ public class Controller implements IController{
             RequestsView window=(RequestsView) NewWindow;
             window.SetVacationID((String[])Parameter);
         }
+        else if(fxmlfile.equals("Payments.fxml")){
+            PaymentsView window=(PaymentsView) NewWindow;
+            window.SetVacationID((String[])Parameter);
+        }
+
     }
 
     public void LogOut(){
@@ -172,6 +177,16 @@ public class Controller implements IController{
     @Override
     public void SellerAnswer(boolean answer, String vacationID) {
         Model.SellerAnswer(answer,vacationID);
+    }
+
+    @Override
+    public String[] GetnewPayments() {
+        ArrayList<String> payments= Model.GetNewPayments();
+        String [] PaymentsArr=new String[payments.size()];
+        for (int i = 0; i <payments.size() ; i++) {
+            PaymentsArr[i]=payments.get(i);
+        }
+        return PaymentsArr;
     }
 
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){

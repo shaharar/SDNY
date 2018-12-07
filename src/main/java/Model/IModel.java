@@ -22,8 +22,7 @@ public interface IModel {
     boolean ChooseVacation(String VacationID);
     VacationObject getVacationFields(String parameter);
     boolean ConfirmPaymentVisa(PaymentObject paymentObject);
-
     void ConfirmPaypal(String[] paypal);
-
     void SellerAnswer(boolean answer, String vacationID);
+    ArrayList<String> GetNewPayments();
 }

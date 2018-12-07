@@ -37,4 +37,11 @@ public class PaymentsView extends Awindow {
 
 
     }
+
+    public void SetVacationID(String[] payments) {
+        if(payments.length==0){
+            stage.close();
+            showAlert("No New Payments");
+        }
+    }
 }
