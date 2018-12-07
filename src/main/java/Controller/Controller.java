@@ -86,6 +86,10 @@ public class Controller implements IController{
             ShowResultView window=(ShowResultView) NewWindow;
             window.SetResults((String [][])Parameter);
         }
+        else if(fxmlfile.equals("Requests.fxml")){
+            RequestsView window=(RequestsView) NewWindow;
+            window.SetVacationID((String[])Parameter);
+        }
     }
 
     public void LogOut(){
@@ -104,6 +108,8 @@ public class Controller implements IController{
                     allResults[i]= VacToStringArr(vacationObjects.get(i));
 
                 }
+
+
                 return allResults;
             }
             return null;
@@ -119,8 +125,17 @@ public class Controller implements IController{
     }
 
     @Override
-    public ArrayList<String> GetNewRequests() {
-        return Model.GetNewRequests();
+    public String[] GetNewRequests() {
+
+
+       ArrayList<String> Request= Model.GetNewRequests();
+       String [] requestarr=new String[Request.size()];
+        for (int i = 0; i <Request.size() ; i++) {
+            requestarr[i]=Request.get(i);
+
+
+        }
+        return requestarr;
     }
 
     @Override
@@ -152,6 +167,11 @@ public class Controller implements IController{
     @Override
     public void GetPayPaypal(String[] paypal) {
     Model.ConfirmPaypal(paypal);
+    }
+
+    @Override
+    public void SellerAnswer(boolean answer, String vacationID) {
+        Model.SellerAnswer(answer,vacationID);
     }
 
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
@@ -189,6 +209,7 @@ public class Controller implements IController{
         return new PaymentObject(null,VisaValues[6],null,VisaValues[0],VisaValues[2],VisaValues[1],VisaValues[3],VisaValues[4],VisaValues[5]);
 
     }
+
 
 }
 

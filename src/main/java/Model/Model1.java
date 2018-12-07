@@ -212,6 +212,20 @@ public class Model1 implements IModel {
         DBM.InsertPaymentPaypal(paypal);
     }
 
+    @Override
+    public void SellerAnswer(boolean answer, String vacationID) {
+        if (answer==true){
+            DBM.UpdateRequestStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
+            DBM.UpdateVacationStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
+            controller.showalert("Wait For Buyer's Payment");
+
+        }
+        else {
+            DBM.UpdateRequestStatus(VacationStatus.CANCELED,vacationID);
+            DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
+        }
+    }
+
     public boolean InsertVacation(VacationObject vacationObject){
         if( !IsVacationDetailsValid(vacationObject)){
             return false;

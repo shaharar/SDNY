@@ -28,4 +28,6 @@ public interface IDBManager {
     VacationObject GetVacation(String vacationID);
 
     void InsertPaymentPaypal(String[] paypal);
+
+    void UpdateRequestStatus(VacationStatus waitingForPayment, String vacationID);
 }

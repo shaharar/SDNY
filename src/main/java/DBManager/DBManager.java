@@ -203,7 +203,7 @@ public class DBManager implements IDBManager {
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS PaymentsPaypal (\n"
                 + "	UserName CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
-                + "	Password CHAR(8) NOT NULL,\n"
+                + "	Password CHAR(8) NOT NULL \n"
                 + ");");
     }
 
@@ -526,6 +526,20 @@ public class DBManager implements IDBManager {
 
     }
 
+    @Override
+    public void UpdateRequestStatus(VacationStatus waitingForPayment, String vacationID) {
+        String sql = "UPDATE Requests SET Status=? "
+                + "WHERE VacationID = \"" + vacationID + "\"";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // set the corresponding param
+            pstmt.setString(1, waitingForPayment.toString());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
 
 }
 

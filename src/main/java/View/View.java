@@ -191,7 +191,8 @@ this function is unnecessery because it is defaulted on true but we might need t
     }
 
     public void lookForNewRequests(){
-        controller.openwindow("Requests.fxml",null);
+        controller.openwindow("Requests.fxml",controller.GetNewRequests());
+
     }
     public void attention(){
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -221,13 +222,6 @@ this function is unnecessery because it is defaulted on true but we might need t
         controller.openwindow(
                 "DeleteVacation.fxml", null); //need to change to update
     }
-
-
-
-
-
-
-
 
 
         public void OpenSearchScreen(){

@@ -24,4 +24,6 @@ public interface IModel {
     boolean ConfirmPaymentVisa(PaymentObject paymentObject);
 
     void ConfirmPaypal(String[] paypal);
+
+    void SellerAnswer(boolean answer, String vacationID);
 }

@@ -1,9 +1,6 @@
 package Controller;
 
 import Model.Reason;
-import javafx.scene.control.Label;
-
-import java.util.ArrayList;
 
 public interface IController {
 
@@ -19,7 +16,7 @@ public interface IController {
 
     void showalert(String alert);
 
-    ArrayList<String> GetNewRequests();
+    String[] GetNewRequests();
 
     boolean CreateVacation(String[] strings, boolean selected);
 
@@ -32,4 +29,6 @@ public interface IController {
     void GetPayVisa(String [] Visa);
 
     void GetPayPaypal(String[] paypal);
+
+    void SellerAnswer(boolean answer, String vacationID);
 }
