@@ -274,7 +274,7 @@ public class DBManager implements IDBManager {
                 for (int j = 0; j < 6; j++) {
                     fields[j] = rs.getString(j + 1); // j or j+1 ??
                 }
-                fields[6]="/DB/pictures/"+fields[0];
+                fields[6]="DB/pictures/"+fields[0];
                 return fields;
             }
         } catch (SQLException e) {
