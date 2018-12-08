@@ -4,7 +4,10 @@ import DBManager.IDBManager;
 import DBManager.DBManager;
 import Controller.IController;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class Model1 implements IModel {
@@ -286,8 +289,12 @@ public class Model1 implements IModel {
         int finishdate=Integer.parseInt(vacationObject.VacationDate.substring(18,20));
         int finishmonth=Integer.parseInt(vacationObject.VacationDate.substring(15,17));
         int finishyear=Integer.parseInt(vacationObject.VacationDate.substring(10,14));
-
-        if(finishyear<startyear || (finishyear==startyear && finishmonth<startamonth)||(finishyear==startyear && finishmonth==startamonth && finishdate<startdate )) {
+        LocalDateTime date=LocalDateTime.now();
+        if(date.getYear()<2018||(date.getYear()==2018&& date.getMonthValue()>startamonth)||(date.getMonthValue()==startamonth && date.getDayOfMonth()>startdate)){
+            controller.showalert("Start day has passed. Try changing dates");
+            return false;
+        }
+       else if(finishyear<startyear || (finishyear==startyear && finishmonth<startamonth)||(finishyear==startyear && finishmonth==startamonth && finishdate<startdate )) {
             controller.showalert("Your Dates are no valid, choose again");
             return false;
         }else{
