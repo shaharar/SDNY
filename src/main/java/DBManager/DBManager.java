@@ -1,9 +1,6 @@
 package DBManager;
 
-import Model.PaymentObject;
-import Model.ProfileObject;
-import Model.VacationObject;
-import Model.VacationStatus;
+import Model.*;
 
 import java.io.*;
 import java.sql.*;
@@ -197,7 +194,7 @@ public class DBManager implements IDBManager {
                 + " BuyerUserName_fk CHAR(8) NOT NULL, \n"
                 + " RequestDate CHAR(8) NOT NULL, \n"//ddmmyyyy
                 + "	RequestHour CHAR(4) NOT NULL,\n"//hhmm
-                + " Status CHAR(10) NOT NULL \n"
+                + " Status CHAR(30) NOT NULL \n"
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS PaymentsPaypal (\n"
                 + "	UserName CHAR(8) NOT NULL,\n"
@@ -359,7 +356,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(3, BuyerUserName);
             pstmt.setString(4, LocalDateTime.now().toString());
             pstmt.setString(5, ZonedDateTime.now().toString());
-            pstmt.setString(6, VacationStatus.WAITTING_FOR_APPROVAL.toString());
+            pstmt.setString(6, VacationStatus.NOT_AVAILABLE.toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -525,13 +522,13 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public void UpdateRequestStatus(VacationStatus waitingForPayment, String vacationID) {
+    public void UpdateRequestStatus(RequestStatus requestStatus, String vacationID) {
         String sql = "UPDATE Requests SET Status=? "
                 + "WHERE VacationID = \"" + vacationID + "\"";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // set the corresponding param
-            pstmt.setString(1, waitingForPayment.toString());
+            pstmt.setString(1, requestStatus.toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

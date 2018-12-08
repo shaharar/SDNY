@@ -55,7 +55,7 @@ public class Tester {
     }
     private static void test4(DBManager dBmanager) {
         dBmanager.ChooseVacation("id","b");
-        dBmanager.UpdateVacationStatus(VacationStatus.WAITTING_FOR_APPROVAL,"id");
+        dBmanager.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,"id");
 
     }
 
