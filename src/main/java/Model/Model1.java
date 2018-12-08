@@ -294,6 +294,10 @@ public class Model1 implements IModel {
             controller.showalert("Your Flight Company name is too long");
             return false;
         }
+        else if(vacationObject.Origin.length()>30){
+            controller.showalert("Your Origin is too long");
+            return false;
+        }
         else if(vacationObject.Destination.length()>30){
             controller.showalert("Your Destination is too long");
             return false;

@@ -9,12 +9,13 @@ public class VacationObject {
     public String TicketType;
     public boolean BuyAll;
     public String FlightCompany;
+    public String Origin;
     public String Destination;
     public String VacationDate;
     public int NumberOfSuitcases;
     public int MaxWeight;
 
-    public VacationObject(int vacationID, String userName_fk, String status, boolean hotVacation, String ticketType, boolean buyAll, String flightCompany, String destination, String vacationDate, int numberOfSuitcases, int maxWeight) {
+    public VacationObject(int vacationID, String userName_fk, String status, boolean hotVacation, String ticketType, boolean buyAll, String flightCompany, String origin, String destination, String vacationDate, int numberOfSuitcases, int maxWeight) {
         VacationID = vacationID;
         UserName_fk = userName_fk;
         Status = status;
@@ -22,6 +23,7 @@ public class VacationObject {
         TicketType = ticketType;
         BuyAll = buyAll;
         FlightCompany = flightCompany;
+        Origin = origin;
         Destination = destination;
         VacationDate = vacationDate;
         NumberOfSuitcases = numberOfSuitcases;
