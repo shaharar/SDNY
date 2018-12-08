@@ -17,7 +17,7 @@ public interface IDBManager {
     boolean InsertPayment(PaymentObject paymentObject);
     void UpdateVacationStatus(VacationStatus status, String VacationID);
     String GetSeller(String vacationID);
-     void ChooseVacation(String VacationID ,  String BuyerUserName );
+     void InsertNewRequest(String VacationID , String BuyerUserName );
      ArrayList<VacationObject> SearchResults(VacationObject vacationObject);
      ArrayList<String> GetUserRequest(ArrayList<String> vacations);
      ArrayList<String> GetUserVacation(String UserName);
@@ -34,4 +34,6 @@ public interface IDBManager {
     ArrayList<String> GetNewPayments(String strings);
 
     int[] GetMaxId();
+
+    ArrayList<ArrayList<String>> GetRequestTable(String currentUser);
 }

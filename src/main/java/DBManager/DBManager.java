@@ -347,7 +347,7 @@ public class DBManager implements IDBManager {
     }
 
 
-    public void ChooseVacation(String VacationID ,  String BuyerUserName ){
+    public void InsertNewRequest(String VacationID , String BuyerUserName ){
         String sql = "INSERT INTO Requests(VacationID,SellerUserName_fk,BuyerUserName_fk,RequestDate,RequestHour,Status) VALUES(?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -356,7 +356,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(3, BuyerUserName);
             pstmt.setString(4, LocalDateTime.now().toString());
             pstmt.setString(5, ZonedDateTime.now().toString());
-            pstmt.setString(6, VacationStatus.NOT_AVAILABLE.toString());
+            pstmt.setString(6, RequestStatus.WAITING_FOR_SELLER_RESPONSE.toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -539,7 +539,7 @@ public class DBManager implements IDBManager {
     @Override
     public ArrayList<String> GetNewPayments(String currUser) {
         ArrayList<String> payments = new ArrayList();
-            String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currUser + "\" AND Status=\"WAITING_FOR_PAYMENT\"";
+            String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currUser + "\" AND Status=\"APPROVED\"";
             try (Connection conn = this.connect();
                  Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery(sql)) {
@@ -586,6 +586,29 @@ public class DBManager implements IDBManager {
   return maxid;
     }
 
+    @Override
+    public ArrayList<ArrayList<String>> GetRequestTable(String currentUser) {
+        ArrayList<ArrayList<String>> request = new ArrayList();
+        String sql = "SELECT VacationID,Status FROM Requests WHERE BuyerUserName_fk=\"" + currentUser + "\"";
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            // loop through the result set
+            while (rs.next()) {
+                ArrayList<String> currres=new ArrayList<>();
+                currres.add(rs.getString(1));
+                currres.add(rs.getString(2));
+                request.add(currres);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return request;
+        }
+
+
+        return request;
+    }
 
 
 }

@@ -54,7 +54,7 @@ public class Tester {
         System.out.println("expecting id");
     }
     private static void test4(DBManager dBmanager) {
-        dBmanager.ChooseVacation("id","b");
+        dBmanager.InsertNewRequest("id","b");
         dBmanager.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,"id");
 
     }

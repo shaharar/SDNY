@@ -192,10 +192,22 @@ public class Controller implements IController{
         return PaymentsArr;
     }
 
-    @Override
+    @Override //we transopse the array
     public String[][] GetVacationStatusvalues() {
-
-        return null;
+        ArrayList<ArrayList<String>> resultrequest=Model.GetResultRequest();
+        String [][] result=new String [3][];
+        String[] ids=new String[resultrequest.size()];
+        String[] status=new String[resultrequest.size()];
+        String[] payments=new String[resultrequest.size()];
+        for (int i = 0; i <resultrequest.size() ; i++) {
+            ids[i]=resultrequest.get(i).get(0);
+            status[i]=resultrequest.get(i).get(1);
+            payments[i]=resultrequest.get(i).get(2);
+        }
+        result[0]=ids;
+        result[1]=status;
+        result[2]=payments;
+        return result;
     }
 
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){

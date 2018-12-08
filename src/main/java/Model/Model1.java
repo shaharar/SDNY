@@ -4,10 +4,8 @@ import DBManager.IDBManager;
 import DBManager.DBManager;
 import Controller.IController;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class Model1 implements IModel {
@@ -173,7 +171,7 @@ public class Model1 implements IModel {
         }
         else {
             DBM.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,VacationID);
-            DBM.ChooseVacation(VacationID,currentUser);
+            DBM.InsertNewRequest(VacationID,currentUser);
             return true;
         }
 
@@ -243,6 +241,23 @@ public class Model1 implements IModel {
     public ArrayList<String> GetNewPayments() {
         ArrayList<String> VacationPayment= DBM.GetNewPayments(currentUser);//List  requested vacations
         return VacationPayment;
+    }
+
+    @Override
+    public ArrayList<ArrayList<String>> GetResultRequest() {
+
+        ArrayList<ArrayList<String>> DBMResult=DBM.GetRequestTable(currentUser);
+        for (int i = 0; i <DBMResult.size() ; i++) {
+            if(DBMResult.get(i).get(1).equals("APPROVED")){
+                DBMResult.get(i).add("Yes");
+            }
+            else {
+                DBMResult.get(i).add("No");
+
+            }
+
+        }
+        return DBMResult;
     }
 
     public boolean InsertVacation(VacationObject vacationObject){

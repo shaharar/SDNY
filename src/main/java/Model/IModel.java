@@ -25,4 +25,6 @@ public interface IModel {
     void ConfirmPaypal(String[] paypal);
     void SellerAnswer(boolean answer, String vacationID);
     ArrayList<String> GetNewPayments();
+
+    ArrayList<ArrayList<String>> GetResultRequest();
 }
