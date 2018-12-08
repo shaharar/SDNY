@@ -174,7 +174,7 @@ public class Model1 implements IModel {
     }
 
     public boolean ConfirmPaymentVisa(PaymentObject paymentObject){
-        if(paymentObject.Useridoc.length()!=9 || !paymentObject.Useridoc.matches("[0-9]") ){
+        if(paymentObject.Useridoc.length()!=9 || !paymentObject.Useridoc.matches("[0-9]+") ){
             controller.showalert("Your Id number invalid. make sure you added the check digits");
             return false;
         }
@@ -186,7 +186,7 @@ public class Model1 implements IModel {
             controller.showalert("Your first name is too long");
             return false;
         }
-        else if(paymentObject.CardNumber.length()!=16 || !paymentObject.CardNumber.matches("[0-9]")){
+        else if(paymentObject.CardNumber.length()!=16 || !paymentObject.CardNumber.matches("[0-9]+")){
             controller.showalert("Your credit number is invalid. please enter 16 digits");
             return false;
         }
@@ -196,13 +196,14 @@ public class Model1 implements IModel {
             controller.showalert("Your Expiration Date invalid. enter in format dd/yy");
             return false;
         }
-        else if(paymentObject.SecurityCode.length()!=3 || !paymentObject.SecurityCode.matches("[0-9]")){
+        else if(paymentObject.SecurityCode.length()!=3 || !paymentObject.SecurityCode.matches("[0-9]+")){
             controller.showalert("Your security code  is invalid. please enter 3 digits");
             return false;
         }
 
         paymentObject.PaymentID=""+PaymentId;
         PaymentId++;
+        paymentObject.UserName_fk=currentUser;
        return DBM.InsertPayment(paymentObject);
 
     }

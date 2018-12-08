@@ -171,8 +171,7 @@ public class DBManager implements IDBManager {
                 + " FirstName CHAR(20) NOT NULL, \n"
                 + " CardNumber CHAR(16) NOT NULL, \n"
                 + " ExpirationDate CHAR(4) NOT NULL, \n" //mmyy
-                + " SecurityCode CHAR(3) NOT NULL, \n"
-                + " Methods CHAR(6) NOT NULL \n"//visa-paypal
+                + " SecurityCode CHAR(3) NOT NULL \n"
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS Vacations (\n"
                 + "	VacationID CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
@@ -201,7 +200,7 @@ public class DBManager implements IDBManager {
                 + " Status CHAR(10) NOT NULL \n"
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS PaymentsPaypal (\n"
-                + "	UserName CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
+                + "	UserName CHAR(8) NOT NULL,\n"
                 + "	Password CHAR(8) NOT NULL \n"
                 + ");");
     }
@@ -514,8 +513,8 @@ public class DBManager implements IDBManager {
         String sql = "INSERT INTO PaymentsPaypal(UserName,Password) VALUES(?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1,paypal[1]);
-            pstmt.setString(2, paypal[2]);
+            pstmt.setString(1,paypal[0]);
+            pstmt.setString(2, paypal[1]);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

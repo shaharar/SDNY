@@ -12,7 +12,8 @@ public class PaymentsView extends Awindow {
     public TextField SecurityNum;
     public TextField UserName;
     public TextField Password;
-    public String VacationID;
+    public String[] VacationID;
+    public int i;
 
 
 
@@ -24,9 +25,9 @@ public class PaymentsView extends Awindow {
         Visa[3] = CardNumber.getText();
         Visa[4] = ExperationDate.getText();
         Visa[5] = SecurityNum.getText();
-        Visa[6]=VacationID;
+        Visa[6]=VacationID[i];
+        PushConfirm();
         controller.GetPayVisa(Visa);
-
     }
 
     public void GetValuesPaypal() {
@@ -34,6 +35,7 @@ public class PaymentsView extends Awindow {
         Paypal[0] = UserName.getText();
         Paypal[1] = Password.getText();
         controller.GetPayPaypal(Paypal);
+        PushConfirm();
 
 
     }
@@ -43,5 +45,33 @@ public class PaymentsView extends Awindow {
             stage.close();
             showAlert("No New Payments");
         }
+        else{
+            VacationID=payments;
+
+        }
     }
+
+    public void PushNext(){
+        if(i==VacationID.length){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            showAlert("No More Payments.");
+            stage.close();
+        }else {
+            i++;
+            if(i==VacationID.length){
+                showAlert("No More Payments.");
+            }
+        }
+
+    }
+    public void PushConfirm(){
+        showAlert("Your Details Are Sent Securely");
+    }
+
+
+
 }
