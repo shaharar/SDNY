@@ -169,7 +169,7 @@ public class Model1 implements IModel {
             return false;
         }
         else {
-            DBM.UpdateVacationStatus(VacationStatus.WAITTING_FOR_APPROVAL,VacationID);
+            DBM.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,VacationID);
             DBM.ChooseVacation(VacationID,currentUser);
             return true;
         }
@@ -225,13 +225,13 @@ public class Model1 implements IModel {
     @Override
     public void SellerAnswer(boolean answer, String vacationID) {
         if (answer==true){
-            DBM.UpdateRequestStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
+            DBM.UpdateRequestStatus(RequestStatus.APPROVED,vacationID);
             DBM.UpdateVacationStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
             controller.showalert("Wait For Buyer's Payment");
 
         }
         else {
-            DBM.UpdateRequestStatus(VacationStatus.CANCELED,vacationID);
+            DBM.UpdateRequestStatus(RequestStatus.DISAPPROVED,vacationID);
             DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
         }
     }
