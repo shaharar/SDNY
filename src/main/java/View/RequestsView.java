@@ -32,7 +32,7 @@ public class RequestsView extends Awindow{
             showAlert("No more requests.");
             stage.close();
         }else {
-            VacationID.setText(AllVacationid[i]);
+            VacationID.setText("VacationId :"+AllVacationid[i]);
             i++;
             if(i==AllVacationid.length){
                 showAlert("No more requests.");

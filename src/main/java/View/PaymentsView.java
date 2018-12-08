@@ -1,5 +1,6 @@
 package View;
 
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class PaymentsView extends Awindow {
@@ -11,7 +12,7 @@ public class PaymentsView extends Awindow {
     public TextField ExperationDate;
     public TextField SecurityNum;
     public TextField UserName;
-    public TextField Password;
+    public PasswordField Password;
     public String[] VacationID;
     public int i;
 
@@ -26,18 +27,19 @@ public class PaymentsView extends Awindow {
         Visa[4] = ExperationDate.getText();
         Visa[5] = SecurityNum.getText();
         Visa[6]=VacationID[i];
-        PushConfirm();
-        controller.GetPayVisa(Visa);
+        if(controller.GetPayVisa(Visa)){
+            PushConfirm();
+        }
+
     }
 
     public void GetValuesPaypal() {
         String[] Paypal = new String[2];
         Paypal[0] = UserName.getText();
         Paypal[1] = Password.getText();
-        controller.GetPayPaypal(Paypal);
-        PushConfirm();
-
-
+        if(controller.GetPayPaypal(Paypal,VacationID[i])){
+            PushConfirm();
+        }
     }
 
     public void SetVacationID(String[] payments) {
@@ -70,6 +72,7 @@ public class PaymentsView extends Awindow {
     }
     public void PushConfirm(){
         showAlert("Your Details Are Sent Securely");
+        stage.close();
     }
 
 

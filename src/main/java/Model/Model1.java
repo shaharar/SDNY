@@ -183,7 +183,7 @@ public class Model1 implements IModel {
         return DBM.GetVacation(VacationID);
     }
 
-    public boolean ConfirmPaymentVisa(PaymentObject paymentObject){
+    public boolean ConfirmPaymentVisa(PaymentObject paymentObject, String RequestId){
         if(paymentObject.Useridoc.length()!=9 || !paymentObject.Useridoc.matches("[0-9]+") ){
             controller.showalert("Your Id number invalid. make sure you added the check digits");
             return false;
@@ -214,13 +214,20 @@ public class Model1 implements IModel {
         paymentObject.PaymentID=""+PaymentId;
         PaymentId++;
         paymentObject.UserName_fk=currentUser;
-       return DBM.InsertPayment(paymentObject);
+
+       if(DBM.InsertPayment(paymentObject)){
+           DBM.DeleteRequest(RequestId);
+           return true;
+       }
+       return false;
 
     }
 
     @Override
-    public void ConfirmPaypal(String[] paypal) {
+    public boolean ConfirmPaypal(String[] paypal, String RequestId) {
         DBM.InsertPaymentPaypal(paypal);
+        DBM.DeleteRequest(RequestId);
+        return true;
     }
 
     @Override
@@ -278,11 +285,15 @@ public class Model1 implements IModel {
         return DBM.UpdateVacation(vacationObject);
     }
 
-    public void DeleteVacation(String VacationID){
+    public boolean DeleteVacation(String VacationID){
        if(DBM.GetSeller(VacationID).equals(currentUser)){
-           DBM.DeleteVacation(VacationID);
+         DBM.DeleteVacation(VacationID);
+         return true;
        }
-      else controller.showalert("The vacation id is not valid.Try again");
+      else{
+           controller.showalert("The vacation id is not valid.Try again");
+           return false;
+       }
     }
 
     public boolean IsVacationDetailsValid(VacationObject vacationObject){

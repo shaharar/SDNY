@@ -51,6 +51,12 @@ we would like the profile to get the most updated info on the profile from the d
 
 
     public void UpdateVacation(){
-        controller.openwindow("UpdateVacation.fxml",updatevacation.getText());
+        if(!updatevacation.getText().equals("")){
+            controller.openwindow("UpdateVacation.fxml",updatevacation.getText());
+        }
+        else {
+            showAlert("Please enter Vacation Id that you need to update" );
+        }
+
     }
 }

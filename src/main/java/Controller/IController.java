@@ -20,15 +20,15 @@ public interface IController {
 
     boolean CreateVacation(String[] strings, boolean selected);
 
-    void DeleteVacation(String vacationId);
+    boolean DeleteVacation(String vacationId);
 
     void UpdateVacation(String[] strings, boolean selected);
 
     boolean ChooseVacation(String vacationId);
 
-    void GetPayVisa(String [] Visa);
+    boolean GetPayVisa(String [] Visa);
 
-    void GetPayPaypal(String[] paypal);
+    boolean GetPayPaypal(String[] paypal, String VacationId);
 
     void SellerAnswer(boolean answer, String vacationID);
 

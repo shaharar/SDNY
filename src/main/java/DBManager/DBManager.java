@@ -304,7 +304,7 @@ public class DBManager implements IDBManager {
     public ArrayList<String> GetUserRequest(ArrayList<String> vacations) {
         ArrayList<String> request = new ArrayList();
         for (int i = 0; i < vacations.size(); i++) {
-            String sql = "SELECT VacationID FROM Requests WHERE VacationID=\"" + vacations.get(i) + "\" AND Status=\"WAITTING_FOR_APPROVAL\"";
+            String sql = "SELECT VacationID FROM Requests WHERE VacationID=\"" + vacations.get(i) + "\" AND Status=\"WAITING_FOR_SELLER_RESPONSE\"";
             try (Connection conn = this.connect();
                  Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery(sql)) {
@@ -608,6 +608,21 @@ public class DBManager implements IDBManager {
 
 
         return request;
+    }
+
+    @Override
+    public void DeleteRequest(String requestId) {
+        String sql = "DELETE FROM Requests WHERE VacationID = \"" + requestId + "\"";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 

@@ -152,8 +152,9 @@ public class Controller implements IController{
     }
 
     @Override
-    public void DeleteVacation(String vacationId) {
-        Model.DeleteVacation(vacationId);
+    public boolean DeleteVacation(String vacationId) {
+
+       return Model.DeleteVacation(vacationId);
     }
 
     @Override
@@ -168,13 +169,13 @@ public class Controller implements IController{
     }
 
     @Override
-    public void GetPayVisa(String[] Visa) {
-       Model.ConfirmPaymentVisa(StringArrVisaToPay(Visa));
+    public boolean GetPayVisa(String[] Visa) {
+        return Model.ConfirmPaymentVisa(StringArrVisaToPay(Visa),Visa[6]);
     }
 
     @Override
-    public void GetPayPaypal(String[] paypal) {
-    Model.ConfirmPaypal(paypal);
+    public boolean GetPayPaypal(String[] paypal, String VacationId) {
+    return Model.ConfirmPaypal(paypal,VacationId);
     }
 
     @Override
