@@ -14,17 +14,18 @@ public class Model1 implements IModel {
     String currentUser;
     int PaymentId;
     int VacationId; //counter for next id
-    int RequestID; //counter for next id
+
 
     public Model1(IController controller) {
         this.DBM = new DBManager();
         this.controller = controller;
     }
 
-    public boolean Create (ProfileObject profileObject) {
+    public boolean SingUp(ProfileObject profileObject) {
         if(isDataCorrect(profileObject)){
             DBM.InsertProfile(profileObject);
             currentUser=profileObject.Username;
+            InitID();
             return true;
         }
         return false;
@@ -77,7 +78,7 @@ public class Model1 implements IModel {
         return DBM.ReadProfile(username);
     }
 
-    public boolean Update(ProfileObject profileObject) {
+    public boolean UpdateProfile(ProfileObject profileObject) {
         if(isDataCorrect(profileObject)) {
             DBM.UpdateProfile(currentUser,profileObject);
             currentUser=profileObject.Username;
@@ -114,10 +115,18 @@ public class Model1 implements IModel {
             String realpass=DBM.getPassword(username);
             if( realpass.equals(password)){
                 currentUser =  username;
+                InitID();
                 return true;
             }
         }
         return false;
+    }
+
+    private void InitID() {
+        int [] result=DBM.GetMaxId();
+        VacationId=result[0]+1;
+        PaymentId=result[1]+1;
+
     }
 
 
@@ -131,7 +140,7 @@ public class Model1 implements IModel {
     /*
     gets user record devided to fields
      */
-    public String[] getFields(String username) {
+    public String[] getProfileFields(String username) {
         if (username == null) {
             return DBM.getFields(currentUser);
         }
@@ -193,7 +202,7 @@ public class Model1 implements IModel {
         int month=Integer.parseInt(paymentObject.ExpirationDate.substring(0,2));
         int year=Integer.parseInt(paymentObject.ExpirationDate.substring(2,4));
         if(year<18 || month>12 ||month<0){
-            controller.showalert("Your Expiration Date invalid. enter in format dd/yy");
+            controller.showalert("Your Expiration Date invalid. enter in format mmyy");
             return false;
         }
         else if(paymentObject.SecurityCode.length()!=3 || !paymentObject.SecurityCode.matches("[0-9]+")){
@@ -237,7 +246,7 @@ public class Model1 implements IModel {
         if( !IsVacationDetailsValid(vacationObject)){
             return false;
         }
-        vacationObject.VacationID=""+VacationId;
+        vacationObject.VacationID=VacationId;
         VacationId++;
         vacationObject.UserName_fk=currentUser;
         vacationObject.Status=""+VacationStatus.FOR_SALE;

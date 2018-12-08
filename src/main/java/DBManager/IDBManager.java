@@ -33,4 +33,5 @@ public interface IDBManager {
 
     ArrayList<String> GetNewPayments(String strings);
 
+    int[] GetMaxId();
 }

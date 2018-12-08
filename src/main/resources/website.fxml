@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
     <top>
         <HBox maxHeight="100.0" maxWidth="600.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
             <children>
@@ -19,9 +19,9 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="Profile">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#viewMyProfile" text="View My Profile" />
-                                <MenuItem mnemonicParsing="false" onAction="#Update" text="Update" />
-                                <MenuItem mnemonicParsing="false" onAction="#Delete" text="Delete" />
+                                <MenuItem mnemonicParsing="false" onAction="#viewMyProfile" text="View Profile &amp; manage vacations" />
+                                <MenuItem mnemonicParsing="false" onAction="#Update" text="Update Profile" />
+                                <MenuItem mnemonicParsing="false" onAction="#Delete" text="Delete Profile" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Log Out">
@@ -52,7 +52,7 @@
             <Button fx:id="btnSearch_Vacation_W" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="54.0" prefWidth="170.0" text="Search Vacation" />
             <Button mnemonicParsing="false" onAction="#lookForNewRequests" prefHeight="50.0" prefWidth="170.0" text="Look For New Requests" />
             <Button mnemonicParsing="false" onAction="#CreateVac_btn" prefHeight="52.0" prefWidth="170.0" text="Creat New Vacation" />
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" text="Payment" onAction="#ClickPayments" />
+            <Button mnemonicParsing="false" onAction="#ClickPayments" prefHeight="52.0" prefWidth="171.0" text="Payment" />
             </children>
         </VBox>
     </right>

@@ -163,8 +163,8 @@ public class DBManager implements IDBManager {
                 + " CITY CHAR(20) NOT NULL \n"
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS Payments (\n"
-                + "	PaymentID CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
-                + "	VacationID_fk CHAR(8) NOT NULL,\n"
+                + "	PaymentID INTEGER NOT NULL UNIQUE PRIMARY KEY,\n"
+                + "	VacationID_fk INTEGER NOT NULL,\n"
                 + " UserName_fk CHAR(8) NOT NULL, \n"
                 + " Useridoc CHAR(9) NOT NULL, \n" //user real id (teodat zeout)
                 + "	LastName CHAR(20) NOT NULL,\n"
@@ -174,7 +174,7 @@ public class DBManager implements IDBManager {
                 + " SecurityCode CHAR(3) NOT NULL \n"
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS Vacations (\n"
-                + "	VacationID CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
+                + "	VacationID INTEGER NOT NULL UNIQUE PRIMARY KEY,\n"
                 + "	UserName_fk CHAR(8) NOT NULL,\n"
                 + " HotVacation INTEGER NOT NULL, \n"//boolean
                 + " Status CHAR(8) NOT NULL, \n"
@@ -192,7 +192,7 @@ public class DBManager implements IDBManager {
                 + " IsConnection INTEGER \n"   //boolean
                 + ");");
         createTable("CREATE TABLE IF NOT EXISTS Requests (\n"
-                + "	VacationID CHAR(8) NOT NULL UNIQUE PRIMARY KEY,\n"
+                + "	VacationID INTEGER NOT NULL UNIQUE PRIMARY KEY,\n"
                 + "	SellerUserName_fk CHAR(8) NOT NULL,\n"
                 + " BuyerUserName_fk CHAR(8) NOT NULL, \n"
                 + " RequestDate CHAR(8) NOT NULL, \n"//ddmmyyyy
@@ -339,7 +339,7 @@ public class DBManager implements IDBManager {
                 // loop through the result set
                 while (rs.next()) {
                     //boolean is integer-buyall
-                    searchresults.add(new VacationObject(rs.getString("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight")));
+                    searchresults.add(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight")));
                 }
             } catch (SQLException e) {
                 System.out.println(e);
@@ -425,7 +425,7 @@ public class DBManager implements IDBManager {
         String sql = "INSERT INTO Vacations(VacationID,UserName_fk,HotVacation,Status,TicketType,BuyAll,FlightCompany,Destination,VacationDate,NumberOfSuitcases,MaxWeight,VacationType,RoomType,RoomIncluded,RoomRank,IsConnection) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, vacationObject.VacationID);
+            pstmt.setInt(1, vacationObject.VacationID);
             pstmt.setString(2, vacationObject.UserName_fk);
             pstmt.setBoolean(3,vacationObject.HotVacation);
             pstmt.setString(4, vacationObject.Status);
@@ -455,7 +455,7 @@ public class DBManager implements IDBManager {
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // set the corresponding param
-            pstmt.setString(1, vacationObject.VacationID);
+            pstmt.setInt(1, vacationObject.VacationID);
             pstmt.setString(2, vacationObject.UserName_fk);
             pstmt.setBoolean(3,vacationObject.HotVacation);
             pstmt.setString(4, vacationObject.Status);
@@ -499,7 +499,7 @@ public class DBManager implements IDBManager {
 
             // loop through the result set
             if (rs.next()) {
-              return(new VacationObject(rs.getString("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight")));
+              return(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight")));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -558,6 +558,37 @@ public class DBManager implements IDBManager {
 
         return payments;
     }
+
+    @Override
+    public int[] GetMaxId() {
+        int [] maxid=new int[2];
+        String sql = "SELECT MAX(DISTINCT VacationID) FROM Vacations";
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            // loop through the result set
+            if(rs.next()) {
+                maxid[0]=(rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+         sql = "SELECT MAX(DISTINCT PaymentID) FROM Payments";
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            // loop through the result set
+            if(rs.next()) {
+                maxid[1]=(rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+  return maxid;
+    }
+
 
 
 }

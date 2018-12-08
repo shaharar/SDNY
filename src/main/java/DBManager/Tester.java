@@ -37,7 +37,7 @@ public class Tester {
         dBmanager.InsertPayment(paymentObject);
     }
     private static void test6(DBManager dBmanager) {
-        VacationObject vacationObject=new VacationObject(null,null,null,false,"ADULT7BABY1",true,"EL-AL","Eilat","1112201813122018",3,1);
+        VacationObject vacationObject=new VacationObject(-1,null,null,false,"ADULT7BABY1",true,"EL-AL","Eilat","1112201813122018",3,1);
         ArrayList<VacationObject> searchResults=dBmanager.SearchResults(vacationObject);
         for (int i = 0; i <searchResults.size() ; i++) {
             System.out.print(" "+searchResults.get(i).VacationID);
@@ -60,9 +60,9 @@ public class Tester {
     }
 
     private static void test3(DBManager dBmanager) {
-        VacationObject vacationObject=new VacationObject("id2","a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
+        VacationObject vacationObject=new VacationObject(2,"a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
         dBmanager.InsertVacation(vacationObject); //changed to hot vacation
-        VacationObject vacationObject2=new VacationObject("id3","a","new",true,"ADULT7BABY1",true,"EL-AL","Eilat","1112201813122018",3,1);
+        VacationObject vacationObject2=new VacationObject(3,"a","new",true,"ADULT7BABY1",true,"EL-AL","Eilat","1112201813122018",3,1);
         dBmanager.InsertVacation(vacationObject2); //changed max weight and destination
         ArrayList<String> results= dBmanager.GetUserVacation("a");
         System.out.println("");
@@ -73,26 +73,26 @@ public class Tester {
         System.out.println("expecting: id id2 id3");
     }
     private static void test2point2(DBManager dBmanager) {
-        VacationObject vacationObject=new VacationObject("id","a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
+        VacationObject vacationObject=new VacationObject(1,"a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
         dBmanager.UpdateVacation(vacationObject); //changed nothing
 
     }
     private static void test2point1(DBManager dBmanager) {
-        VacationObject vacationObject=new VacationObject("id2","a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
+        VacationObject vacationObject=new VacationObject(2,"a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
         dBmanager.UpdateVacation(vacationObject); //changed id
 
     }
 
     private static void test2(DBManager dBmanager) {
-        VacationObject vacationObject=new VacationObject("id","a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
+        VacationObject vacationObject=new VacationObject(1,"a","new",true,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
         dBmanager.UpdateVacation(vacationObject); //changed to hot vacation
-        VacationObject vacationObject2=new VacationObject("id","a","new",true,"ADULT7BABY1",true,"EL-AL","Eilat","1112201813122018",3,1);
+        VacationObject vacationObject2=new VacationObject(1,"a","new",true,"ADULT7BABY1",true,"EL-AL","Eilat","1112201813122018",3,1);
         dBmanager.UpdateVacation(vacationObject2); //changed max weight and destination
 
     }
 
     private static void test1(DBManager dBmanager) {
-        VacationObject vacationObject=new VacationObject("id","a","new",false,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
+        VacationObject vacationObject=new VacationObject(1,"a","new",false,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","1112201813122018",3,27);
         dBmanager.InsertVacation(vacationObject);
     }
 }

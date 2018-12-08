@@ -6,9 +6,9 @@ public interface IModel {
 
 
 
-    boolean Create (ProfileObject profileObject);
+    boolean SingUp(ProfileObject profileObject);
     boolean Read (String username);
-    boolean Update (ProfileObject profileObject);
+    boolean UpdateProfile(ProfileObject profileObject);
     void  Delete(String registrationDuration, Reason reason);
     boolean Login(String username, String password);
     void Logout();
@@ -17,7 +17,7 @@ public interface IModel {
     ArrayList<String> GetNewRequests();
     boolean InsertVacation(VacationObject vacationObject);
     void DeleteVacation(String VacationID);
-    String[] getFields(String username);
+    String[] getProfileFields(String username);
     boolean UpdateVacation(VacationObject vacationObject);
     boolean ChooseVacation(String VacationID);
     VacationObject getVacationFields(String parameter);

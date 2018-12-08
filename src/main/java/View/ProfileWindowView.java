@@ -36,8 +36,9 @@ we would like the profile to get the most updated info on the profile from the d
         txtfld_lastName_P.setPromptText(fields[3]);
         txtfld_birthdate_P.setPromptText(fields[4]);
         txtfld_city_P.setPromptText(fields[5]);
-        try {
-           Img_profile_P.setImage( new Image(new FileInputStream(fields[6]))); //FIX LATER
+        try {if(new File(fields[6]).exists()){
+            Img_profile_P.setImage( new Image(new FileInputStream(fields[6])));
+        }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

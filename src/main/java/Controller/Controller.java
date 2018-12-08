@@ -28,14 +28,14 @@ public class Controller implements IController{
         return  (Model.Read(username));
     }
     public String[] getFields(String username){
-        return Model.getFields(username);
+        return Model.getProfileFields(username);
     }
     public boolean Update(String [] fields) {
-        return Model.Update(new ProfileObject(fields));
+        return Model.UpdateProfile(new ProfileObject(fields));
     }
     public boolean SignUp(String[] fields) {
         ProfileObject po=new ProfileObject(fields);
-        if(Model.Create(po)){ //if managed to create the profileObject
+        if(Model.SingUp(po)){ //if managed to create the profileObject
             Model.Login(po.Username,po.Password);
             return true;
         }
@@ -200,11 +200,11 @@ public class Controller implements IController{
             return null;
         }
 
-        return new VacationObject(null,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5]+GuiValues[6],numOfSuitcases,maxWeight);
+        return new VacationObject(-1,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5]+GuiValues[6],numOfSuitcases,maxWeight);
     }
     public String [] VacToStringArr(VacationObject vacationObject){
         String[] values=new String[10];
-        values[0]=vacationObject.VacationID;
+        values[0]=""+vacationObject.VacationID;
         String[] adultTicketsArr=vacationObject.TicketType.split("adu-");
         String[] childrenArr=adultTicketsArr[1].split("chi-");
         String[] babyArr=childrenArr[1].split("bab-");

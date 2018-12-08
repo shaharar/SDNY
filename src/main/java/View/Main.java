@@ -29,7 +29,6 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
         primaryStage.show();
         view.btn_Login.requestFocus();
-
            }
 
 
