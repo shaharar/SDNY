@@ -105,10 +105,9 @@ public class Controller implements IController{
     @Override
     public String[][] SearchVacation(boolean buyAll, String[] TextFields) {
         try{
-
             ArrayList<VacationObject > vacationObjects= Model.GetSearchResult(StringArrToVac(TextFields,buyAll));
-            String[][] allResults=new String[vacationObjects.size()][];
             if( vacationObjects!=null){
+                String[][] allResults=new String[vacationObjects.size()][];
                 for (int i = 0; i <vacationObjects.size() ; i++) {
                     allResults[i]= VacToStringArr(vacationObjects.get(i));
 
