@@ -94,6 +94,10 @@ public class Controller implements IController{
             PaymentsView window=(PaymentsView) NewWindow;
             window.SetVacationID((String[])Parameter);
         }
+        else if(fxmlfile.equals("VacationStatus.fxml")){
+            VacationStatusView window=(VacationStatusView) NewWindow;
+            window.Updatetableview((String[][])Parameter);
+        }
 
     }
 
@@ -186,6 +190,12 @@ public class Controller implements IController{
             PaymentsArr[i]=payments.get(i);
         }
         return PaymentsArr;
+    }
+
+    @Override
+    public String[][] GetVacationStatusvalues() {
+
+        return null;
     }
 
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){

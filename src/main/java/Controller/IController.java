@@ -33,4 +33,6 @@ public interface IController {
     void SellerAnswer(boolean answer, String vacationID);
 
     String[] GetnewPayments();
+
+    String [][] GetVacationStatusvalues();
 }

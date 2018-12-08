@@ -228,9 +228,10 @@ this function is unnecessery because it is defaulted on true but we might need t
         controller.openwindow("VacationSearch.fxml",null);
 
         }
-        public void ClickPayments(){
-            controller.openwindow("Payments.fxml",controller.GetnewPayments());
+        public void GetVacationStatus(){
+            controller.openwindow("VacationStatus.fxml",controller.GetVacationStatusvalues());
 
 
         }
+
 }
