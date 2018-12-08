@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdateWindowView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdateWindowView">
     <center>
         <VBox maxHeight="200.0" maxWidth="300.0" prefHeight="200.0" prefWidth="248.0" translateX="10.0" translateZ="10.0" BorderPane.alignment="CENTER">
             <children>
@@ -67,11 +68,16 @@
             </font>
         </Button>
     </bottom>
-    <right>
-        <Button mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="123.0" text="Update Your Image" translateX="-80.0" translateY="70.0">
-            <font>
-                <Font name="Calibri Bold Italic" size="12.0" />
-            </font>
-        </Button>
-    </right>
+   <right>
+      <VBox prefHeight="263.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+              <Button mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="156.0" text="Update Your Image">
+                  <font>
+                      <Font name="Calibri Bold Italic" size="12.0" />
+                  </font>
+              </Button>
+            <ImageView fx:id="imgview_U" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

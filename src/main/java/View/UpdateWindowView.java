@@ -6,11 +6,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.zip.GZIPInputStream;
@@ -23,6 +25,7 @@ public class UpdateWindowView extends Awindow {
     public TextField txtfld_firstName_U;
     public TextField txtfld_lastName_U;
     public Button btn_saveChanges_U;
+    public ImageView imgview_U;
 
 
     public void setStage(Stage stage) {
@@ -33,7 +36,7 @@ public class UpdateWindowView extends Awindow {
        File fileselected = fc.showOpenDialog(stage);
         try {
             Image img = new Image(new FileInputStream(fileselected.getPath()));
-           // Img_profile_L.setImage(img); //change!!!
+            imgview_U.setImage(img); //change!!!
         } catch (Exception e) {
             //e.printStackTrace();
         }
@@ -48,6 +51,12 @@ public class UpdateWindowView extends Awindow {
         txtfld_lastName_U.setText(fields[3]);
         DP_birthdate_U.setValue(LocalDate.parse(fields[4],dtf));
         txtfld_city_U.setText(fields[5]);
+        if(fields[6]!=null && new File(fields[6]).exists())
+        try {
+            imgview_U.setImage(new Image(new FileInputStream(fields[6])));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         btn_saveChanges_U.requestFocus();
 
     }
