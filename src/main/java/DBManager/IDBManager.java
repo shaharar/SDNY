@@ -36,4 +36,6 @@ public interface IDBManager {
     int[] GetMaxId();
 
     ArrayList<ArrayList<String>> GetRequestTable(String currentUser);
+
+    void DeleteRequest(String requestId);
 }

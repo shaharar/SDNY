@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -36,11 +37,7 @@ public class VacationStatusView extends Awindow{
     public Button B7;
 
 
-    public void ClickPayments(){
-        controller.openwindow("Payments.fxml",controller.GetnewPayments());
 
-
-    }
     public void Updatetableview(String [][] values ){
        this.vacationID=values[0];
        this.RequestStatus=values[1];
@@ -66,4 +63,11 @@ public class VacationStatusView extends Awindow{
 
     }
 
+    public void ClickPayments(ActionEvent actionEvent) {
+        ((Button)actionEvent.getSource()).setDisable(true);
+            controller.openwindow("Payments.fxml",controller.GetnewPayments());
+
+
+
+    }
 }

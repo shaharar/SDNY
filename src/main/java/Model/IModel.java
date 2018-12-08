@@ -16,13 +16,13 @@ public interface IModel {
     ArrayList<VacationObject> GetSearchResult(VacationObject vacationObject);
     ArrayList<String> GetNewRequests();
     boolean InsertVacation(VacationObject vacationObject);
-    void DeleteVacation(String VacationID);
+    boolean DeleteVacation(String VacationID);
     String[] getProfileFields(String username);
     boolean UpdateVacation(VacationObject vacationObject);
     boolean ChooseVacation(String VacationID);
     VacationObject getVacationFields(String parameter);
-    boolean ConfirmPaymentVisa(PaymentObject paymentObject);
-    void ConfirmPaypal(String[] paypal);
+    boolean ConfirmPaymentVisa(PaymentObject paymentObject, String requestid);
+    boolean ConfirmPaypal(String[] paypal, String requestid);
     void SellerAnswer(boolean answer, String vacationID);
     ArrayList<String> GetNewPayments();
 

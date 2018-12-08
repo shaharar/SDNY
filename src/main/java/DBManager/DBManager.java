@@ -614,6 +614,21 @@ public class DBManager implements IDBManager {
         return request;
     }
 
+    @Override
+    public void DeleteRequest(String requestId) {
+        String sql = "DELETE FROM Requests WHERE VacationID = \"" + requestId + "\"";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }
 
