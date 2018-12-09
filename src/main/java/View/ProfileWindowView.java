@@ -59,4 +59,9 @@ we would like the profile to get the most updated info on the profile from the d
         }
 
     }
+
+    @Override
+    public void init(Object Parameter) {
+        textFieldProfile((String)Parameter);
+    }
 }

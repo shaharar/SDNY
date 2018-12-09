@@ -52,4 +52,9 @@ public class RequestsView extends Awindow{
         }
         i++;
     }
+
+    @Override
+    public void init(Object Parameter) {
+        SetVacationID((String[])Parameter);
+    }
 }

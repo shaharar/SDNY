@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Reason;
+import Model.VacationObject;
 
 public interface IController {
 
@@ -35,4 +36,7 @@ public interface IController {
     String[] GetnewPayments();
 
     String [][] GetVacationStatusvalues();
+
+    VacationObject getVacationFields(Object vacationId);
+    String [] VacToStringArr(VacationObject vacationObject);
 }

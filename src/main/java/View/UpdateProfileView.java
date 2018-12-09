@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.zip.GZIPInputStream;
 
-public class UpdateWindowView extends Awindow {
+public class UpdateProfileView extends Awindow {
     public TextField txtfld_username_U;
     public PasswordField pswfld_password_U;
     public DatePicker DP_birthdate_U;
@@ -68,5 +68,10 @@ after filling fields in te update window the info is sent to be checked and upda
         String [] fields= { txtfld_username_U.getText(), pswfld_password_U.getText(), txtfld_firstName_U.getText(), txtfld_lastName_U.getText(), DP_birthdate_U.getValue().toString(),txtfld_city_U.getText(),null};
         if(controller.Update(fields))
             stage.close(); //auto closin window if the data is not problematic
+    }
+
+    @Override
+    public void init(Object Parameter) {
+        textFieldUpdate();
     }
 }

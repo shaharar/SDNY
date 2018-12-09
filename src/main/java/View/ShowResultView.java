@@ -71,4 +71,9 @@ public class ShowResultView extends Awindow {
     public void NextOption() {
         ShowResult();
     }
+
+    @Override
+    public void init(Object Parameter) {
+        SetResults((String [][])Parameter);
+    }
 }

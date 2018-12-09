@@ -1,5 +1,7 @@
 package View;
 
+import Model.VacationObject;
+
 public class UpdateVacationView extends AVacationWindow{
 
     @Override
@@ -23,5 +25,13 @@ public class UpdateVacationView extends AVacationWindow{
 
 
 
+    }
+
+    @Override
+    public void init(Object Parameter) {
+        //it was in the controller first
+        SetLists();
+        VacationObject currvac=controller.getVacationFields(Parameter);
+        SetValues(controller.VacToStringArr(currvac),currvac.BuyAll);
     }
 }

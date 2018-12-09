@@ -65,40 +65,7 @@ public class Controller implements IController{
         NewWindow.setController(this);
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
-        if(fxmlfile.equals("UpdateProfile.fxml")){
-            UpdateWindowView wind=(UpdateWindowView) NewWindow;
-            wind.textFieldUpdate();
-        }
-        else if(fxmlfile.equals("Profile.fxml")) {
-           ProfileWindowView wind=(ProfileWindowView) NewWindow;
-           wind.textFieldProfile((String)Parameter);
-        }
-        else if(fxmlfile.equals("VacationSearch.fxml")||fxmlfile.equals("CreateVacation.fxml")){
-            AVacationWindow window=(AVacationWindow) NewWindow;
-            window.SetLists();
-        }
-        else if(fxmlfile.equals("UpdateVacation.fxml")){
-            UpdateVacationView window=(UpdateVacationView) NewWindow;
-            window.SetLists();
-            VacationObject currentVacation=Model.getVacationFields((String)Parameter);
-            window.SetValues(VacToStringArr(currentVacation),currentVacation.BuyAll);
-        }
-        else if(fxmlfile.equals("ShowResult.fxml")){
-            ShowResultView window=(ShowResultView) NewWindow;
-            window.SetResults((String [][])Parameter);
-        }
-        else if(fxmlfile.equals("Requests.fxml")){
-            RequestsView window=(RequestsView) NewWindow;
-            window.SetVacationID((String[])Parameter);
-        }
-        else if(fxmlfile.equals("Payments.fxml")){
-            PaymentsView window=(PaymentsView) NewWindow;
-            window.SetVacationID((String[])Parameter);
-        }
-        else if(fxmlfile.equals("VacationStatus.fxml")){
-            VacationStatusView window=(VacationStatusView) NewWindow;
-            window.Updatetableview((String[][])Parameter);
-        }
+        NewWindow.init(Parameter);
 
     }
 
@@ -211,6 +178,11 @@ public class Controller implements IController{
         result[2]=payments;
         return result;
     }
+
+    @Override
+    public VacationObject getVacationFields(Object parameter) {
+        return Model.getVacationFields((String)parameter);
+       }
 
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
         int numOfSuitcases= -1;
