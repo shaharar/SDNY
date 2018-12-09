@@ -44,7 +44,9 @@ public class DBManager implements IDBManager {
                  } catch (SQLException e) {
             model.showAlert(e.getMessage());
            }
-           SavePhoto(profileObject.PhotoPath,profileObject.Username);
+           if(profileObject.PhotoPath!=null){
+            SavePhoto(profileObject.PhotoPath,profileObject.Username);
+           }
     }
 
     /*
