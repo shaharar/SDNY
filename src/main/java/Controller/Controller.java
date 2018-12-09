@@ -76,11 +76,15 @@ public class Controller implements IController{
 
     @Override
     public String[][] SearchVacation(boolean buyAll, String[] TextFields) {
+         if(TextFields==null){
+             return null;
+         }
         try{
             //default values so the logic wont be ruined in the isVacationValid in model
             TextFields[0]="1";
             TextFields[1]="1";
             TextFields[2]="1";
+            TextFields[3]="1";
             TextFields[8]="1";
             TextFields[9]="1";
             if (TextFields.length == 11){
@@ -194,6 +198,12 @@ public class Controller implements IController{
        }
 
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
+        for (int i = 0; i <GuiValues.length ; i++) {
+            if(GuiValues[i].equals("")){
+                showalert("Please Enter all fields");
+                return null;
+            }
+        }
         int numOfSuitcases= -1;
         int maxWeight= -1;
         int price= -1;
