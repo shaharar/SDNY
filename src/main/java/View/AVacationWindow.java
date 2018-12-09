@@ -30,8 +30,11 @@ public abstract class AVacationWindow extends Awindow {
 
     }
     public String[] GetValues (){
-        String[] values;
-        if(Price == null){
+        String[] values=null;
+        if(dtpcker_From.getValue()==null ||dtpcker_To.getValue()==null){
+            showAlert("insert dates!");
+        }
+        else if(Price == null){
             values = new String[]{(String) Adults.getValue(), (String) Children.getValue(), (String) Babies.getValue(), FlightCompany.getText(), Origin.getText(), Destination.getText(), dtpcker_From.getValue().toString(), dtpcker_To.getValue().toString(), NumberOfSuitCases.getText(), MaxWeight.getText()};
         }
         else{

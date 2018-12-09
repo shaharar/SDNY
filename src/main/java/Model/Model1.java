@@ -293,6 +293,7 @@ public class Model1 implements IModel {
     public boolean DeleteVacation(String VacationID){
        if(DBM.GetSeller(VacationID).equals(currentUser)){
          DBM.DeleteVacation(VacationID);
+         DBM.UpdateRequestStatus(RequestStatus.DISAPPROVED,VacationID);
          return true;
        }
       else{
