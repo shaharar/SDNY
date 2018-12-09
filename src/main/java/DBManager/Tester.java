@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Tester {
     public static void main(String[] args) {
         //dont forget to change in the db the payment method to 6 chars
-        DBManager dBmanager=new DBManager();
-        dBmanager.CreateDB();
+     //   DBManager dBmanager=new DBManager();
+       // dBmanager.CreateDB();
        // test1(dBmanager);//adding Vacation
         // test2(dBmanager);//updating Vacation
        // test2point1(dBmanager);//updating id in Vacation (we might need to fix this)
@@ -21,7 +21,7 @@ public class Tester {
         // test6(dBmanager);//(look prints)getting search results
         //test7(dBmanager);// inserting payment
         // test8(dBmanager);//(look prints)get seller check
-        test9(dBmanager);//deleting Vacation
+    //    test9(dBmanager);//deleting Vacation
     }
     private static void test9(DBManager dBmanager) {
         dBmanager.DeleteVacation("id");
