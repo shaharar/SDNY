@@ -77,6 +77,15 @@ public class Controller implements IController{
     @Override
     public String[][] SearchVacation(boolean buyAll, String[] TextFields) {
         try{
+            //default values so the logic wont be ruined in the isVacationValid in model
+            TextFields[0]="1";
+            TextFields[1]="1";
+            TextFields[2]="1";
+            TextFields[8]="1";
+            TextFields[9]="1";
+            if (TextFields.length == 11){
+                TextFields[10]="1";
+            }
             ArrayList<VacationObject > vacationObjects= Model.GetSearchResult(StringArrToVac(TextFields,buyAll));
             if( vacationObjects!=null){
                 String[][] allResults=new String[vacationObjects.size()][];

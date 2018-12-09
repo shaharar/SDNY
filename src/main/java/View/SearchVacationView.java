@@ -23,6 +23,6 @@ public class SearchVacationView extends AVacationWindow {
         FlightCompany.setDisable(true);
         NumberOfSuitCases.setDisable(true);
          MaxWeight.setDisable(true);
-         Price.setDisable(true);
+         //Price.setDisable(true);
     }
 }
