@@ -36,7 +36,7 @@ public class Tester {
         PaymentObject paymentObject=new PaymentObject("1","id","b","300948394","cohen","Avi","1234567812345678","1219","192");
         dBmanager.InsertPayment(paymentObject);
     }
-    private static void test6(DBManager dBmanager) {
+/*    private static void test6(DBManager dBmanager) {
         VacationObject vacationObject=new VacationObject(-1,null,null,false,"ADULT7BABY1",true,"EL-AL","Eilat","Tel-Aviv","1112201813122018",3,1);
         ArrayList<VacationObject> searchResults=dBmanager.SearchResults(vacationObject);
         for (int i = 0; i <searchResults.size() ; i++) {
@@ -94,5 +94,5 @@ public class Tester {
     private static void test1(DBManager dBmanager) {
         VacationObject vacationObject=new VacationObject(1,"a","new",false,"ADULT7BABY1",true,"EL-AL","Tel-Aviv","Paris","1112201813122018",3,27);
         dBmanager.InsertVacation(vacationObject);
-    }
+    }*/
 }

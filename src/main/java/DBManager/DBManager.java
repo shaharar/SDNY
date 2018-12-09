@@ -9,6 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 public class DBManager implements IDBManager {
+
     private Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:DB/DataBase.db";
@@ -183,6 +184,7 @@ public class DBManager implements IDBManager {
                 + " VacationDate CHAR(16) NOT NULL, \n"//ddmmyyyy-ddmmyyy
                 + " NumberOfSuitcases INTEGER NOT NULL, \n"
                 + " MaxWeight INTEGER NOT NULL, \n"
+                + " Price INTEGER NOT NULL, \n"
                 + " VacationType CHAR(10) , \n"
                 + " RoomType CHAR(8) , \n"
                 + " RoomIncluded INTEGER , \n" //boolean
@@ -338,7 +340,7 @@ public class DBManager implements IDBManager {
                 // loop through the result set
                 while (rs.next()) {
                     //boolean is integer-buyall
-                    searchresults.add(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Origin"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight")));
+                    searchresults.add(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Origin"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight"),rs.getInt("Price")));
                 }
             } catch (SQLException e) {
                 System.out.println(e);
@@ -421,7 +423,7 @@ public class DBManager implements IDBManager {
 
 
     public boolean InsertVacation(VacationObject vacationObject) {
-        String sql = "INSERT INTO Vacations(VacationID,UserName_fk,HotVacation,Status,TicketType,BuyAll,FlightCompany,Origin,Destination,VacationDate,NumberOfSuitcases,MaxWeight,VacationType,RoomType,RoomIncluded,RoomRank,IsConnection) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Vacations(VacationID,UserName_fk,HotVacation,Status,TicketType,BuyAll,FlightCompany,Origin,Destination,VacationDate,NumberOfSuitcases,MaxWeight,Price,VacationType,RoomType,RoomIncluded,RoomRank,IsConnection) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, vacationObject.VacationID);
@@ -436,11 +438,12 @@ public class DBManager implements IDBManager {
             pstmt.setString(10, vacationObject.VacationDate);
             pstmt.setInt(11, vacationObject.NumberOfSuitcases);
             pstmt.setInt(12, vacationObject.MaxWeight);
-            pstmt.setString(13, null);
+            pstmt.setInt(13, vacationObject.Price);
             pstmt.setString(14, null);
-            pstmt.setString(15,null);
-            pstmt.setString(16, null);
+            pstmt.setString(15, null);
+            pstmt.setString(16,null);
             pstmt.setString(17, null);
+            pstmt.setString(18, null);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -450,7 +453,7 @@ public class DBManager implements IDBManager {
     }
 
     public boolean UpdateVacation(VacationObject vacationObject) {
-        String sql = "UPDATE Vacations SET VacationID=? , UserName_fk=?, HotVacation=?,Status=?, TicketType=?,BuyAll=?,FlightCompany=?,Origin=?,Destination=?,VacationDate=?,NumberOfSuitcases=?,MaxWeight=? "
+        String sql = "UPDATE Vacations SET VacationID=? , UserName_fk=?, HotVacation=?,Status=?, TicketType=?,BuyAll=?,FlightCompany=?,Origin=?,Destination=?,VacationDate=?,NumberOfSuitcases=?,MaxWeight=?,Price=? "
                 + "WHERE VacationID = \"" + vacationObject.VacationID + "\"";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -467,6 +470,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(10, vacationObject.VacationDate);
             pstmt.setInt(11, vacationObject.NumberOfSuitcases);
             pstmt.setInt(12, vacationObject.MaxWeight);
+            pstmt.setInt(13, vacationObject.Price);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -500,7 +504,7 @@ public class DBManager implements IDBManager {
 
             // loop through the result set
             if (rs.next()) {
-              return(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Origin"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight")));
+              return(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Origin"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight"),rs.getInt("Price")));
             }
         } catch (SQLException e) {
             System.out.println(e);

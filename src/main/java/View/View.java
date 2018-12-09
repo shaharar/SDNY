@@ -211,27 +211,24 @@ this function is unnecessery because it is defaulted on true but we might need t
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
     }
+
    public void CreateVac_btn() {
        controller.openwindow("CreateVacation.fxml", null);
    }
+
     public void UpdateVacation() {
-        controller.openwindow(
-                "UpdateVacation.fxml", null); //need to change to update
+        controller.openwindow("UpdateVacation.fxml", null); //need to change to update
     }
+
     public void DeleteVacation() {
-        controller.openwindow(
-                "DeleteVacation.fxml", null); //need to change to update
+        controller.openwindow("DeleteVacation.fxml", null); //need to change to update
     }
 
-
-        public void OpenSearchScreen(){
+    public void OpenSearchScreen(){
         controller.openwindow("VacationSearch.fxml",null);
 
-        }
-        public void GetVacationStatus(){
-            controller.openwindow("VacationStatus.fxml",controller.GetVacationStatusvalues());
-
-
-        }
-
+    }
+    public void GetVacationStatus(){
+        controller.openwindow("VacationStatus.fxml",controller.GetVacationStatusvalues());
+    }
 }

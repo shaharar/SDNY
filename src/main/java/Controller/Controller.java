@@ -18,6 +18,7 @@ public class Controller implements IController{
 
     public Controller(View myView){
         this.Model=new Model1(this);
+        this.Model.CreateDB();
         this.MyView = myView;
     }
 
@@ -214,18 +215,20 @@ public class Controller implements IController{
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
         int numOfSuitcases= -1;
         int maxWeight= -1;
+        int price= -1;
         try{
-           numOfSuitcases= Integer.parseInt(GuiValues[7]);
-             maxWeight= Integer.parseInt(GuiValues[8]);
+           numOfSuitcases= Integer.parseInt(GuiValues[8]);
+           maxWeight= Integer.parseInt(GuiValues[9]);
+           price= Integer.parseInt(GuiValues[10]);
         }catch (Exception e){
             showalert("Please enter numbers");
             return null;
         }
 
-        return new VacationObject(-1,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5]+GuiValues[6],numOfSuitcases,maxWeight);
+        return new VacationObject(-1,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5],GuiValues[6]+GuiValues[7],numOfSuitcases,maxWeight,price);
     }
     public String [] VacToStringArr(VacationObject vacationObject){
-        String[] values=new String[10];
+        String[] values=new String[12];
         values[0]=""+vacationObject.VacationID;
         String[] adultTicketsArr=vacationObject.TicketType.split("adu-");
         String[] childrenArr=adultTicketsArr[1].split("chi-");
@@ -235,10 +238,12 @@ public class Controller implements IController{
         values[3]= babyArr[1];
         values[4]=""+vacationObject.BuyAll;
         values[5]= vacationObject.FlightCompany;
-        values[6]= vacationObject.Destination;
-        values[7]= vacationObject.VacationDate;
-        values[8]= ""+vacationObject.NumberOfSuitcases;
-        values[9]=""+vacationObject.MaxWeight ;
+        values[6]= vacationObject.Origin;
+        values[7]= vacationObject.Destination;
+        values[8]= vacationObject.VacationDate;
+        values[9]= ""+vacationObject.NumberOfSuitcases;
+        values[10]=""+vacationObject.MaxWeight ;
+        values[11]=""+vacationObject.Price ;
         return values;
     }
     public PaymentObject StringArrVisaToPay(String [] VisaValues){

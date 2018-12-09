@@ -11,6 +11,7 @@ public class ShowResultView extends Awindow {
 
     public Label VacationId;
     public Label Destination;
+    public Label Origin;
     public Label FlightCompany;
     public Label VacationDate;
     public Label BuyAll;
@@ -19,6 +20,7 @@ public class ShowResultView extends Awindow {
     public Label BabyT;
     public Label NumOfSuitcases;
     public Label MaxWeight;
+    public Label Price;
     public Button NextRes;
     public String[][] SearchResult;
     int i;
@@ -47,10 +49,12 @@ public class ShowResultView extends Awindow {
         BabyT.setText("Baby Tickets: " + result[3]);
         BuyAll.setText("Buy All: " + result[4]);
         FlightCompany.setText("Flight Company: " + result[5]);
-        Destination.setText("Destination: " + result[6]);
-        VacationDate.setText("Vacation Date: " + result[7]);
-        NumOfSuitcases.setText("Number Of Suitcases: " + result[8]);
-        MaxWeight.setText("Max Weight: " + result[9]);
+        Origin.setText("Origin: " + result[6]);
+        Destination.setText("Destination: " + result[7]);
+        VacationDate.setText("Vacation Date: " + result[8]);
+        NumOfSuitcases.setText("Number Of Suitcases: " + result[9]);
+        MaxWeight.setText("Max Weight: " + result[10]);
+        Price.setText("Price: " + result[11]);
         i++;
         if(SearchResult.length==i){
             NextRes.setDisable(true);
@@ -59,7 +63,7 @@ public class ShowResultView extends Awindow {
     }
     public void ChooseVacation() {
         if (controller.ChooseVacation(VacationId.getText().substring(13))) {
-            showAlert("Your request sand.please wait for  the seller to confirm");
+            showAlert("Your request was sent. Please wait for confirmation from the seller");
             stage.close();
         }
     }

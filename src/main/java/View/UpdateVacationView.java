@@ -13,11 +13,13 @@ public class UpdateVacationView extends AVacationWindow{
         Babies.setValue(values[2]);
         BuyAll.setSelected(buyAll);
         FlightCompany.setText(values[3]);
-        Destination.setText(values[4]);
-        dtpcker_From.setPromptText(values[5]);
-        dtpcker_To.setPromptText(values[6]);
-        NumberOfSuitCases.setText(values[7]);
-        MaxWeight.setText(values[8]);
+        Origin.setText(values[4]);
+        Destination.setText(values[5]);
+        dtpcker_From.setPromptText(values[6]);
+        dtpcker_To.setPromptText(values[7]);
+        NumberOfSuitCases.setText(values[8]);
+        MaxWeight.setText(values[9]);
+        Price.setText(values[10]);
 
 
 

@@ -14,8 +14,9 @@ public class VacationObject {
     public String VacationDate;
     public int NumberOfSuitcases;
     public int MaxWeight;
+    public int Price;
 
-    public VacationObject(int vacationID, String userName_fk, String status, boolean hotVacation, String ticketType, boolean buyAll, String flightCompany, String origin, String destination, String vacationDate, int numberOfSuitcases, int maxWeight) {
+    public VacationObject(int vacationID, String userName_fk, String status, boolean hotVacation, String ticketType, boolean buyAll, String flightCompany, String origin, String destination, String vacationDate, int numberOfSuitcases, int maxWeight, int price) {
         VacationID = vacationID;
         UserName_fk = userName_fk;
         Status = status;
@@ -28,5 +29,6 @@ public class VacationObject {
         VacationDate = vacationDate;
         NumberOfSuitcases = numberOfSuitcases;
         MaxWeight = maxWeight;
+        Price = price;
     }
 }
