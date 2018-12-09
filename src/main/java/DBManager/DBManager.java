@@ -9,7 +9,11 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 public class DBManager implements IDBManager {
+    public DBManager(IModel model) {
+        this.model = model;
+    }
 
+    IModel model;
     private Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:DB/DataBase.db";
@@ -17,7 +21,7 @@ public class DBManager implements IDBManager {
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
         return conn;
     }
@@ -38,9 +42,9 @@ public class DBManager implements IDBManager {
             pstmt.setString(6, profileObject.City);
             pstmt.executeUpdate();
                  } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        SavePhoto(profileObject.PhotoPath,profileObject.Username);
-    }
+            model.showAlert(e.getMessage());
+           }
+           SavePhoto(profileObject.PhotoPath,profileObject.Username);
     }
 
     /*
@@ -62,7 +66,7 @@ public class DBManager implements IDBManager {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            model.showAlert(e.getMessage());
             return false;
         }
         return false;
@@ -85,7 +89,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(6, profileObject.City);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
     }
 
@@ -126,7 +130,7 @@ public class DBManager implements IDBManager {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
     }
 
@@ -145,7 +149,7 @@ public class DBManager implements IDBManager {
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
         createTable("CREATE TABLE IF NOT EXISTS Reasons (\n"
                 + "Username CHAR(8) NOT NULL, \n"
@@ -213,13 +217,13 @@ public class DBManager implements IDBManager {
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
     }
 
@@ -232,7 +236,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(3, RegistrD);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
 
 
@@ -255,6 +259,7 @@ public class DBManager implements IDBManager {
                 return rs.getString("PASSWORD");
             }
         } catch (SQLException e) {
+            model.showAlert(e.getMessage());
             return "";
 
         }
@@ -279,6 +284,7 @@ public class DBManager implements IDBManager {
                 return fields;
             }
         } catch (SQLException e) {
+            model.showAlert(e.getMessage());
             return null;
 
         }
@@ -298,7 +304,7 @@ public class DBManager implements IDBManager {
                 result.add(rs.getString(1));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            model.showAlert(e.getMessage());
             return null;
         }
         return result;
@@ -316,7 +322,7 @@ public class DBManager implements IDBManager {
                     request.add(rs.getString(1));
                 }
             } catch (SQLException e) {
-                System.out.println(e);
+                model.showAlert(e.getMessage());
                 return request;
             }
 
@@ -341,7 +347,7 @@ public class DBManager implements IDBManager {
                     searchresults.add(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Origin"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight"),rs.getInt("Price")));
                 }
             } catch (SQLException e) {
-                System.out.println(e);
+                model.showAlert(e.getMessage());
                 return searchresults;
             }
 
@@ -361,7 +367,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(6, RequestStatus.WAITING_FOR_SELLER_RESPONSE.toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
     }
 
@@ -377,7 +383,7 @@ public class DBManager implements IDBManager {
                 return rs.getString(1);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            model.showAlert(e.getMessage());
             return "";
         }
         return "";
@@ -392,7 +398,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(1, status.toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
 
     }
@@ -412,8 +418,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(9, paymentObject.SecurityCode);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
             return false;
         }
         return true;
@@ -444,7 +449,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(18, null);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
             return false;
         }
     return true;
@@ -471,7 +476,7 @@ public class DBManager implements IDBManager {
             pstmt.setInt(13, vacationObject.Price);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
             return false;
         }
         return true;
@@ -487,7 +492,7 @@ public class DBManager implements IDBManager {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
 
     }
@@ -505,7 +510,7 @@ public class DBManager implements IDBManager {
               return(new VacationObject(rs.getInt("VacationID"),rs.getString("UserName_fk"),rs.getString("Status"),rs.getBoolean("HotVacation"),rs.getString("TicketType"),rs.getBoolean("BuyAll"),rs.getString("FlightCompany"),rs.getString("Origin"),rs.getString("Destination"),rs.getString("VacationDate"),rs.getInt("NumberOfSuitcases"),rs.getInt("MaxWeight"),rs.getInt("Price")));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            model.showAlert(e.getMessage());
             return null;
         }
         return null;
@@ -521,8 +526,7 @@ public class DBManager implements IDBManager {
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
 
     }
@@ -537,7 +541,7 @@ public class DBManager implements IDBManager {
             pstmt.setString(1, requestStatus.toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
 
         }
     }
@@ -554,7 +558,7 @@ public class DBManager implements IDBManager {
                     payments.add(rs.getString(1));
                 }
             } catch (SQLException e) {
-                System.out.println(e);
+                model.showAlert(e.getMessage());
                 return payments;
             }
 
@@ -574,7 +578,7 @@ public class DBManager implements IDBManager {
                 maxid[0]=(rs.getInt(1));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            model.showAlert(e.getMessage());
 
         }
          sql = "SELECT MAX(DISTINCT PaymentID) FROM Payments";
@@ -586,7 +590,7 @@ public class DBManager implements IDBManager {
                 maxid[1]=(rs.getInt(1));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            model.showAlert(e.getMessage());
 
         }
   return maxid;
@@ -608,7 +612,7 @@ public class DBManager implements IDBManager {
             }
 
         } catch (SQLException e) {
-            System.out.println(e);
+            model.showAlert(e.getMessage());
             return request;
         }
 
@@ -627,7 +631,7 @@ public class DBManager implements IDBManager {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            model.showAlert(e.getMessage());
         }
     }
 

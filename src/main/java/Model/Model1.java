@@ -18,7 +18,7 @@ public class Model1 implements IModel {
 
 
     public Model1(IController controller) {
-        this.DBM = new DBManager();
+        this.DBM = new DBManager(this);
         this.controller = controller;
     }
 
@@ -242,6 +242,11 @@ public class Model1 implements IModel {
             DBM.UpdateRequestStatus(RequestStatus.DISAPPROVED,vacationID);
             DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
         }
+    }
+
+    @Override
+    public void showAlert(String text) {
+        controller.showalert(text);
     }
 
     @Override
