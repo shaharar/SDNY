@@ -219,7 +219,9 @@ public class Controller implements IController{
         try{
            numOfSuitcases= Integer.parseInt(GuiValues[8]);
            maxWeight= Integer.parseInt(GuiValues[9]);
-           price= Integer.parseInt(GuiValues[10]);
+           if (GuiValues.length == 11){
+               price= Integer.parseInt(GuiValues[10]);
+           }
         }catch (Exception e){
             showalert("Please enter numbers");
             return null;

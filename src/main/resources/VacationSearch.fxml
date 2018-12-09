@@ -18,19 +18,19 @@
       <ChoiceBox fx:id="Babies" layoutX="103.0" layoutY="96.0" prefHeight="9.0" prefWidth="32.0" />
       <CheckBox fx:id="BuyAll" layoutX="168.0" layoutY="61.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="107.0" text="Buy All Tickets" />
       <Label layoutX="44.0" layoutY="147.0" text="Flight Company" />
+      <Label layoutX="44.0" layoutY="179.0" text="Origin" />
       <Label layoutX="44.0" layoutY="212.0" text="Destiniation" />
       <Label layoutX="44.0" layoutY="246.0" text="From" />
       <Label layoutX="44.0" layoutY="280.0" text="To" />
       <Label layoutX="44.0" layoutY="317.0" prefHeight="17.0" prefWidth="122.0" text="Number Of Suitcases" />
       <Label layoutX="44.0" layoutY="353.0" text="Max Suitcase Weight" />
       <TextField fx:id="FlightCompany" layoutX="176.0" layoutY="143.0" />
+      <TextField fx:id="Origin" layoutX="176.0" layoutY="175.0" />
       <TextField fx:id="Destination" layoutX="177.0" layoutY="208.0" />
       <DatePicker fx:id="dtpcker_From" layoutX="178.0" layoutY="242.0" prefHeight="25.0" prefWidth="149.0" />
       <DatePicker fx:id="dtpcker_To" layoutX="178.0" layoutY="277.0" prefHeight="25.0" prefWidth="149.0" />
-      <TextField fx:id="NumberOfSuitCases" layoutX="176.0" layoutY="349.0" />
-      <TextField fx:id="MaxWeight" layoutX="178.0" layoutY="313.0" />
+      <TextField fx:id="NumberOfSuitCases" layoutX="178.0" layoutY="313.0" />
+      <TextField fx:id="MaxWeight" layoutX="176.0" layoutY="349.0" />
       <Button fx:id="SendSearch" layoutX="383.0" layoutY="231.0" mnemonicParsing="false" onAction="#SendToController" prefHeight="40.0" prefWidth="136.0" text="Search Vacation" />
-      <Label layoutX="44.0" layoutY="179.0" text="Origin" />
-      <TextField fx:id="Origin" layoutX="176.0" layoutY="175.0" />
    </children>
 </AnchorPane>
