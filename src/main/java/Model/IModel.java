@@ -24,6 +24,7 @@ public interface IModel {
     boolean ConfirmPaymentVisa(PaymentObject paymentObject, String requestid);
     boolean ConfirmPaypal(String[] paypal, String requestid);
     void SellerAnswer(boolean answer, String vacationID);
+    void showAlert(String text);
     ArrayList<String> GetNewPayments();
 
     ArrayList<ArrayList<String>> GetResultRequest();
