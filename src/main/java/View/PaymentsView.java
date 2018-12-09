@@ -75,6 +75,8 @@ public class PaymentsView extends Awindow {
         stage.close();
     }
 
-
-
+    @Override
+    public void init(Object Parameter) {
+        SetVacationID((String[])Parameter);
+    }
 }

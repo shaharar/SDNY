@@ -15,4 +15,8 @@ public void SendToController(){
 
 }
 
+    @Override
+    public void init(Object Parameter) {
+        SetLists();
+    }
 }

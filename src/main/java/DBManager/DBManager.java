@@ -329,10 +329,8 @@ public class DBManager implements IDBManager {
     public ArrayList<VacationObject> SearchResults(VacationObject vacationObject) {
         ArrayList<VacationObject> searchresults = new ArrayList();
             String sql = "SELECT * FROM Vacations WHERE Destination=\"" + vacationObject.Destination + "\" AND " +
-                    "FlightCompany=\""+vacationObject.FlightCompany + "\" AND NumberOfSuitcases="+vacationObject.NumberOfSuitcases +
-                    " AND MaxWeight="+vacationObject.MaxWeight+" AND TicketType =\""+vacationObject.TicketType
-                    + "\" AND BuyAll ="+vacationObject.BuyAll + " AND VacationDate =\""+vacationObject.VacationDate
-                    + "\" AND Origin =\""+vacationObject.Origin + "\"";
+                    " VacationDate =\""+vacationObject.VacationDate
+                    + "\" AND Origin =\""+vacationObject.Origin + "\" AND Status=\"FOR_SALE\"";
 
             try (Connection conn = this.connect();
                  Statement stmt = conn.createStatement();

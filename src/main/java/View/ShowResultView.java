@@ -54,7 +54,7 @@ public class ShowResultView extends Awindow {
         VacationDate.setText("Vacation Date: " + result[8]);
         NumOfSuitcases.setText("Number Of Suitcases: " + result[9]);
         MaxWeight.setText("Max Weight: " + result[10]);
-        Price.setText("Price: " + result[11]);
+//        Price.setText("Price: " + result[11]);
         i++;
         if(SearchResult.length==i){
             NextRes.setDisable(true);
@@ -70,5 +70,10 @@ public class ShowResultView extends Awindow {
 
     public void NextOption() {
         ShowResult();
+    }
+
+    @Override
+    public void init(Object Parameter) {
+        SetResults((String [][])Parameter);
     }
 }

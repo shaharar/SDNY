@@ -70,4 +70,9 @@ public class VacationStatusView extends Awindow{
 
 
     }
+
+    @Override
+    public void init(Object Parameter) {
+        Updatetableview((String[][])Parameter);
+    }
 }

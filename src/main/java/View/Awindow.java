@@ -56,6 +56,9 @@ public abstract class Awindow {
     public void CloseWindow(){
         stage.close();
     }
+    public void init(Object Parameter){
+
+    }
 }
 
 
