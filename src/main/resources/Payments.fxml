@@ -6,29 +6,36 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PaymentsView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #91ffcd;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PaymentsView">
    <children>
       <Label layoutX="29.0" layoutY="61.0" prefHeight="23.0" prefWidth="94.0" text="ID:" />
-      <TextField fx:id="Id" layoutX="123.0" layoutY="60.0" />
-      <Label layoutX="28.0" layoutY="99.0" prefHeight="23.0" prefWidth="94.0" text="First Name" />
-      <TextField fx:id="FirstName" layoutX="123.0" layoutY="96.0" />
-      <Label layoutX="27.0" layoutY="134.0" prefHeight="23.0" prefWidth="94.0" text="Last Name" />
+      <TextField fx:id="Id" layoutX="122.0" layoutY="60.0" />
+      <Label layoutX="28.0" layoutY="95.0" prefHeight="23.0" prefWidth="94.0" text="First Name" />
+      <TextField fx:id="FirstName" layoutX="122.0" layoutY="96.0" />
+      <Label layoutX="27.0" layoutY="133.0" prefHeight="23.0" prefWidth="94.0" text="Last Name" />
       <TextField fx:id="LastName" layoutX="122.0" layoutY="133.0" />
       <Label layoutX="26.0" layoutY="171.0" prefHeight="23.0" prefWidth="94.0" text="Card Number" />
-      <TextField fx:id="CardNumber" layoutX="121.0" layoutY="169.0" />
+      <TextField fx:id="CardNumber" layoutX="122.0" layoutY="169.0" />
       <Label layoutX="25.0" layoutY="207.0" prefHeight="23.0" prefWidth="94.0" text="Experation Date" />
-      <TextField fx:id="ExperationDate" layoutX="121.0" layoutY="206.0" />
-      <TextField fx:id="SecurityNum" layoutX="122.0" layoutY="241.0" />
+      <TextField fx:id="ExperationDate" layoutX="122.0" layoutY="207.0" />
+      <TextField fx:id="SecurityNum" layoutX="122.0" layoutY="243.0" />
       <Label layoutX="24.0" layoutY="241.0" prefHeight="23.0" prefWidth="104.0" text="Security Number" />
-      <Label graphicTextGap="8.0" layoutX="88.0" layoutY="14.0" prefHeight="25.0" prefWidth="139.0" text="VISA" />
-      <Label graphicTextGap="8.0" layoutX="375.0" layoutY="16.0" prefHeight="25.0" prefWidth="139.0" text="Paypal" />
-      <Label layoutX="370.0" layoutY="58.0" prefHeight="23.0" prefWidth="94.0" text="User Name " />
+      <Label graphicTextGap="8.0" layoutX="49.0" layoutY="15.0" prefHeight="34.0" prefWidth="73.0" style="-fx-background-color: #f4c030;" text="VISA">
+         <font>
+            <Font name="Cambria Math" size="27.0" />
+         </font></Label>
+      <Label graphicTextGap="8.0" layoutX="417.0" layoutY="16.0" prefHeight="34.0" prefWidth="94.0" style="-fx-background-color: #1dd8e5;" text="Paypal">
+         <font>
+            <Font name="Elephant Italic" size="20.0" />
+         </font></Label>
+      <Label layoutX="369.0" layoutY="58.0" prefHeight="23.0" prefWidth="94.0" text="User Name " />
       <TextField fx:id="UserName" layoutX="433.0" layoutY="57.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="370.0" layoutY="93.0" prefHeight="23.0" prefWidth="94.0" text="Password" />
       <CheckBox layoutX="-196.0" layoutY="-24.0" mnemonicParsing="false" text="CheckBox" />
-      <Button layoutX="80.0" layoutY="303.0" mnemonicParsing="false" onAction="#GetValuesVisa" prefHeight="25.0" prefWidth="126.0" text="Confirm" />
-      <Button layoutX="414.0" layoutY="145.0" mnemonicParsing="false" onAction="#GetValuesPaypal" prefHeight="25.0" prefWidth="126.0" text="confirrm" />
-      <PasswordField layoutX="433.0" layoutY="96.0" fx:id="Password" />
+      <Button layoutX="80.0" layoutY="303.0" mnemonicParsing="false" onAction="#GetValuesVisa" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #1c9e63;" text="Confirm" />
+      <Button layoutX="414.0" layoutY="145.0" mnemonicParsing="false" onAction="#GetValuesPaypal" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #1c9e63;" text="confirrm" />
+      <PasswordField fx:id="Password" layoutX="433.0" layoutY="96.0" />
    </children>
 </AnchorPane>

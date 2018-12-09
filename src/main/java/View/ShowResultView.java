@@ -29,13 +29,13 @@ public class ShowResultView extends Awindow {
     public void SetResults(String[][] SearchResult) {
         this.SearchResult = SearchResult;
         if (this.SearchResult.length > 0) {
-            ShowResult();
             NextRes.setDisable(false);
+            ShowResult();
+
         }
         else{
             stage.close();
             showAlert("No Results were found");
-            NextRes.setDisable(true);
         }
 
 
