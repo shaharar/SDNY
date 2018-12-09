@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SearchVacationView">
+<AnchorPane prefHeight="457.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SearchVacationView">
    <children>
       <Label layoutX="44.0" layoutY="38.0" prefHeight="28.0" prefWidth="70.0" text="Adults:" />
       <Label layoutX="44.0" layoutY="66.0" prefHeight="28.0" prefWidth="70.0" text="Children:" />
@@ -24,6 +24,7 @@
       <Label layoutX="44.0" layoutY="280.0" text="To" />
       <Label layoutX="44.0" layoutY="317.0" prefHeight="17.0" prefWidth="122.0" text="Number Of Suitcases" />
       <Label layoutX="44.0" layoutY="353.0" text="Max Suitcase Weight" />
+      <Label layoutX="49.0" layoutY="393.0" text="Price ($)" />
       <TextField fx:id="FlightCompany" layoutX="176.0" layoutY="143.0" />
       <TextField fx:id="Origin" layoutX="176.0" layoutY="175.0" />
       <TextField fx:id="Destination" layoutX="177.0" layoutY="208.0" />
@@ -31,6 +32,7 @@
       <DatePicker fx:id="dtpcker_To" layoutX="178.0" layoutY="277.0" prefHeight="25.0" prefWidth="149.0" />
       <TextField fx:id="NumberOfSuitCases" layoutX="178.0" layoutY="313.0" />
       <TextField fx:id="MaxWeight" layoutX="176.0" layoutY="349.0" />
+      <TextField fx:id="Price" layoutX="178.0" layoutY="389.0" />
       <Button fx:id="SendSearch" layoutX="383.0" layoutY="231.0" mnemonicParsing="false" onAction="#SendToController" prefHeight="40.0" prefWidth="136.0" text="Search Vacation" />
    </children>
 </AnchorPane>
