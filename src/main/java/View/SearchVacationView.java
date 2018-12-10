@@ -15,6 +15,8 @@ public class SearchVacationView extends AVacationWindow {
 
     @Override
     public void init(Object Parameter) {
+        stage.setHeight(610);
+        stage.setWidth(980);
         SetLists();
         Adults.setDisable(true);
          Children.setDisable(true);

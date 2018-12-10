@@ -31,6 +31,7 @@ public class UpdateProfileView extends Awindow {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     public void uploadImage() {
         FileChooser fc = new FileChooser();
        File fileselected = fc.showOpenDialog(stage);

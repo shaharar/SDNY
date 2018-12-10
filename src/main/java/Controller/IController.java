@@ -23,7 +23,7 @@ public interface IController {
 
     boolean DeleteVacation(String vacationId);
 
-    void UpdateVacation(String[] strings, boolean selected);
+    boolean UpdateVacation(String[] strings, boolean selected);
 
     boolean ChooseVacation(String vacationId);
 

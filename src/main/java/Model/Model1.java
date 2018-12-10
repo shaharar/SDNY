@@ -297,14 +297,14 @@ public class Model1 implements IModel {
          return true;
        }
       else{
-           controller.showalert("The vacation id is not valid.Try again");
+           controller.showalert("The vacation ID is invalid. Please try again");
            return false;
        }
     }
 
     public boolean IsVacationDetailsValid(VacationObject vacationObject){
         if(vacationObject.TicketType.length()>20){
-            controller.showalert("Choose Ticket Type Again");
+            controller.showalert("Choose Ticket Type again");
             return false;
         }
         else if(vacationObject.FlightCompany.length()>10){
@@ -331,17 +331,17 @@ public class Model1 implements IModel {
             return false;
         }
        else if(finishYear<startYear || (finishYear==startYear && finishMonth<startMonth)||(finishYear==startYear && finishMonth==startMonth && finishDay<startDay )) {
-            controller.showalert("Your Dates are no valid, choose again");
+            controller.showalert("Your dates are invalid, please choose them again");
             return false;
         }else{
             vacationObject.VacationDate=""+startDay+"-"+startMonth+"-"+startYear+"|"+finishDay+"-"+finishMonth+"-"+finishYear;
         }
         if(vacationObject.NumberOfSuitcases > 3){
-            controller.showalert("Max number of suitcases per person is 5");
+            controller.showalert("Max number of suitcases per person is 3");
             return false;
         }
         else if(vacationObject.MaxWeight > 30){
-            controller.showalert("Max Weight of suitcases is 30 kg");
+            controller.showalert("Max weight of suitcase is 30 kg");
             return false;
         }
         return true;

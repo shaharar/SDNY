@@ -458,24 +458,20 @@ public class DBManager implements IDBManager {
     }
 
     public boolean UpdateVacation(VacationObject vacationObject) {
-        String sql = "UPDATE Vacations SET VacationID=? , UserName_fk=?, HotVacation=?,Status=?, TicketType=?,BuyAll=?,FlightCompany=?,Origin=?,Destination=?,VacationDate=?,NumberOfSuitcases=?,MaxWeight=?,Price=? "
+        String sql = "UPDATE Vacations SET TicketType=?,BuyAll=?,FlightCompany=?,Origin=?,Destination=?,VacationDate=?,NumberOfSuitcases=?,MaxWeight=?,Price=? "
                 + "WHERE VacationID = \"" + vacationObject.VacationID + "\"";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // set the corresponding param
-            pstmt.setInt(1, vacationObject.VacationID);
-            pstmt.setString(2, vacationObject.UserName_fk);
-            pstmt.setBoolean(3,vacationObject.HotVacation);
-            pstmt.setString(4, vacationObject.Status);
-            pstmt.setString(5, vacationObject.TicketType);
-            pstmt.setBoolean(6, vacationObject.BuyAll);
-            pstmt.setString(7, vacationObject.FlightCompany);
-            pstmt.setString(8, vacationObject.Origin);
-            pstmt.setString(9, vacationObject.Destination);
-            pstmt.setString(10, vacationObject.VacationDate);
-            pstmt.setInt(11, vacationObject.NumberOfSuitcases);
-            pstmt.setInt(12, vacationObject.MaxWeight);
-            pstmt.setInt(13, vacationObject.Price);
+            pstmt.setString(1, vacationObject.TicketType);
+            pstmt.setBoolean(2, vacationObject.BuyAll);
+            pstmt.setString(3, vacationObject.FlightCompany);
+            pstmt.setString(4, vacationObject.Origin);
+            pstmt.setString(5, vacationObject.Destination);
+            pstmt.setString(6, vacationObject.VacationDate);
+            pstmt.setInt(7, vacationObject.NumberOfSuitcases);
+            pstmt.setInt(8, vacationObject.MaxWeight);
+            pstmt.setInt(9, vacationObject.Price);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             model.showAlert(e.getMessage());

@@ -2,14 +2,20 @@ package View;
 
 import Model.VacationObject;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class UpdateVacationView extends AVacationWindow{
 
     @Override
     public void SendToController() {
-       controller.UpdateVacation(GetValues(),BuyAll.isSelected());
+       if (controller.UpdateVacation(GetValues(),BuyAll.isSelected())){
+           showAlert("Your vacation was updated successfully");
+       }
     }
 
     public void SetValues(String [] values,boolean buyAll){
+        vacationID = values[0];
         Adults.setValue(values[1]);
         Children.setValue(values[2]);
         Babies.setValue(values[3]);
@@ -17,10 +23,11 @@ public class UpdateVacationView extends AVacationWindow{
         FlightCompany.setText(values[5]);
         Origin.setText(values[6]);
         Destination.setText(values[7]);
-        String s1 = values[8].substring(0,values[8].indexOf("|"));
-        String s2 = values[8].substring(values[8].indexOf("|") + 1);
-        dtpcker_From.setPromptText(s1);
-        dtpcker_To.setPromptText(s2);
+        String from = values[8].substring(0,values[8].indexOf("|"));
+        String to = values[8].substring(values[8].indexOf("|") + 1);
+        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd-MM-yyyy"); //needed by the date picker
+        dtpcker_From.setValue(LocalDate.parse(from, dtf));
+        dtpcker_To.setValue(LocalDate.parse(to, dtf));
         NumberOfSuitCases.setText(values[9]);
         MaxWeight.setText(values[10]);
         Price.setText(values[11]);

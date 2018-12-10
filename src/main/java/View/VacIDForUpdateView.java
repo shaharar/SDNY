@@ -8,7 +8,7 @@ public class VacIDForUpdateView extends Awindow {
 
     public void UpdateVacation(){
         if(!vacationID.getText().equals("")){
-            controller.openwindow("UpdateVacation2.fxml",vacationID.getText());
+            controller.openwindow("UpdateVacation.fxml",vacationID.getText());
         }
         else {
             showAlert("Please enter Vacation ID for update" );

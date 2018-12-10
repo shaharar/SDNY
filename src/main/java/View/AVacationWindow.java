@@ -8,6 +8,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 public abstract class AVacationWindow extends Awindow {
+    public String vacationID;
     public ChoiceBox Adults;
     public ChoiceBox Children;
     public ChoiceBox Babies;
@@ -32,13 +33,10 @@ public abstract class AVacationWindow extends Awindow {
     public String[] GetValues (){
         String[] values=null;
         if(dtpcker_From.getValue()==null ||dtpcker_To.getValue()==null){
-            showAlert("insert dates!");
-        }
-        else if(Price == null){
-            values = new String[]{(String) Adults.getValue(), (String) Children.getValue(), (String) Babies.getValue(), FlightCompany.getText(), Origin.getText(), Destination.getText(), dtpcker_From.getValue().toString(), dtpcker_To.getValue().toString(), NumberOfSuitCases.getText(), MaxWeight.getText()};
+            showAlert("Please insert dates");
         }
         else{
-            values = new String[]{(String) Adults.getValue(), (String) Children.getValue(), (String) Babies.getValue(), FlightCompany.getText(), Origin.getText(), Destination.getText(), dtpcker_From.getValue().toString(), dtpcker_To.getValue().toString(), NumberOfSuitCases.getText(), MaxWeight.getText(), Price.getText()};
+            values = new String[]{vacationID, (String) Adults.getValue(), (String) Children.getValue(), (String) Babies.getValue(), FlightCompany.getText(), Origin.getText(), Destination.getText(), dtpcker_From.getValue().toString(), dtpcker_To.getValue().toString(), NumberOfSuitCases.getText(), MaxWeight.getText(), Price.getText()};
         }
 
     return values;

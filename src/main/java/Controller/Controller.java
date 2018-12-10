@@ -85,20 +85,17 @@ public class Controller implements IController{
             TextFields[1]="1";
             TextFields[2]="1";
             TextFields[3]="1";
-            TextFields[8]="1";
+            TextFields[4]="1";
             TextFields[9]="1";
-            if (TextFields.length == 11){
-                TextFields[10]="1";
-            }
+            TextFields[10]="1";
+            TextFields[11]="1";
             ArrayList<VacationObject > vacationObjects= Model.GetSearchResult(StringArrToVac(TextFields,buyAll));
-            if( vacationObjects!=null){
-                String[][] allResults=new String[vacationObjects.size()][];
+            if( vacationObjects != null){
+                String[][] allResults = new String[vacationObjects.size()][];
                 for (int i = 0; i <vacationObjects.size() ; i++) {
                     allResults[i]= VacToStringArr(vacationObjects.get(i));
 
                 }
-
-
                 return allResults;
             }
             return null;
@@ -139,8 +136,8 @@ public class Controller implements IController{
     }
 
     @Override
-    public void UpdateVacation(String[] strings, boolean selected) {
-        Model.UpdateVacation(StringArrToVac(strings,selected));
+    public boolean UpdateVacation(String[] strings, boolean selected) {
+        return Model.UpdateVacation(StringArrToVac(strings,selected));
     }
 
 
@@ -174,7 +171,7 @@ public class Controller implements IController{
         return PaymentsArr;
     }
 
-    @Override //we transopse the array
+    @Override //we transpose the array
     public String[][] GetVacationStatusvalues() {
         ArrayList<ArrayList<String>> resultrequest=Model.GetResultRequest();
         String [][] result=new String [3][];
@@ -200,25 +197,25 @@ public class Controller implements IController{
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
         for (int i = 0; i <GuiValues.length ; i++) {
             if(GuiValues[i].equals("")){
-                showalert("Please Enter all fields");
+                showalert("Please enter all fields");
                 return null;
             }
         }
+        int vacationID = -1;
         int numOfSuitcases= -1;
         int maxWeight= -1;
         int price= -1;
         try{
-           numOfSuitcases= Integer.parseInt(GuiValues[8]);
-           maxWeight= Integer.parseInt(GuiValues[9]);
-           if (GuiValues.length == 11){
-               price= Integer.parseInt(GuiValues[10]);
-           }
+           vacationID = Integer.parseInt(GuiValues[0]);
+           numOfSuitcases= Integer.parseInt(GuiValues[9]);
+           maxWeight= Integer.parseInt(GuiValues[10]);
+           price= Integer.parseInt(GuiValues[11]);
         }catch (Exception e){
             showalert("Please enter numbers");
             return null;
         }
 
-        return new VacationObject(-1,null,null,false,"adu-"+GuiValues[0]+"chi-"+GuiValues[1]+"bab-"+GuiValues[2],buyAll,GuiValues[3],GuiValues[4],GuiValues[5],GuiValues[6]+GuiValues[7],numOfSuitcases,maxWeight,price);
+        return new VacationObject(vacationID,null,null,false,"adu-"+GuiValues[1]+"chi-"+GuiValues[2]+"bab-"+GuiValues[3],buyAll,GuiValues[4],GuiValues[5],GuiValues[6],GuiValues[7]+GuiValues[8],numOfSuitcases,maxWeight,price);
     }
     public String [] VacToStringArr(VacationObject vacationObject){
         String[] values=new String[12];
