@@ -4,7 +4,7 @@ public class PaymentObject {
 
 public 	String PaymentID;
     public 	String VacationID_fk ;
-    public 	String  UserName_fk ;
+    public 	String UserName_fk ;
     public 	String Useridoc ;
     public 	String LastName;
     public 	String FirstName;

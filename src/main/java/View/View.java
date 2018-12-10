@@ -198,7 +198,7 @@ this function is unnecessery because it is defaulted on true but we might need t
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;
         try {
-            root = fxmlLoader.load(getClass().getResource("../main/resources/Attention.fxml").openStream());
+            root = fxmlLoader.load(getClass().getClassLoader().getResource("Attention.fxml").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

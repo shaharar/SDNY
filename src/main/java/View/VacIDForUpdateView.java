@@ -7,11 +7,11 @@ public class VacIDForUpdateView extends Awindow {
     public TextField vacationID;
 
     public void UpdateVacation(){
-        if(!vacationID.getText().equals("")){
+        if(controller.isYourVacation(vacationID.getText())){
             controller.openwindow("UpdateVacation.fxml",vacationID.getText());
         }
         else {
-            showAlert("Please enter Vacation ID for update" );
+            showAlert("The vacation ID is invalid");
         }
         stage.close();
     }

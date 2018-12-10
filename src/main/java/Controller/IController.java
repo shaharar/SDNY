@@ -39,4 +39,6 @@ public interface IController {
 
     VacationObject getVacationFields(Object vacationId);
     String [] VacToStringArr(VacationObject vacationObject);
-}
+
+    public boolean isYourVacation (String vacationID);
+    }

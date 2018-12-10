@@ -272,6 +272,11 @@ public class Model1 implements IModel {
         return DBMResult;
     }
 
+    @Override
+    public boolean isYourVacation(String vacationID) {
+        return DBM.GetSeller(""+vacationID).equals(currentUser);
+    }
+
     public boolean InsertVacation(VacationObject vacationObject){
         if( !IsVacationDetailsValid(vacationObject)){
             return false;

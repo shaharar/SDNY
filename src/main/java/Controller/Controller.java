@@ -126,7 +126,8 @@ public class Controller implements IController{
 
     @Override
     public boolean CreateVacation(String[] strings, boolean selected) {
-   return Model.InsertVacation(StringArrToVac(strings,selected));
+        strings[0] = "1";
+        return Model.InsertVacation(StringArrToVac(strings,selected));
     }
 
     @Override
@@ -242,6 +243,9 @@ public class Controller implements IController{
 
     }
 
+    public boolean isYourVacation (String vacationID){
+        return Model.isYourVacation(vacationID);
+    }
 
 }
 
