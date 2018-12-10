@@ -1,59 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
-    <top>
-        <HBox maxHeight="100.0" maxWidth="600.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
-            <children>
-                <MenuBar maxWidth="800.0" minWidth="1000.0" prefWidth="1000.0">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="Profile">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#viewMyProfile" text="View Profile &amp; manage vacations" />
-                                <MenuItem mnemonicParsing="false" onAction="#Update" text="Update Profile" />
-                                <MenuItem mnemonicParsing="false" onAction="#Delete" text="Delete Profile" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Log Out">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#Logout" text="Log Out" />
-                            </items></Menu>
-                    </menus>
-                </MenuBar>
-            </children>
-        </HBox>
-    </top>
-    <center>
-        <VBox maxHeight="25.0" maxWidth="250.0" prefHeight="200.0" prefWidth="50.0" BorderPane.alignment="TOP_RIGHT">
-            <children>
-                <Label text="Username:" translateX="2.0" translateY="4.0">
-                    <font>
-                        <Font name="Calibri Bold" size="14.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="txtfld_username_W" maxWidth="180.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" translateX="70.0" translateY="-17.0" />
-            </children>
-        </VBox>
-    </center>
-    <right>
-        <VBox maxHeight="257.0" maxWidth="173.0" prefHeight="257.0" prefWidth="173.0" BorderPane.alignment="TOP_RIGHT">
-            <children>
-                <Button fx:id="btn_search_W" maxWidth="170.0" mnemonicParsing="false" onAction="#SearchProfile" prefHeight="46.0" prefWidth="170.0" text="Search Profile" />
-            <Button fx:id="btnSearch_Vacation_W" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="54.0" prefWidth="170.0" text="Search Vacation" />
-            <Button mnemonicParsing="false" onAction="#lookForNewRequests" prefHeight="50.0" prefWidth="170.0" text="Look For New Requests" />
-            <Button mnemonicParsing="false" onAction="#CreateVac_btn" prefHeight="52.0" prefWidth="170.0" text="Create New Vacation" />
-            <Button mnemonicParsing="false" onAction="#GetVacationStatus" prefHeight="52.0" prefWidth="171.0" text="View Pending Vacations" />
-            </children>
-        </VBox>
-    </right>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+   <children>
+      <MenuBar maxWidth="1024.0" minWidth="1024.0" prefHeight="31.0" prefWidth="1024.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Profile">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#viewMyProfile" text="View Profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#Update" text="Update Profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#Delete" text="Delete Profile" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="My Vacations">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="View Vacations" />
+                  <MenuItem mnemonicParsing="false" onAction="#UpdateVacation" text="Update Vacation" />
+                  <MenuItem mnemonicParsing="false" onAction="#DeleteVacation" text="Delete Vacation" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="My Requests">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#GetVacationStatus" text="Pending Requests" />
+                  <MenuItem mnemonicParsing="false" onAction="#lookForNewRequests" text="New Requests for approval" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Log Out">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Logout" text="Log Out" />
+               </items>
+            </Menu>
+         </menus>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.25" specularConstant="0.42" specularExponent="29.3" surfaceScale="0.1">
+               <light>
+                  <Light.Distant color="#fcfcfc" />
+               </light>
+            </Lighting>
+         </effect>
+      </MenuBar>
+      <Label layoutX="669.0" layoutY="35.0" text="Username:">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_username_W" layoutX="740.0" layoutY="31.0" maxWidth="180.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" />
+      <Button fx:id="btn_search_W" layoutX="920.0" layoutY="31.0" maxWidth="170.0" mnemonicParsing="false" onAction="#SearchProfile" prefHeight="25.0" prefWidth="104.0" text="Search Profile">
+         <font>
+            <Font name="Calibri Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnSearch_Vacation_W" layoutX="553.0" layoutY="108.0" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="103.0" prefWidth="241.0" text="Search Your Vacation" textAlignment="CENTER" textFill="#070707" wrapText="true">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#fde5ff" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <Button layoutX="231.0" layoutY="108.0" mnemonicParsing="false" onAction="#CreateVac_btn" prefHeight="103.0" prefWidth="241.0" text="Create New Vacation" textAlignment="CENTER" textFill="#070707" wrapText="true">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#fde5ff" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

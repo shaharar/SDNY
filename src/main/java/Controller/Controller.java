@@ -57,7 +57,7 @@ public class Controller implements IController{
             e.printStackTrace();
         }
         Stage newStage = new Stage();
-        Scene scene = new Scene(root, 720, 404);
+        Scene scene = new Scene(root, 600, 457);
         newStage.setScene(scene);
 
         Awindow NewWindow=fxmlLoader.getController();

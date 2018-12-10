@@ -5,7 +5,7 @@
     -fx-background-size: cover;
 }
 
-Button {
+/*Button {
     -fx-text-fill: white;
     -fx-font-family: "David";
     -fx-font-weight: bolder;
@@ -15,7 +15,7 @@ Button {
 ;
     -fx-font-size:12px;
 
-}
+}*/
 Button:hover{
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0 0 -1 0, 0, 1, 2;
