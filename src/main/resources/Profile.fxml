@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -44,14 +41,6 @@
                         <TextField fx:id="txtfld_city_P" prefHeight="30.0" prefWidth="149.0" />
                     </children>
                 </HBox>
-            <AnchorPane prefHeight="102.0" prefWidth="250.0">
-               <children>
-                  <Button layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onAction="#DeleteVacation" prefHeight="25.0" prefWidth="200.0" text="Click here to Delete a Vacation"  />
-                  <Label layoutX="5.0" layoutY="7.0" prefHeight="22.0" prefWidth="204.0" text="Insert Vacation id to update vacation"  />
-                  <TextField  fx:id="updatevacation" layoutX="209.0" layoutY="6.0" prefHeight="25.0" prefWidth="107.0" />
-                  <Button onAction="#UpdateVacation" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="198.0" text="Click here to update vacation" />
-               </children>
-            </AnchorPane>
             </children>
         </VBox>
     </center>
@@ -63,9 +52,6 @@
         </Label>
     </top>
     <left>
-        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fx:id="Img_profile_P" fitHeight="147.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="70.0" />
-            </children></HBox>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
     </left>
 </BorderPane>

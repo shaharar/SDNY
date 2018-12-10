@@ -217,12 +217,13 @@ this function is unnecessery because it is defaulted on true but we might need t
    }
 
     public void UpdateVacation() {
-        controller.openwindow("UpdateVacation.fxml", null); //need to change to update
+        controller.openwindow("VacationIDForUpdate.fxml", null);
     }
 
     public void DeleteVacation() {
-        controller.openwindow("DeleteVacation.fxml", null); //need to change to update
+        controller.openwindow("DeleteVacation.fxml", null);
     }
+
 
     public void OpenSearchScreen(){
         controller.openwindow("VacationSearch.fxml",null);

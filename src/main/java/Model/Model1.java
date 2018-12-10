@@ -67,7 +67,7 @@ public class Model1 implements IModel {
             controller.showalert("Sorry, you are too young");
             return false;
         }
-        if(profileObject.City.length() >20 ) {
+        if(profileObject.City.length() > 20 ) {
             controller.showalert("Your city is illegal");
             return false;
         }
@@ -319,28 +319,28 @@ public class Model1 implements IModel {
             controller.showalert("Your Destination is too long");
             return false;
         }
-        int startdate=Integer.parseInt(vacationObject.VacationDate.substring(8,10));
-        int startamonth=Integer.parseInt(vacationObject.VacationDate.substring(5,7));
-        int startyear=Integer.parseInt(vacationObject.VacationDate.substring(0,4));
-        int finishdate=Integer.parseInt(vacationObject.VacationDate.substring(18,20));
-        int finishmonth=Integer.parseInt(vacationObject.VacationDate.substring(15,17));
-        int finishyear=Integer.parseInt(vacationObject.VacationDate.substring(10,14));
+        int startDay=Integer.parseInt(vacationObject.VacationDate.substring(8,10));
+        int startMonth=Integer.parseInt(vacationObject.VacationDate.substring(5,7));
+        int startYear=Integer.parseInt(vacationObject.VacationDate.substring(0,4));
+        int finishDay=Integer.parseInt(vacationObject.VacationDate.substring(18,20));
+        int finishMonth=Integer.parseInt(vacationObject.VacationDate.substring(15,17));
+        int finishYear=Integer.parseInt(vacationObject.VacationDate.substring(10,14));
         LocalDateTime date=LocalDateTime.now();
-        if(date.getYear()<2018||(date.getYear()==2018&& date.getMonthValue()>startamonth)||(date.getMonthValue()==startamonth && date.getDayOfMonth()>startdate)){
+        if(date.getYear()<2018||(date.getYear()==2018&& date.getMonthValue()>startMonth)||(date.getMonthValue()==startMonth && date.getDayOfMonth()>startDay)){
             controller.showalert("Start day has passed. Try changing dates");
             return false;
         }
-       else if(finishyear<startyear || (finishyear==startyear && finishmonth<startamonth)||(finishyear==startyear && finishmonth==startamonth && finishdate<startdate )) {
+       else if(finishYear<startYear || (finishYear==startYear && finishMonth<startMonth)||(finishYear==startYear && finishMonth==startMonth && finishDay<startDay )) {
             controller.showalert("Your Dates are no valid, choose again");
             return false;
         }else{
-            vacationObject.VacationDate=""+startdate+"-"+startamonth+"-"+startyear+"-"+finishdate+"-"+finishmonth+"-"+finishyear;
+            vacationObject.VacationDate=""+startDay+"-"+startMonth+"-"+startYear+"|"+finishDay+"-"+finishMonth+"-"+finishYear;
         }
-        if(vacationObject.NumberOfSuitcases>5){
+        if(vacationObject.NumberOfSuitcases > 3){
             controller.showalert("Max number of suitcases per person is 5");
             return false;
         }
-        else if(vacationObject.MaxWeight>30){
+        else if(vacationObject.MaxWeight > 30){
             controller.showalert("Max Weight of suitcases is 30 kg");
             return false;
         }
