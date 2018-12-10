@@ -24,18 +24,12 @@ public interface IDBManager {
      boolean InsertVacation(VacationObject vacationObject);
      boolean UpdateVacation(VacationObject vacationObject);
      void DeleteVacation(String VacationID);
-
     VacationObject GetVacation(String vacationID);
-
     void InsertPaymentPaypal(String[] paypal);
-
     void UpdateRequestStatus(RequestStatus requestStatus, String vacationID);
-
     ArrayList<String> GetNewPayments(String strings);
-
     int[] GetMaxId();
-
     ArrayList<ArrayList<String>> GetRequestTable(String currentUser);
-
     void DeleteRequest(String requestId);
+    ArrayList<VacationObject> getAllUsersVacations(String UserName);
 }

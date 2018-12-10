@@ -28,6 +28,6 @@ public interface IModel {
     ArrayList<String> GetNewPayments();
 
     ArrayList<ArrayList<String>> GetResultRequest();
-
+    ArrayList<VacationObject> getAllUsersVacations();
     boolean isYourVacation(String vacationID);
 }

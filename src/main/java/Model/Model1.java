@@ -273,6 +273,11 @@ public class Model1 implements IModel {
     }
 
     @Override
+    public ArrayList<VacationObject> getAllUsersVacations() {
+        return DBM.getAllUsersVacations(currentUser);
+    }
+
+    @Override
     public boolean isYourVacation(String vacationID) {
         return DBM.GetSeller(""+vacationID).equals(currentUser);
     }
@@ -351,6 +356,7 @@ public class Model1 implements IModel {
         }
         return true;
     }
+
 }
 
 

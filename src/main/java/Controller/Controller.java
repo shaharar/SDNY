@@ -246,7 +246,14 @@ public class Controller implements IController{
     public boolean isYourVacation (String vacationID){
         return Model.isYourVacation(vacationID);
     }
-
+    public ArrayList<String[]> getUsersVacations(){
+         ArrayList<VacationObject> dataFromModel=Model.getAllUsersVacations();//user's
+         ArrayList<String[]> results=new ArrayList<>();
+        for (int i = 0; i <dataFromModel.size() ; i++) {
+            results.add(VacToStringArr(dataFromModel.get(i)));
+        }
+        return results;
+    }
 }
 
 
