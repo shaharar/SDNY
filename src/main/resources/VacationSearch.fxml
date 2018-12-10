@@ -14,8 +14,8 @@
 <AnchorPane prefHeight="457.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SearchVacationView">
    <children>
       <ImageView fitHeight="457.0" fitWidth="600.0">
-         <image>
-            <Image url="@vacationBackground.jpg" />
+        <image>
+            <Image url="@backgroundPic.jpg" />
          </image>
       </ImageView>
       <Label layoutX="438.0" layoutY="192.0" prefHeight="28.0" prefWidth="70.0" text="Adults:" textFill="#2f0a43">
