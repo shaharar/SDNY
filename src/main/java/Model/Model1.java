@@ -344,7 +344,7 @@ public class Model1 implements IModel {
             controller.showalert("Your dates are invalid, please choose them again");
             return false;
         }else{
-            vacationObject.VacationDate=""+startDay+"-"+startMonth+"-"+startYear+"|"+finishDay+"-"+finishMonth+"-"+finishYear;
+            vacationObject.VacationDate=""+startDay+"-"+startMonth+"-"+startYear+"_"+finishDay+"-"+finishMonth+"-"+finishYear;
         }
         if(vacationObject.NumberOfSuitcases > 3){
             controller.showalert("Max number of suitcases per person is 3");

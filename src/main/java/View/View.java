@@ -216,6 +216,10 @@ this function is unnecessery because it is defaulted on true but we might need t
        controller.openwindow("CreateVacation.fxml", null);
    }
 
+    public void viewVacations(){
+        controller.openwindow("viewVacations.fxml",null);
+    }
+
     public void UpdateVacation() {
         controller.openwindow("VacationIDForUpdate.fxml", null);
     }

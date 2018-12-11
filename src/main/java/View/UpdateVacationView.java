@@ -23,8 +23,8 @@ public class UpdateVacationView extends AVacationWindow{
         FlightCompany.setText(values[5]);
         Origin.setText(values[6]);
         Destination.setText(values[7]);
-        String from = values[8].substring(0,values[8].indexOf("|"));
-        String to = values[8].substring(values[8].indexOf("|") + 1);
+        String from = values[8].substring(0,values[8].indexOf("_"));
+        String to = values[8].substring(values[8].indexOf("_") + 1);
         DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd-MM-yyyy"); //needed by the date picker
         dtpcker_From.setValue(LocalDate.parse(from, dtf));
         dtpcker_To.setValue(LocalDate.parse(to, dtf));

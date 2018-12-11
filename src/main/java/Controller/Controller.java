@@ -246,11 +246,14 @@ public class Controller implements IController{
     public boolean isYourVacation (String vacationID){
         return Model.isYourVacation(vacationID);
     }
-    public ArrayList<String[]> getUsersVacations(){
-         ArrayList<VacationObject> dataFromModel=Model.getAllUsersVacations();//user's
-         ArrayList<String[]> results=new ArrayList<>();
+
+    public ArrayList<String> getUsersVacations(){
+         ArrayList<VacationObject> dataFromModel = Model.getAllUsersVacations();//user's
+         ArrayList<String> results = new ArrayList<>();
         for (int i = 0; i <dataFromModel.size() ; i++) {
-            results.add(VacToStringArr(dataFromModel.get(i)));
+            VacationObject vacObj = dataFromModel.get(i);
+            String[] vacArr = VacToStringArr(vacObj);
+            results.add("Vacation ID : " + vacObj.VacationID + "\n" + "Origin : " + vacObj.Origin + ",  Destination : " + vacObj.Destination + ",    Dates : " + vacObj.VacationDate + "\n" + "Adults : " + vacArr[1] + ",  Children : " + vacArr[2] + ",   Babies : " + vacArr[3] + ",    Flight Company : " + vacObj.FlightCompany + "\nNumber of suitcases : " + vacObj.NumberOfSuitcases + ",   Max weight of suitcase : " + vacObj.MaxWeight + " kg\nPrice: " + vacObj.Price + "$,  Enable partial purchase : " + vacObj.BuyAll);
         }
         return results;
     }

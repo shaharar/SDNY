@@ -3,6 +3,8 @@ package Controller;
 import Model.Reason;
 import Model.VacationObject;
 
+import java.util.ArrayList;
+
 public interface IController {
 
     boolean Login(String username, String password);
@@ -40,5 +42,7 @@ public interface IController {
     VacationObject getVacationFields(Object vacationId);
     String [] VacToStringArr(VacationObject vacationObject);
 
-    public boolean isYourVacation (String vacationID);
-    }
+    boolean isYourVacation (String vacationID);
+
+    ArrayList<String> getUsersVacations();
+}
