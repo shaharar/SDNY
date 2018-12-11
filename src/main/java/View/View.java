@@ -187,7 +187,7 @@ this function is unnecessery because it is defaulted on true but we might need t
 
     public void Logout() {
         controller.LogOut();
-       ChangeScene("Login.fxml");
+       ChangeScene("Login2.fxml");
     }
 
     public void lookForNewRequests(){
