@@ -5,67 +5,67 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.VacationStatusView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.VacationStatusView">
    <children>
 
-      <Label layoutX="55.0" layoutY="50.0" prefHeight="36.0" prefWidth="501.0" text="Vacation ID                                   Status                                      Payment" textFill="#20075e">
+      <Label layoutX="40.0" layoutY="54.0" prefHeight="36.0" prefWidth="560.0" text="Vacation ID                              Status                                  Payment" textFill="#d08e78">
          <font>
-            <Font name="Calibri Bold" size="18.0" />
+            <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="id1" layoutX="53.0" layoutY="94.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="id1" layoutX="67.0" layoutY="93.0" prefHeight="18.0" prefWidth="78.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="id2" layoutX="56.0" layoutY="134.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="id2" layoutX="67.0" layoutY="135.0" prefHeight="17.0" prefWidth="78.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="id3" layoutX="56.0" layoutY="177.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="id3" layoutX="67.0" layoutY="178.0" prefHeight="17.0" prefWidth="78.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="id4" layoutX="57.0" layoutY="217.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="id4" layoutX="68.0" layoutY="218.0" prefHeight="17.0" prefWidth="78.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="id5" layoutX="57.0" layoutY="253.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="id5" layoutX="68.0" layoutY="254.0" prefHeight="17.0" prefWidth="78.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="id6" layoutX="56.0" layoutY="294.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="id6" layoutX="67.0" layoutY="295.0" prefHeight="17.0" prefWidth="78.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="id7" layoutX="57.0" layoutY="329.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="id7" layoutX="68.0" layoutY="330.0" prefHeight="17.0" prefWidth="78.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status1" layoutX="276.0" layoutY="93.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="status1" layoutX="240.0" layoutY="93.0" prefHeight="18.0" prefWidth="159.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status2" layoutX="277.0" layoutY="130.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="status2" layoutX="239.0" layoutY="135.0" prefHeight="18.0" prefWidth="159.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status3" layoutX="277.0" layoutY="172.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="status3" layoutX="239.0" layoutY="178.0" prefHeight="18.0" prefWidth="159.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status4" layoutX="275.0" layoutY="210.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="status4" layoutX="239.0" layoutY="218.0" prefHeight="18.0" prefWidth="159.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status5" layoutX="274.0" layoutY="252.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="status5" layoutX="240.0" layoutY="254.0" prefHeight="18.0" prefWidth="159.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status6" layoutX="273.0" layoutY="294.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="status6" layoutX="239.0" layoutY="295.0" prefHeight="18.0" prefWidth="159.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status7" layoutX="272.0" layoutY="332.0" prefHeight="17.0" prefWidth="78.0" text="">
+      <Label fx:id="status7" layoutX="239.0" layoutY="330.0" prefHeight="18.0" prefWidth="159.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
@@ -101,7 +101,7 @@
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Label layoutX="164.0" prefHeight="53.0" prefWidth="273.0" text="Pending Requests">
+      <Label layoutX="175.0" layoutY="5.0" prefHeight="53.0" prefWidth="238.0" text="Pending Requests" textFill="#105372">
          <font>
             <Font name="Calibri Bold Italic" size="30.0" />
          </font>

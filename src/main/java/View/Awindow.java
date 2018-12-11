@@ -37,7 +37,7 @@ public abstract class Awindow {
             if(fxml.equals("website.fxml")){
                 scene.getStylesheets().add(getClass().getClassLoader().getResource("Background.css").toExternalForm());
             }else if(fxml.equals("Login.fxml")){
-                scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
+               // scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
             }
 
             MainStage.show();

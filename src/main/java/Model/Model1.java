@@ -22,7 +22,7 @@ public class Model1 implements IModel {
         this.controller = controller;
     }
 
-    public boolean SingUp(ProfileObject profileObject) {
+    public boolean SignUp(ProfileObject profileObject) {
         if(isDataCorrect(profileObject)){
             DBM.InsertProfile(profileObject);
             currentUser=profileObject.Username;
@@ -35,27 +35,27 @@ public class Model1 implements IModel {
     private boolean isDataCorrect(ProfileObject profileObject) {
         //username
         if(profileObject.Username.length() > 8 || profileObject.Username.equals("")|| !(profileObject.Username.matches("[a-zA-Z0-9]*")) ){
-            controller.showalert("Your username is illegal");
+            controller.showalert("Your username is illegal.\nPlease press at 'Attention' button for details");
             return false;
         }else
         if(DBM.ReadProfile(profileObject.Username)&& (!profileObject.Username.equals(currentUser))){
-            controller.showalert("Your username already exists, choose another one");
+            controller.showalert("Your username already exists, please choose another one");
             return false;
         }
 
         //password
         if(profileObject.Password.length() !=8 || !(profileObject.Password.matches("[a-zA-Z0-9@./#&+-]*"))){
-            controller.showalert("Your password is illegal");
+            controller.showalert("Your password is illegal\nPlease press at 'Attention' button for details");
             return false;
         }
         //firstname
         if(profileObject.FirstName.length() >20 || !(profileObject.FirstName.matches("[a-zA-Z\\s]*"))){
-            controller.showalert("Your first name is illegal");
+            controller.showalert("Your first name is illegal\nPlease press at 'Attention' button for details");
             return false;
         }
         //Lastname
         if(profileObject.LastName.length() >20 || !(profileObject.LastName.matches("[a-zA-Z\\s]*"))){
-            controller.showalert("Your last name is illegal");
+            controller.showalert("Your last name is illegal\nPlease press at 'Attention' button for details");
             return false;
         }
         //birthdate
@@ -314,7 +314,7 @@ public class Model1 implements IModel {
 
     public boolean IsVacationDetailsValid(VacationObject vacationObject){
         if(vacationObject.TicketType.length()>20){
-            controller.showalert("Choose Ticket Type again");
+            controller.showalert("Choose Tickets Type again");
             return false;
         }
         else if(vacationObject.FlightCompany.length()>10){

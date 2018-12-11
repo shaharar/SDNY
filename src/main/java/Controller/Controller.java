@@ -36,7 +36,7 @@ public class Controller implements IController{
     }
     public boolean SignUp(String[] fields) {
         ProfileObject po=new ProfileObject(fields);
-        if(Model.SingUp(po)){ //if managed to create the profileObject
+        if(Model.SignUp(po)){ //if managed to create the profileObject
             Model.Login(po.Username,po.Password);
             return true;
         }

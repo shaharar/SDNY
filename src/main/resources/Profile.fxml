@@ -2,56 +2,60 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProfileWindowView">
-    <center>
-        <VBox alignment="CENTER" maxHeight="228.0" maxWidth="332.0" prefHeight="228.0" prefWidth="332.0" translateX="-65.0" translateY="-15.0" translateZ="10.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Username:" />
-                        <TextField fx:id="txtfld_username_P" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="115.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="First Name:" />
-                        <TextField fx:id="txtfld_firstName_P" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Last Name:" />
-                        <TextField fx:id="txtfld_lastName_P" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Birthdate:" />
-                        <TextField fx:id="txtfld_birthdate_P" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="City:" />
-                        <TextField fx:id="txtfld_city_P" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </center>
-    <top>
-        <Label prefHeight="41.0" prefWidth="130.0" text="Profile" textFill="#e869dd" translateY="25.0" BorderPane.alignment="TOP_CENTER">
-            <font>
-                <Font name="Calibri Bold Italic" size="42.0" />
-            </font>
-        </Label>
-    </top>
-    <left>
-        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-    </left>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProfileWindowView">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="234.0" layoutX="73.0" layoutY="88.0" stroke="BLACK" strokeType="INSIDE" width="456.0" />
+      <ImageView fitHeight="141.0" fitWidth="191.0" layoutX="409.0" layoutY="316.0">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="247.0" layoutY="28.0" prefHeight="41.0" prefWidth="156.0" text="My Profile" textFill="#e869dd">
+         <font>
+            <Font name="Calibri Bold Italic" size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="103.0" prefHeight="38.0" prefWidth="74.0" text="Username:">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_username_P" layoutX="176.0" layoutY="107.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="94.0" layoutY="144.0" prefHeight="38.0" prefWidth="74.0" text="First Name:">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_firstName_P" layoutX="176.0" layoutY="148.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="94.0" layoutY="186.0" prefHeight="38.0" prefWidth="74.0" text="Last Name:">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_lastName_P" layoutX="176.0" layoutY="190.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="94.0" layoutY="227.0" prefHeight="38.0" prefWidth="74.0" text="Birthdate:">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="269.0" prefHeight="38.0" prefWidth="49.0" text="City:">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_city_P" layoutX="176.0" layoutY="273.0" prefHeight="30.0" prefWidth="149.0" />
+      <ImageView fx:id="Img_profile_P" fitHeight="151.0" fitWidth="175.0" layoutX="341.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="377.0" layoutY="103.0" prefHeight="38.0" prefWidth="101.0" text="Profile Picture:">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_birthdate_P" layoutX="176.0" layoutY="231.0" prefHeight="30.0" prefWidth="149.0" />
+   </children>
+</AnchorPane>

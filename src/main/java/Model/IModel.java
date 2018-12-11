@@ -6,7 +6,7 @@ public interface IModel {
 
 
 
-    boolean SingUp(ProfileObject profileObject);
+    boolean SignUp(ProfileObject profileObject);
     boolean Read (String username);
     boolean UpdateProfile(ProfileObject profileObject);
     void  Delete(String registrationDuration, Reason reason);

@@ -5,79 +5,73 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdateProfileView">
-    <center>
-        <VBox maxHeight="200.0" maxWidth="300.0" prefHeight="200.0" prefWidth="248.0" translateX="10.0" translateZ="10.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Username:" />
-                        <TextField fx:id="txtfld_username_U" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Password:" />
-                        <PasswordField fx:id="pswfld_password_U" translateY="3.0" />
-                    </children>
-                </HBox>
-                <HBox prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="First Name:" />
-                        <TextField fx:id="txtfld_firstName_U" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Last Name:" />
-                        <TextField fx:id="txtfld_lastName_U" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Birthdate:" />
-                        <DatePicker fx:id="DP_birthdate_U" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="City:" />
-                        <TextField fx:id="txtfld_city_U" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </center>
-    <top>
-        <Label prefHeight="41.0" prefWidth="294.0" text="Update your profile" textFill="#bf23b2" translateY="20.0" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="Calibri Bold Italic" size="34.0" />
-            </font>
-        </Label>
-    </top>
-    <bottom>
-        <Button fx:id="btn_saveChanges_U" mnemonicParsing="false" onAction="#saveChanges" text="save changes" textOverrun="CLIP" translateX="-6.0" translateY="-40.0" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="Calibri Bold" size="14.0" />
-            </font>
-        </Button>
-    </bottom>
-   <right>
-      <VBox prefHeight="263.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-              <Button mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="156.0" text="Update Your Image">
-                  <font>
-                      <Font name="Calibri Bold Italic" size="12.0" />
-                  </font>
-              </Button>
-            <ImageView fx:id="imgview_U" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </VBox>
-   </right>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdateProfileView">
+   <children>
+      <ImageView fitHeight="151.0" fitWidth="196.0" layoutX="404.0" layoutY="304.0">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="163.0" layoutY="31.0" prefHeight="41.0" prefWidth="294.0" text="Update your profile" textFill="#e869dd">
+         <font>
+            <Font name="Calibri Bold Italic" size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="99.0" layoutY="97.0" prefHeight="38.0" prefWidth="63.0" text="Username:">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_username_U" layoutX="168.0" layoutY="101.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="99.0" layoutY="135.0" prefHeight="38.0" prefWidth="63.0" text="Password:">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="pswfld_password_U" layoutX="168.0" layoutY="141.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="99.0" layoutY="180.0" prefHeight="38.0" prefWidth="63.0" text="First Name:">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_firstName_U" layoutX="168.0" layoutY="184.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="99.0" layoutY="222.0" prefHeight="38.0" prefWidth="63.0" text="Last Name:">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_lastName_U" layoutX="168.0" layoutY="226.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="99.0" layoutY="263.0" prefHeight="38.0" prefWidth="63.0" text="Birthdate:">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="DP_birthdate_U" layoutX="168.0" layoutY="267.0" prefHeight="30.0" prefWidth="149.0" />
+      <Label layoutX="99.0" layoutY="305.0" prefHeight="38.0" prefWidth="49.0" text="City:">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_city_U" layoutX="168.0" layoutY="309.0" prefHeight="30.0" prefWidth="149.0" />
+      <Button fx:id="btn_saveChanges_U" layoutX="254.0" layoutY="382.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="30.0" prefWidth="112.0" text="save changes" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Button layoutX="370.0" layoutY="121.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="40.0" prefWidth="167.0" text="Update Your Profile picture">
+         <font>
+            <Font name="Calibri Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgview_U" fitHeight="139.0" fitWidth="175.0" layoutX="366.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

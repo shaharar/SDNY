@@ -40,7 +40,7 @@ public class View extends Awindow implements IView {
     public Button btnSearch_Vacation_W;
     public File fileselected = null;
     public AnchorPane resultvac;
-    private ObservableList<String> quitReasons = FXCollections.observableArrayList("I found what i was looking for", "Disappointed from the service", "I found a better service", "other");
+    private ObservableList<String> quitReasons = FXCollections.observableArrayList("I found what i was looking for", "Disappointed from the service", "I found a better service", "Other");
 /*
 A stage for secondary windows
  */
@@ -187,7 +187,7 @@ this function is unnecessery because it is defaulted on true but we might need t
 
     public void Logout() {
         controller.LogOut();
-       ChangeScene("Login2.fxml");
+       ChangeScene("Login.fxml");
     }
 
     public void lookForNewRequests(){

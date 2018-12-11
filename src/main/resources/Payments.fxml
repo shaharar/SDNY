@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffe6ee;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PaymentsView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff2cc;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PaymentsView">
    <children>
       <Label layoutX="27.0" layoutY="119.0" prefHeight="23.0" prefWidth="94.0" text="ID:">
          <font>
@@ -68,9 +68,9 @@
             <InnerShadow color="#c6baba" />
          </effect></Button>
       <PasswordField fx:id="Password" layoutX="420.0" layoutY="193.0" />
-      <ImageView fitHeight="82.0" fitWidth="138.0" layoutX="400.0" layoutY="37.0">
+      <ImageView fitHeight="88.0" fitWidth="161.0" layoutX="401.0" layoutY="35.0">
          <image>
-            <Image url="@paypal.png" />
+            <Image url="@paypal_PNG12.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="97.0" fitWidth="187.0" layoutX="75.0" layoutY="34.0">

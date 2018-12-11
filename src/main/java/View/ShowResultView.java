@@ -35,7 +35,7 @@ public class ShowResultView extends Awindow {
         }
         else{
             stage.close();
-            showAlert("No Results were found");
+            showAlert("No results were found");
         }
 
 
@@ -43,18 +43,18 @@ public class ShowResultView extends Awindow {
 
     private void ShowResult() {
         String[] result=SearchResult[i];
-        VacationId.setText("Vacation Id: " + result[0]);
-        AdultT.setText("Adult Tickets: " + result[1]);
-        ChildT.setText("Child Tickets: " + result[2]);
-        BabyT.setText("Baby Tickets: " + result[3]);
-        BuyAll.setText("Buy All: " + result[4]);
-        FlightCompany.setText("Flight Company: " + result[5]);
-        Origin.setText("Origin: " + result[6]);
-        Destination.setText("Destination: " + result[7]);
-        VacationDate.setText("Vacation Date: " + result[8]);
-        NumOfSuitcases.setText("Number Of Suitcases: " + result[9]);
-        MaxWeight.setText("Max Weight: " + result[10]);
-//        Price.setText("Price: " + result[11]);
+        VacationId.setText("Vacation ID : " + result[0]);
+        AdultT.setText("Adult Tickets : " + result[1]);
+        ChildT.setText("Child Tickets : " + result[2]);
+        BabyT.setText("Baby Tickets : " + result[3]);
+        BuyAll.setText("Enable Partial Purchase Of Tickets : " + result[4]);
+        FlightCompany.setText("Flight Company : " + result[5]);
+        Origin.setText("Origin : " + result[6]);
+        Destination.setText("Destination : " + result[7]);
+        VacationDate.setText("Vacation Date : " + result[8]);
+        NumOfSuitcases.setText("Number Of Suitcases Per Person : " + result[9]);
+        MaxWeight.setText("Max Suitcase Weight : " + result[10]);
+        Price.setText("Price : " + result[11]);
         i++;
         if(SearchResult.length==i){
             NextRes.setDisable(true);

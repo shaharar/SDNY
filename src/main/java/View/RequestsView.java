@@ -44,7 +44,7 @@ public class RequestsView extends Awindow{
     public void SetVacationID(String[] vacationid){
         if(vacationid.length==0){
             stage.close();
-            showAlert("No New Requests");
+            showAlert("There aren't new requests");
         }
         else {
             AllVacationid=vacationid;

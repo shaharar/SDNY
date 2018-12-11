@@ -7,149 +7,109 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
-    <top>
-        <HBox prefHeight="80.0" prefWidth="434.0" BorderPane.alignment="CENTER">
-            <children>
-                <VBox prefHeight="100.0" prefWidth="137.0">
-                    <children>
-                        <TextField fx:id="txtfld_username_login_L" prefHeight="37.0" prefWidth="124.0" promptText="Username">
-                            <cursor>
-                                <Cursor fx:constant="DEFAULT" />
-                            </cursor></TextField>
-                        <PasswordField fx:id="pswfld_password_login_L" prefHeight="35.0" prefWidth="137.0" promptText="Password" />
-                    </children>
-                </VBox>
-                <VBox prefHeight="91.0" prefWidth="104.0">
-                    <children>
-                        <BorderPane prefHeight="11.0" prefWidth="100.0">
-                            <right>
-                                <Button fx:id="btn_Login" maxHeight="-Infinity" mnemonicParsing="false" onAction="#Login" prefHeight="46.0" prefWidth="124.0" text="Log In" BorderPane.alignment="CENTER">
-                                    <font>
-                                        <Font name="System Bold Italic" size="20.0" />
-                                    </font>
-                                </Button>
-                            </right></BorderPane>
-                    </children>
-                </VBox>
-            <Button fx:id="btnSearch_Vacation_L" onAction="#OpenSearchScreen" mnemonicParsing="false" text="Search Vacation" />
-            <AnchorPane fx:id="Anchorpane" prefHeight="200.0" prefWidth="200.0" />
-            </children>
-        </HBox>
-    </top>
-    <left>
-        <VBox prefHeight="333.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox prefHeight="120.0" prefWidth="200.0">
-                    <children>
-                        <Label prefHeight="28.0" prefWidth="169.0" text="Your Picture Here:" translateX="60.0" translateY="110.0">
-                            <font>
-                                <Font name="Calibri Bold" size="20.0" />
-                            </font>
-                        </Label>
-                    </children></HBox>
-                <Button mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="99.0" text="Choose Image" translateX="45.0" translateY="60.0">
-                    <font>
-                        <Font name="Calibri Bold Italic" size="12.0" />
-                    </font>
-                </Button>
-                <ImageView fx:id="Img_profile_L" fitHeight="155.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="65.0" />
-            </children></VBox>
-    </left>
-    <center>
-        <VBox maxHeight="200.0" maxWidth="400.0" minWidth="320.0" prefHeight="200.0" prefWidth="300.0" translateX="135.0" translateY="30.0" translateZ="10.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox maxWidth="400.0" prefHeight="35.0" prefWidth="300.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Username:">
-                            <font>
-                                <Font name="Calibri Bold" size="12.0" />
-                            </font></Label>
-                        <TextField fx:id="txtfld_username_reg_L" prefHeight="30.0" prefWidth="149.0">
-                        </TextField>
-                        <ToggleButton mnemonicParsing="false" onAction="#attention" text="Attention!" textFill="#f80606" translateX="20.0">
-                            <font>
-                                <Font name="Calibri Bold" size="16.0" />
-                            </font>
-                        </ToggleButton>
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="10.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Password:">
-                            <font>
-                                <Font name="Calibri Bold" size="12.0" />
-                            </font></Label>
-                        <PasswordField fx:id="pswfld_password_reg_L" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="115.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="First Name:">
-                            <font>
-                                <Font name="Calibri Bold" size="12.0" />
-                            </font></Label>
-                        <TextField fx:id="txtfld_firstName_L" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Last Name:">
-                            <font>
-                                <Font name="Calibri Bold" size="12.0" />
-                            </font></Label>
-                        <TextField fx:id="txtfld_lastName_L" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="Birthdate:">
-                            <font>
-                                <Font name="Calibri Bold" size="12.0" />
-                            </font></Label>
-                        <DatePicker fx:id="DP_birthdate_L" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="45.0" prefHeight="35.0" prefWidth="600.0">
-                    <children>
-                        <Label prefHeight="38.0" prefWidth="63.0" text="City:">
-                            <font>
-                                <Font name="Calibri Bold" size="12.0" />
-                            </font></Label>
-                        <TextField fx:id="txtfld_city_L" prefHeight="30.0" prefWidth="149.0" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </center>
-    <Label prefHeight="41.0" prefWidth="294.0" text="Update your profile" textFill="#e869dd" translateY="15.0" BorderPane.alignment="CENTER">
-        <font>
-            <Font name="Calibri Bold Italic" size="34.0" />
-        </font>
-    </Label>
-    <bottom>
-        <Button mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="140.0" text="Sign Up" translateX="13.0" translateY="-30.0" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="Calibri Bold Italic" size="18.0" />
-            </font></Button>
-    </bottom>
-    <right>
-        <VBox maxHeight="57.0" maxWidth="400.0" prefHeight="33.0" prefWidth="400.0" translateX="-315.0" translateY="-145.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label prefHeight="55.0" prefWidth="416.0" text="Create a new profile:" wrapText="true">
-                    <font>
-                        <Font name="Calibri Bold" size="42.0" />
-                    </font>
-                </Label>
-            </children></VBox>
-    </right>
-
-
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1024.0" layoutX="-1.0">
+         <image>
+            <Image url="@Loginpic.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="257.0" fitWidth="407.0" layoutX="635.0" layoutY="342.0">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnSearch_Vacation_W" layoutX="739.0" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="84.0" prefWidth="285.0" text="Search Vacation" textAlignment="CENTER" textFill="#05014d" wrapText="true">
+         <font>
+            <Font name="Calibri Bold" size="30.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <TextField fx:id="txtfld_username_login_L" prefHeight="37.0" prefWidth="137.0" promptText="Username">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
+      <PasswordField fx:id="pswfld_password_login_L" layoutY="37.0" prefHeight="37.0" prefWidth="137.0" promptText="Password" />
+      <Button fx:id="btn_Login" layoutX="137.0" maxHeight="-Infinity" mnemonicParsing="false" onAction="#Login" prefHeight="76.0" prefWidth="196.0" text="Log In" textFill="#0d0a43">
+         <font>
+            <Font name="Calibri Bold" size="27.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Label layoutX="214.0" layoutY="132.0" prefHeight="55.0" prefWidth="376.0" text="Create a new profile:" textFill="#0b1446" wrapText="true">
+         <font>
+            <Font name="Calibri Bold Italic" size="41.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Button layoutX="47.0" layoutY="212.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="63.0" prefWidth="137.0" text="Choose Profile Picture" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Calibri Bold Italic" size="17.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Label layoutX="254.0" layoutY="205.0" prefHeight="38.0" prefWidth="91.0" text="Username:" textFill="#000003">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_username_reg_L" layoutX="357.0" layoutY="204.0" prefHeight="30.0" prefWidth="169.0" />
+      <Label layoutX="254.0" layoutY="253.0" prefHeight="38.0" prefWidth="77.0" text="Password:" textFill="#000003">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="pswfld_password_reg_L" layoutX="357.0" layoutY="252.0" prefHeight="30.0" prefWidth="169.0" />
+      <Label layoutX="254.0" layoutY="301.0" prefHeight="38.0" prefWidth="91.0" text="First Name:" textFill="#000003">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_firstName_L" layoutX="357.0" layoutY="300.0" prefHeight="30.0" prefWidth="169.0" />
+      <Label layoutX="254.0" layoutY="350.0" prefHeight="38.0" prefWidth="91.0" text="Last Name:" textFill="#000003">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_lastName_L" layoutX="357.0" layoutY="349.0" prefHeight="30.0" prefWidth="169.0" />
+      <Label layoutX="254.0" layoutY="403.0" prefHeight="38.0" prefWidth="77.0" text="Birthdate:" textFill="#000003">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="DP_birthdate_L" layoutX="357.0" layoutY="402.0" prefHeight="30.0" prefWidth="169.0" />
+      <Label layoutX="254.0" layoutY="450.0" prefHeight="38.0" prefWidth="65.0" text="City:" textFill="#000003">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld_city_L" layoutX="357.0" layoutY="454.0" prefHeight="30.0" prefWidth="169.0" />
+      <Button layoutX="375.0" layoutY="515.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="140.0" text="Sign Up">
+         <font>
+            <Font name="Calibri Bold Italic" size="18.0" />
+         </font>
+      </Button>
+      <ToggleButton layoutX="567.0" layoutY="312.0" mnemonicParsing="false" onAction="#attention" prefHeight="55.0" prefWidth="99.0" text="Attention!" textFill="#f80606">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </ToggleButton>
+      <ImageView fx:id="Img_profile_L" fitHeight="187.0" fitWidth="216.0" layoutX="14.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
