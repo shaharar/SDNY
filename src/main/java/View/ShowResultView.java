@@ -62,7 +62,7 @@ public class ShowResultView extends Awindow {
         if(SearchResult.length==i){
             NextRes.setDisable(true);
         }
-        PrevRes.setDisable(true);
+        PrevRes.setDisable(false);
 
     }
     public void ChooseVacation() {

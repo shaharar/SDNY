@@ -35,7 +35,7 @@ public class Model1 implements IModel {
     private boolean isDataCorrect(ProfileObject profileObject) {
         //username
         if(profileObject.Username.length() > 8 || profileObject.Username.equals("")|| !(profileObject.Username.matches("[a-zA-Z0-9]*")) ){
-            controller.showalert("Your username is illegal.\nPlease press at 'Attention' button for details");
+            controller.showalert("Your username is illegal.\nPlease press at 'Attention' button for more details");
             return false;
         }else
         if(DBM.ReadProfile(profileObject.Username)&& (!profileObject.Username.equals(currentUser))){
@@ -45,17 +45,17 @@ public class Model1 implements IModel {
 
         //password
         if(profileObject.Password.length() !=8 || !(profileObject.Password.matches("[a-zA-Z0-9@./#&+-]*"))){
-            controller.showalert("Your password is illegal\nPlease press at 'Attention' button for details");
+            controller.showalert("Your password is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
         //firstname
         if(profileObject.FirstName.length() >20 || !(profileObject.FirstName.matches("[a-zA-Z\\s]*"))){
-            controller.showalert("Your first name is illegal\nPlease press at 'Attention' button for details");
+            controller.showalert("Your first name is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
         //Lastname
         if(profileObject.LastName.length() >20 || !(profileObject.LastName.matches("[a-zA-Z\\s]*"))){
-            controller.showalert("Your last name is illegal\nPlease press at 'Attention' button for details");
+            controller.showalert("Your last name is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
         //birthdate
@@ -68,11 +68,10 @@ public class Model1 implements IModel {
             return false;
         }
         if(profileObject.City.length() > 20 ) {
-            controller.showalert("Your city is illegal");
+            controller.showalert("Your city is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
         return true;
-
     }
 
     public boolean Read(String username) {
@@ -80,6 +79,10 @@ public class Model1 implements IModel {
     }
 
     public boolean UpdateProfile(ProfileObject profileObject) {
+        if(!currentUser.equals(profileObject.Username)){
+            showAlert("You cannot update your username");
+            return false;
+        }
         if(isDataCorrect(profileObject)) {
             DBM.UpdateProfile(currentUser,profileObject);
             currentUser=profileObject.Username;

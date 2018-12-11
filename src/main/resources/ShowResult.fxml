@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowResultView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowResultView">
     <children>
         <Label fx:id="VacationId" layoutX="25.0" layoutY="63.0" prefHeight="27.0" prefWidth="226.0" text="VacationID ">
          <font>
@@ -83,7 +83,7 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="NextRes1" layoutX="223.0" layoutY="348.0" mnemonicParsing="false" onAction="#NextOption" prefHeight="38.0" prefWidth="179.0" text="&lt;- Previous Vacation">
+      <Button fx:id="PrevRes" layoutX="223.0" layoutY="348.0" mnemonicParsing="false" onAction="#prevOption" prefHeight="38.0" prefWidth="179.0" text="&lt;- Previous Vacation">
          <effect>
             <DropShadow />
          </effect>
