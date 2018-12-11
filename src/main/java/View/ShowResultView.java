@@ -22,6 +22,7 @@ public class ShowResultView extends Awindow {
     public Label MaxWeight;
     public Label Price;
     public Button NextRes;
+    public Button PrevRes;
     public String[][] SearchResult;
     int i;
 
@@ -31,6 +32,8 @@ public class ShowResultView extends Awindow {
         if (this.SearchResult.length > 0) {
             NextRes.setDisable(false);
             ShowResult();
+            PrevRes.setDisable(true);
+
 
         }
         else{
@@ -59,6 +62,7 @@ public class ShowResultView extends Awindow {
         if(SearchResult.length==i){
             NextRes.setDisable(true);
         }
+        PrevRes.setDisable(true);
 
     }
     public void ChooseVacation() {
@@ -69,6 +73,10 @@ public class ShowResultView extends Awindow {
     }
 
     public void NextOption() {
+        ShowResult();
+    }
+    public void prevOption() {
+        i=i-2;
         ShowResult();
     }
 
