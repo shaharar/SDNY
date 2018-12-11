@@ -110,6 +110,10 @@ public class Model1 implements IModel {
                 reasonAsString="5";
                 break;
         }
+       ArrayList<String> vacationsToDelete= DBM.GetUserVacation(currentUser);
+        for (int i = 0; i <vacationsToDelete.size() ; i++) {
+            DBM.DeleteVacation(vacationsToDelete.get(i));
+        }
         DBM.DeleteProfile(currentUser, reasonAsString,registrationDuration);
         DBM.AddReason(currentUser, reasonAsString,registrationDuration);
     }

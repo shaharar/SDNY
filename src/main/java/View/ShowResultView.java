@@ -59,10 +59,15 @@ public class ShowResultView extends Awindow {
         MaxWeight.setText("Max Suitcase Weight : " + result[10]);
         Price.setText("Price($) : " + result[11]);
         i++;
-        if(SearchResult.length==i){
+        if(SearchResult.length>=i){
             NextRes.setDisable(true);
         }
-        PrevRes.setDisable(false);
+        else{
+            NextRes.setDisable(false);
+        }
+        if(i!=1){
+            PrevRes.setDisable(true);
+        }
 
     }
     public void ChooseVacation() {
