@@ -283,6 +283,9 @@ public class Model1 implements IModel {
     }
 
     public boolean InsertVacation(VacationObject vacationObject){
+        if(vacationObject == null){
+            return false;
+        }
         if( !IsVacationDetailsValid(vacationObject)){
             return false;
         }

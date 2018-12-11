@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.VacationStatusView">
    <children>
 
-      <Label layoutX="40.0" layoutY="54.0" prefHeight="36.0" prefWidth="560.0" text="Vacation ID                              Status                                  Payment" textFill="#d08e78">
+      <Label layoutX="40.0" layoutY="54.0" prefHeight="36.0" prefWidth="560.0" text="Vacation ID                              Status                                     Payment" textFill="#d08e78">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
@@ -41,59 +41,59 @@
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status1" layoutX="240.0" layoutY="93.0" prefHeight="18.0" prefWidth="159.0">
+      <Label fx:id="status1" layoutX="240.0" layoutY="93.0" prefHeight="18.0" prefWidth="210.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status2" layoutX="239.0" layoutY="135.0" prefHeight="18.0" prefWidth="159.0">
+      <Label fx:id="status2" layoutX="239.0" layoutY="135.0" prefHeight="18.0" prefWidth="210.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status3" layoutX="239.0" layoutY="178.0" prefHeight="18.0" prefWidth="159.0">
+      <Label fx:id="status3" layoutX="239.0" layoutY="178.0" prefHeight="18.0" prefWidth="210.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status4" layoutX="239.0" layoutY="218.0" prefHeight="18.0" prefWidth="159.0">
+      <Label fx:id="status4" layoutX="239.0" layoutY="218.0" prefHeight="18.0" prefWidth="210.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status5" layoutX="240.0" layoutY="254.0" prefHeight="18.0" prefWidth="159.0">
+      <Label fx:id="status5" layoutX="240.0" layoutY="254.0" prefHeight="18.0" prefWidth="210.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status6" layoutX="239.0" layoutY="295.0" prefHeight="18.0" prefWidth="159.0">
+      <Label fx:id="status6" layoutX="239.0" layoutY="295.0" prefHeight="18.0" prefWidth="210.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="status7" layoutX="239.0" layoutY="330.0" prefHeight="18.0" prefWidth="159.0">
+      <Label fx:id="status7" layoutX="239.0" layoutY="330.0" prefHeight="18.0" prefWidth="210.0">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Label>
-       <Button fx:id="B1" layoutX="483.0" layoutY="86.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="24.0" prefWidth="87.0" text="For Payment" visible="false">
+       <Button fx:id="B1" layoutX="479.0" layoutY="86.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="30.0" prefWidth="110.0" text="For Payment" visible="false">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="B2" layoutX="483.0" layoutY="123.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="24.0" prefWidth="87.0" text="For Payment" visible="false">
+      <Button fx:id="B2" layoutX="479.0" layoutY="123.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="30.0" prefWidth="110.0" text="For Payment" visible="false">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="B3" layoutX="482.0" layoutY="164.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="24.0" prefWidth="87.0" text="For Payment" visible="false">
+      <Button fx:id="B3" layoutX="478.0" layoutY="164.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="30.0" prefWidth="110.0" text="For Payment" visible="false">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="B4" layoutX="481.0" layoutY="203.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="24.0" prefWidth="87.0" text="For Payment" visible="false">
+      <Button fx:id="B4" layoutX="477.0" layoutY="203.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="30.0" prefWidth="110.0" text="For Payment" visible="false">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="B5" layoutX="481.0" layoutY="241.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="24.0" prefWidth="87.0" text="For Payment" visible="false">
+      <Button fx:id="B5" layoutX="477.0" layoutY="241.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="30.0" prefWidth="110.0" text="For Payment" visible="false">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="B6" layoutX="483.0" layoutY="280.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="24.0" prefWidth="87.0" text="For Payment" visible="false">
+      <Button fx:id="B6" layoutX="479.0" layoutY="280.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="30.0" prefWidth="110.0" text="For Payment" visible="false">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="B7" layoutX="484.0" layoutY="320.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="24.0" prefWidth="87.0" text="For Payment" visible="false">
+      <Button fx:id="B7" layoutX="480.0" layoutY="320.0" mnemonicParsing="false" onAction="#ClickPayments" prefHeight="30.0" prefWidth="110.0" text="For Payment" visible="false">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font></Button>

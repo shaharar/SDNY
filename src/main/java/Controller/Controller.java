@@ -197,7 +197,11 @@ public class Controller implements IController{
 
     public VacationObject StringArrToVac(String [] GuiValues, boolean buyAll){
         for (int i = 0; i <GuiValues.length ; i++) {
-            if(GuiValues[i].equals("")){
+            if(GuiValues[i] == null){
+                showalert("Please fill all fields");
+                return null;
+            }
+            else if(GuiValues[i].equals("")){
                 showalert("Please enter all fields");
                 return null;
             }

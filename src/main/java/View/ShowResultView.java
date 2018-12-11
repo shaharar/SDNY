@@ -54,7 +54,7 @@ public class ShowResultView extends Awindow {
         VacationDate.setText("Vacation Date : " + result[8]);
         NumOfSuitcases.setText("Number Of Suitcases Per Person : " + result[9]);
         MaxWeight.setText("Max Suitcase Weight : " + result[10]);
-        Price.setText("Price : " + result[11]);
+        Price.setText("Price($) : " + result[11]);
         i++;
         if(SearchResult.length==i){
             NextRes.setDisable(true);
