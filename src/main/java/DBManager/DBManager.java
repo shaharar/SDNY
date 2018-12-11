@@ -100,7 +100,7 @@ public class DBManager implements IDBManager {
         OutputStream os = null;
         try {
             is = new FileInputStream(new File(photoPath));
-            os = new FileOutputStream(new File("../DB/pictures/" + Username));
+            os = new FileOutputStream(new File("DB/pictures/" + Username));
             byte[] buffer = new byte[1024];
             int length;
             while ((length = is.read(buffer)) > 0) {

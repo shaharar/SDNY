@@ -60,7 +60,7 @@
          <font>
             <Font name="Calibri Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnSearch_Vacation_W" layoutX="553.0" layoutY="108.0" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="103.0" prefWidth="241.0" text="Search Your Vacation" textAlignment="CENTER" textFill="#070707" wrapText="true">
+      <Button fx:id="btnSearch_Vacation_W" layoutX="553.0" layoutY="108.0" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="103.0" prefWidth="241.0" text="Search Your Next Vacation" textAlignment="CENTER" textFill="#070707" wrapText="true">
          <font>
             <Font name="Calibri Bold" size="24.0" />
          </font>
@@ -74,7 +74,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button layoutX="231.0" layoutY="108.0" mnemonicParsing="false" onAction="#CreateVac_btn" prefHeight="103.0" prefWidth="241.0" text="Create New Vacation" textAlignment="CENTER" textFill="#070707" wrapText="true">
+      <Button layoutX="231.0" layoutY="108.0" mnemonicParsing="false" onAction="#CreateVac_btn" prefHeight="103.0" prefWidth="241.0" text="Publish New Vacation" textAlignment="CENTER" textFill="#070707" wrapText="true">
          <font>
             <Font name="Calibri Bold" size="24.0" />
          </font>

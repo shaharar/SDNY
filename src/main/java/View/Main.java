@@ -26,7 +26,7 @@ public class Main extends Application {
         view.setMainStage(primaryStage);
         Controller con = new Controller(view);
         Awindow.setController(con);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
+      //  scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
         primaryStage.show();
         view.btn_Login.requestFocus();
            }

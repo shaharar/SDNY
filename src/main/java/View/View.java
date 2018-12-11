@@ -137,7 +137,7 @@ A stage for secondary windows
             //the user answered both of the questions
             else {
                 controller.Delete(txtfld_regDuration.getText(), reason);
-                stage.close();
+             //   ChangeScene("website.fxml");
                 Logout(); //disconnect and go back to Login window
             }
         }

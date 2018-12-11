@@ -4,7 +4,7 @@ public class CreateVacation extends AVacationWindow {
 
 public void SendToController(){
     if(controller.CreateVacation(GetValues(),BuyAll.isSelected())){
-        showAlert("The vacation was created successfully.\n" + "Your vacation ID is: " + (GetValues())[0]);
+        showAlert("The vacation was created successfully!");
         stage.close();
     }
 }
