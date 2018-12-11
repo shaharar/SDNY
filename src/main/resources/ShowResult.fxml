@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowResultView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowResultView">
     <children>
         <Label fx:id="VacationId" layoutX="25.0" layoutY="63.0" prefHeight="27.0" prefWidth="226.0" text="VacationID ">
          <font>
@@ -26,7 +26,7 @@
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>
-        <Label fx:id="VacationDate" layoutX="28.0" layoutY="162.0" prefHeight="17.0" prefWidth="226.0" text="Vacation Date ">
+        <Label fx:id="VacationDate" layoutX="28.0" layoutY="162.0" prefHeight="17.0" prefWidth="259.0" text="Vacation Date ">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>
