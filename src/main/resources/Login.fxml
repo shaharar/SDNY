@@ -18,12 +18,12 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="1024.0" layoutX="-1.0">
          <image>
-            <Image url="@Loginpic.jpg" />
+            <Image url="Loginpic.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="257.0" fitWidth="407.0" layoutX="635.0" layoutY="342.0">
          <image>
-            <Image url="@logo.png" />
+            <Image url="logo.png" />
          </image>
       </ImageView>
       <Button fx:id="btnSearch_Vacation_W" layoutX="739.0" mnemonicParsing="false" onAction="#OpenSearchScreen" prefHeight="84.0" prefWidth="285.0" text="Search Vacation" textAlignment="CENTER" textFill="#05014d" wrapText="true">

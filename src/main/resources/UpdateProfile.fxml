@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="151.0" fitWidth="196.0" layoutX="404.0" layoutY="304.0">
          <image>
-            <Image url="@logo.png" />
+            <Image url="logo.png" />
          </image>
       </ImageView>
       <Label layoutX="163.0" layoutY="31.0" prefHeight="41.0" prefWidth="294.0" text="Update your profile" textFill="#e869dd">
