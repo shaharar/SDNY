@@ -50,7 +50,7 @@
       </Label>
       <ImageView fitHeight="212.0" fitWidth="301.0" layoutX="721.0" layoutY="383.0">
          <image>
-            <Image url="@logo.png" />
+            <Image url="logo.png" />
          </image>
       </ImageView>
    </children>

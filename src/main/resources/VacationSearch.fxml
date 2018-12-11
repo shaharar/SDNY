@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="643.0" fitWidth="991.0" layoutY="-7.0">
          <image>
-            <Image url="@vacationBackground.jpg" />
+            <Image url="vacationBackground.jpg" />
          </image>
       </ImageView>
       <Label layoutX="651.0" layoutY="199.0" prefHeight="28.0" prefWidth="55.0" text="Adults" textFill="#1e1d1e" visible="false">
