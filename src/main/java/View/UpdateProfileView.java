@@ -1,6 +1,5 @@
 package View;
 
-import Controller.IController;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
@@ -15,9 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.zip.GZIPInputStream;
 
-public class UpdateProfileView extends Awindow {
+public class UpdateProfileView extends AView {
     public TextField txtfld_username_U;
     public PasswordField pswfld_password_U;
     public DatePicker DP_birthdate_U;

@@ -5,7 +5,7 @@ import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
 
-public class MyVacationsView extends Awindow {
+public class MyVacationsView extends AView {
 
     public ListView<String> vacationsList;
 

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class View extends Awindow implements IView {
+public class MainView extends AView implements IMainView {
 
     @FXML
     public TextField txtfld_username_W;
@@ -206,8 +206,8 @@ this function is unnecessery because it is defaulted on true but we might need t
         Scene scene = new Scene(root, 290, 300);
         newStage.setScene(scene);
 
-        View NewView = fxmlLoader.getController();
-        NewView.setStage(newStage);
+        MainView newMainView = fxmlLoader.getController();
+        newMainView.setStage(newStage);
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
     }

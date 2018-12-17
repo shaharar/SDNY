@@ -1,13 +1,9 @@
 package View;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
-import java.util.ArrayList;
-
-public class ShowResultView extends Awindow {
+public class ShowResultView extends AView {
 
     public Label VacationId;
     public Label Destination;
@@ -74,7 +70,7 @@ public class ShowResultView extends Awindow {
 
     }
     public void ChooseVacation() {
-        if (controller.ChooseVacation(VacationId.getText().substring(13))) {
+        if (controller.ChooseVacation(VacationId.getText().substring(14))) {
             showAlert("Your request was sent. Please wait for confirmation from the seller");
             stage.close();
         }

@@ -1,6 +1,6 @@
 package Model;
 
-public class ProfileObject {
+public class Profile {
     public String Username;
     public String Password;
     public String FirstName;
@@ -9,7 +9,7 @@ public class ProfileObject {
     public String City;
     public String PhotoPath;
 
-    public ProfileObject(String username, String password, String firstName, String lastName, String birthDate, String city, String photoPath) {
+    public Profile(String username, String password, String firstName, String lastName, String birthDate, String city, String photoPath) {
         Username = username;
         Password = password;
         FirstName = firstName;
@@ -18,7 +18,7 @@ public class ProfileObject {
         City = city;
         PhotoPath = photoPath;
     }
-    public ProfileObject(String[] fields) {
+    public Profile(String[] fields) {
         Username = fields[0];
         Password = fields[1];
         FirstName = fields[2];

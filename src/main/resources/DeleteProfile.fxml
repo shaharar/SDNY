@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainView">
    <children>
       <Label layoutX="122.0" layoutY="156.0" prefHeight="26.0" prefWidth="782.0" text="Before you leave, we would appreciate if you will answer the following questions:">
          <font>
@@ -50,7 +50,7 @@
       </Label>
       <ImageView fitHeight="212.0" fitWidth="301.0" layoutX="721.0" layoutY="383.0">
          <image>
-            <Image url="logo.png" />
+            <Image url="newLogo.png" />
          </image>
       </ImageView>
    </children>

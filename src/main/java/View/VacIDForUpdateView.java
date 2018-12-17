@@ -2,7 +2,7 @@ package View;
 
 import javafx.scene.control.TextField;
 
-public class VacIDForUpdateView extends Awindow {
+public class VacIDForUpdateView extends AView {
 
     public TextField vacationID;
 

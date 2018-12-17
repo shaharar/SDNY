@@ -4,7 +4,7 @@ import javafx.scene.control.TextField;
 
 
 
-public class DeleteVacationView extends Awindow{
+public class DeleteVacationView extends AView {
 
 
     public TextField InsertVacID;

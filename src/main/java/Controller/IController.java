@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.Reason;
-import Model.VacationObject;
+import Model.Vacation;
 
 import java.util.ArrayList;
 
@@ -39,8 +39,8 @@ public interface IController {
 
     String [][] GetVacationStatusvalues();
 
-    VacationObject getVacationFields(Object vacationId);
-    String [] VacToStringArr(VacationObject vacationObject);
+    Vacation getVacationFields(Object vacationId);
+    String [] VacToStringArr(Vacation vacation);
 
     boolean isYourVacation (String vacationID);
 

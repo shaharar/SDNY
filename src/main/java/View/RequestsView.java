@@ -2,7 +2,7 @@ package View;
 
 import javafx.scene.control.Label;
 
-public class RequestsView extends Awindow{
+public class RequestsView extends AView {
 
 
     public Label VacationID;

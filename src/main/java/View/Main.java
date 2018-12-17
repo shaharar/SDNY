@@ -9,7 +9,7 @@ import Controller.Controller;
 
 public class Main extends Application {
 
-    private  View view;
+    private MainView mainView;
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -17,15 +17,15 @@ public class Main extends Application {
         primaryStage.setTitle("Welcome to Vacation4U");
         Scene scene = new Scene(root, 1024, 600);
         primaryStage.setScene(scene);
-        view = fxmlLoader.getController();
-        view.setMainStage(primaryStage);
-        view.setStage(primaryStage);
-        view.setMainStage(primaryStage);
-        Controller con = new Controller(view);
-        Awindow.setController(con);
+        mainView = fxmlLoader.getController();
+        mainView.setMainStage(primaryStage);
+        mainView.setStage(primaryStage);
+        mainView.setMainStage(primaryStage);
+        Controller con = new Controller(mainView);
+        AView.setController(con);
       //  scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
         primaryStage.show();
-        view.btn_Login.requestFocus();
+        mainView.btn_Login.requestFocus();
            }
 
 

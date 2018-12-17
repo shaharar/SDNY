@@ -1,15 +1,10 @@
 package View;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableView;
-public class VacationStatusView extends Awindow{
+
+public class VacationStatusView extends AView {
 
     public String [] vacationID;
     public String [] RequestStatus;
@@ -38,7 +33,7 @@ public class VacationStatusView extends Awindow{
 
 
 
-    public void Updatetableview(String [][] values ){
+    public void Updatetableview(String [][] values){
        this.vacationID=values[0];
        this.RequestStatus=values[1];
        this.Paymentstatus =values[2];

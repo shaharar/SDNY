@@ -1,6 +1,6 @@
 package View;
 
-public class CreateVacation extends AVacationWindow {
+public class CreateVacation extends AVacationView {
 
 public void SendToController(){
     if(controller.CreateVacation(GetValues(),BuyAll.isSelected())){

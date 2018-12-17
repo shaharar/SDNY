@@ -1,6 +1,6 @@
 package View;
 
-public class SearchVacationView extends AVacationWindow {
+public class SearchVacationView extends AVacationView {
     @Override
     public void SendToController() {
         String[][] results=controller.SearchVacation(BuyAll.isSelected(),GetValues());

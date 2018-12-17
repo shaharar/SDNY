@@ -1,6 +1,6 @@
 package Model;
 
-public class PaymentObject {
+public class Payment {
 
 public 	String PaymentID;
     public 	String VacationID_fk ;
@@ -13,7 +13,7 @@ public 	String PaymentID;
     public 	String SecurityCode;
 
 
-    public PaymentObject(String paymentID, String vacationID_fk, String userName_fk, String useridoc, String lastName, String firstName, String cardNumber, String expirationDate, String securityCode) {
+    public Payment(String paymentID, String vacationID_fk, String userName_fk, String useridoc, String lastName, String firstName, String cardNumber, String expirationDate, String securityCode) {
         PaymentID = paymentID;
         VacationID_fk = vacationID_fk;
         UserName_fk = userName_fk;

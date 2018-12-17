@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 
 import Model.Reason;
 
-public interface IView {
+public interface IMainView {
     void signUp();
     void SearchProfile();
     void Update();

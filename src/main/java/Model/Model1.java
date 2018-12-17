@@ -22,52 +22,52 @@ public class Model1 implements IModel {
         this.controller = controller;
     }
 
-    public boolean SignUp(ProfileObject profileObject) {
-        if(isDataCorrect(profileObject)){
-            DBM.InsertProfile(profileObject);
-            currentUser=profileObject.Username;
+    public boolean SignUp(Profile profile) {
+        if(isDataCorrect(profile)){
+            DBM.InsertProfile(profile);
+            currentUser= profile.Username;
             InitID();
             return true;
         }
         return false;
     }
     //we will check the special constraints accordingly
-    private boolean isDataCorrect(ProfileObject profileObject) {
+    private boolean isDataCorrect(Profile profile) {
         //username
-        if(profileObject.Username.length() > 8 || profileObject.Username.equals("")|| !(profileObject.Username.matches("[a-zA-Z0-9]*")) ){
+        if(profile.Username.length() > 8 || profile.Username.equals("")|| !(profile.Username.matches("[a-zA-Z0-9]*")) ){
             controller.showalert("Your username is illegal.\nPlease press at 'Attention' button for more details");
             return false;
         }else
-        if(DBM.ReadProfile(profileObject.Username)&& (!profileObject.Username.equals(currentUser))){
+        if(DBM.ReadProfile(profile.Username)&& (!profile.Username.equals(currentUser))){
             controller.showalert("Your username already exists, please choose another one");
             return false;
         }
 
         //password
-        if(profileObject.Password.length() !=8 || !(profileObject.Password.matches("[a-zA-Z0-9@./#&+-]*"))){
+        if(profile.Password.length() !=8 || !(profile.Password.matches("[a-zA-Z0-9@./#&+-]*"))){
             controller.showalert("Your password is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
         //firstname
-        if(profileObject.FirstName.length() >20 || !(profileObject.FirstName.matches("[a-zA-Z\\s]*"))){
+        if(profile.FirstName.length() >20 || !(profile.FirstName.matches("[a-zA-Z\\s]*"))){
             controller.showalert("Your first name is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
         //Lastname
-        if(profileObject.LastName.length() >20 || !(profileObject.LastName.matches("[a-zA-Z\\s]*"))){
+        if(profile.LastName.length() >20 || !(profile.LastName.matches("[a-zA-Z\\s]*"))){
             controller.showalert("Your last name is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
         //birthdate
-        if(profileObject.BirthDate==null){
+        if(profile.BirthDate==null){
             controller.showalert("Sorry, you have to fill your birthdate");
             return false;
         }
-        if(Integer.parseInt(profileObject.BirthDate.substring(0,4))> 2000){
+        if(Integer.parseInt(profile.BirthDate.substring(0,4))> 2000){
             controller.showalert("Sorry, you are too young");
             return false;
         }
-        if(profileObject.City.length() > 20 ) {
+        if(profile.City.length() > 20 ) {
             controller.showalert("Your city is illegal\nPlease press at 'Attention' button for more details");
             return false;
         }
@@ -78,14 +78,14 @@ public class Model1 implements IModel {
         return DBM.ReadProfile(username);
     }
 
-    public boolean UpdateProfile(ProfileObject profileObject) {
-        if(!currentUser.equals(profileObject.Username)){
+    public boolean UpdateProfile(Profile profile) {
+        if(!currentUser.equals(profile.Username)){
             showAlert("You cannot update your username");
             return false;
         }
-        if(isDataCorrect(profileObject)) {
-            DBM.UpdateProfile(currentUser,profileObject);
-            currentUser=profileObject.Username;
+        if(isDataCorrect(profile)) {
+            DBM.UpdateProfile(currentUser, profile);
+            currentUser= profile.Username;
             return true;
         }
         return false;
@@ -115,7 +115,7 @@ public class Model1 implements IModel {
             DBM.DeleteVacation(vacationsToDelete.get(i));
         }
         DBM.DeleteProfile(currentUser, reasonAsString,registrationDuration);
-        DBM.AddReason(currentUser, reasonAsString,registrationDuration);
+        DBM.AddDeleteInfo(currentUser, reasonAsString,registrationDuration);
     }
 
     public boolean Login(String username, String password) {
@@ -157,23 +157,27 @@ public class Model1 implements IModel {
 
     public ArrayList<String> GetNewRequests(){
 
-     ArrayList<String> VacationRequest= DBM.GetUserRequest(DBM.GetUserVacation(currentUser));//List  reqested vacations
+     ArrayList<String> VacationRequest= DBM.GetUserRequestForApproval(DBM.GetUserVacation(currentUser));//List  reqested vacations
         return VacationRequest;
 
     }
 
-    public ArrayList<VacationObject> GetSearchResult(VacationObject vacationObject){
-    if(!IsVacationDetailsValid(vacationObject)){
+    public ArrayList<Vacation> GetSearchResult(Vacation vacation){
+    if(!IsVacationDetailsValid(vacation)){
         return null;
     }
 
-        ArrayList<VacationObject> searchResults=DBM.SearchResults(vacationObject);
+        ArrayList<Vacation> searchResults=DBM.SearchResults(vacation);
       return searchResults;
 
     }
     public boolean ChooseVacation(String VacationID){
         if(currentUser==null){
-            controller.showalert("You need to sign in");
+            controller.showalert("In order to purchase a vacation you have to sign in");
+            return false;
+        }
+        else if(DBM.isInMyRequests(currentUser, VacationID)){
+            showAlert("You have already chosen this vacation. Please look at your pending requests");
             return false;
         }
         else {
@@ -181,49 +185,48 @@ public class Model1 implements IModel {
             DBM.InsertNewRequest(VacationID,currentUser);
             return true;
         }
-
-
     }
 
     @Override
-    public VacationObject getVacationFields(String VacationID) {
+    public Vacation getVacationFields(String VacationID) {
         return DBM.GetVacation(VacationID);
     }
 
-    public boolean ConfirmPaymentVisa(PaymentObject paymentObject, String RequestId){
-        if(paymentObject.Useridoc.length()!=9 || !paymentObject.Useridoc.matches("[0-9]+") ){
+    public boolean ConfirmPaymentVisa(Payment payment, String RequestId){
+        if(payment.Useridoc.length()!=9 || !payment.Useridoc.matches("[0-9]+") ){
             controller.showalert("Your Id number invalid. make sure you added the check digits");
             return false;
         }
-       else if(paymentObject.LastName.length()>20){
+       else if(payment.LastName.length()>20){
             controller.showalert("Your last name is too long");
             return false;
         }
-       else if(paymentObject.FirstName.length()>20){
+       else if(payment.FirstName.length()>20){
             controller.showalert("Your first name is too long");
             return false;
         }
-        else if(paymentObject.CardNumber.length()!=16 || !paymentObject.CardNumber.matches("[0-9]+")){
+        else if(payment.CardNumber.length()!=16 || !payment.CardNumber.matches("[0-9]+")){
             controller.showalert("Your credit number is invalid. please enter 16 digits");
             return false;
         }
-        int month=Integer.parseInt(paymentObject.ExpirationDate.substring(0,2));
-        int year=Integer.parseInt(paymentObject.ExpirationDate.substring(2,4));
+        int month=Integer.parseInt(payment.ExpirationDate.substring(0,2));
+        int year=Integer.parseInt(payment.ExpirationDate.substring(2,4));
         if(year<18 || month>12 ||month<0){
-            controller.showalert("Your Expiration Date invalid. enter in format mmyy");
+            controller.showalert("Your expiration date is invalid. Please insert date in format mmyy");
             return false;
         }
-        else if(paymentObject.SecurityCode.length()!=3 || !paymentObject.SecurityCode.matches("[0-9]+")){
-            controller.showalert("Your security code  is invalid. please enter 3 digits");
+        else if(payment.SecurityCode.length()!=3 || !payment.SecurityCode.matches("[0-9]+")){
+            controller.showalert("Your security code  is invalid. Please enter 3 digits");
             return false;
         }
 
-        paymentObject.PaymentID=""+PaymentId;
+        payment.PaymentID=""+PaymentId;
         PaymentId++;
-        paymentObject.UserName_fk=currentUser;
+        payment.UserName_fk=currentUser;
 
-       if(DBM.InsertPayment(paymentObject)){
+       if(DBM.InsertPayment(payment)){
            DBM.DeleteRequest(RequestId);
+           DBM.UpdateVacationStatus(VacationStatus.SOLD, payment.VacationID_fk);
            return true;
        }
        return false;
@@ -265,7 +268,7 @@ public class Model1 implements IModel {
     @Override
     public ArrayList<ArrayList<String>> GetResultRequest() {
 
-        ArrayList<ArrayList<String>> DBMResult=DBM.GetRequestTable(currentUser);
+        ArrayList<ArrayList<String>> DBMResult=DBM.GetPendingRequestTable(currentUser);
         for (int i = 0; i <DBMResult.size() ; i++) {
             if(DBMResult.get(i).get(1).equals("APPROVED")){
                 DBMResult.get(i).add("Yes");
@@ -280,7 +283,7 @@ public class Model1 implements IModel {
     }
 
     @Override
-    public ArrayList<VacationObject> getAllUsersVacations() {
+    public ArrayList<Vacation> getAllUsersVacations() {
         return DBM.getAllUsersVacations(currentUser);
     }
 
@@ -289,25 +292,25 @@ public class Model1 implements IModel {
         return DBM.GetSeller(""+vacationID).equals(currentUser);
     }
 
-    public boolean InsertVacation(VacationObject vacationObject){
-        if(vacationObject == null){
+    public boolean InsertVacation(Vacation vacation){
+        if(vacation == null){
             return false;
         }
-        if( !IsVacationDetailsValid(vacationObject)){
+        if( !IsVacationDetailsValid(vacation)){
             return false;
         }
-        vacationObject.VacationID=VacationId;
+        vacation.VacationID=VacationId;
         VacationId++;
-        vacationObject.UserName_fk=currentUser;
-        vacationObject.Status=""+VacationStatus.FOR_SALE;
-        return DBM.InsertVacation(vacationObject);
+        vacation.UserName_fk=currentUser;
+        vacation.Status=""+VacationStatus.FOR_SALE;
+        return DBM.InsertVacation(vacation);
 
     }
-    public boolean UpdateVacation(VacationObject vacationObject){
-        if( !IsVacationDetailsValid(vacationObject)){
+    public boolean UpdateVacation(Vacation vacation){
+        if( !IsVacationDetailsValid(vacation)){
             return false;
         }
-        return DBM.UpdateVacation(vacationObject);
+        return DBM.UpdateVacation(vacation);
     }
 
     public boolean DeleteVacation(String VacationID){
@@ -322,31 +325,31 @@ public class Model1 implements IModel {
        }
     }
 
-    public boolean IsVacationDetailsValid(VacationObject vacationObject){
-        if(vacationObject.TicketType.length()>20){
+    public boolean IsVacationDetailsValid(Vacation vacation){
+        if(vacation.TicketType.length()>20){
             controller.showalert("Choose Tickets Type again");
             return false;
         }
-        else if(vacationObject.FlightCompany.length()>10){
+        else if(vacation.FlightCompany.length()>10){
             controller.showalert("Your Flight Company name is too long");
             return false;
         }
-        else if(vacationObject.Origin.length()>30){
+        else if(vacation.Origin.length()>30){
             controller.showalert("Your Origin is too long");
             return false;
         }
-        else if(vacationObject.Destination.length()>30){
+        else if(vacation.Destination.length()>30){
             controller.showalert("Your Destination is too long");
             return false;
         }
-        int startDay=Integer.parseInt(vacationObject.VacationDate.substring(8,10));
-        int startMonth=Integer.parseInt(vacationObject.VacationDate.substring(5,7));
-        int startYear=Integer.parseInt(vacationObject.VacationDate.substring(0,4));
-        int finishDay=Integer.parseInt(vacationObject.VacationDate.substring(18,20));
-        int finishMonth=Integer.parseInt(vacationObject.VacationDate.substring(15,17));
-        int finishYear=Integer.parseInt(vacationObject.VacationDate.substring(10,14));
+        int startDay=Integer.parseInt(vacation.VacationDate.substring(8,10));
+        int startMonth=Integer.parseInt(vacation.VacationDate.substring(5,7));
+        int startYear=Integer.parseInt(vacation.VacationDate.substring(0,4));
+        int finishDay=Integer.parseInt(vacation.VacationDate.substring(18,20));
+        int finishMonth=Integer.parseInt(vacation.VacationDate.substring(15,17));
+        int finishYear=Integer.parseInt(vacation.VacationDate.substring(10,14));
         LocalDateTime date=LocalDateTime.now();
-        if(date.getYear()<2018||(date.getYear()==2018&& date.getMonthValue()>startMonth)||(date.getMonthValue()==startMonth && date.getDayOfMonth()>startDay)){
+        if((date.getYear() > startYear) || (date.getYear() == startYear && ((date.getMonthValue() > startMonth) || (date.getMonthValue() == startMonth && date.getDayOfMonth() > startDay)))){
             controller.showalert("Start day has passed. Try changing dates");
             return false;
         }
@@ -354,13 +357,13 @@ public class Model1 implements IModel {
             controller.showalert("Your dates are invalid, please choose them again");
             return false;
         }else{
-            vacationObject.VacationDate=""+startDay+"-"+startMonth+"-"+startYear+"_"+finishDay+"-"+finishMonth+"-"+finishYear;
+            vacation.VacationDate=""+startDay+"-"+startMonth+"-"+startYear+"_"+finishDay+"-"+finishMonth+"-"+finishYear;
         }
-        if(vacationObject.NumberOfSuitcases > 3){
+        if(vacation.NumberOfSuitcases > 3){
             controller.showalert("Max number of suitcases per person is 3");
             return false;
         }
-        else if(vacationObject.MaxWeight > 30){
+        else if(vacation.MaxWeight > 30){
             controller.showalert("Max weight of suitcase is 30 kg");
             return false;
         }

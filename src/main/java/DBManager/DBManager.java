@@ -31,22 +31,22 @@ public class DBManager implements IDBManager {
     creating a new user with the parameters (already checked the data)
      */
     @Override
-    public void InsertProfile(ProfileObject profileObject) {
+    public void InsertProfile(Profile profile) {
         String sql = "INSERT INTO Users(USERNAME,PASSWORD,FIRSTNAME,LASTNAME,BIRTHDATE,CITY) VALUES(?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, profileObject.Username);
-            pstmt.setString(2, profileObject.Password);
-            pstmt.setString(3, profileObject.FirstName);
-            pstmt.setString(4, profileObject.LastName);
-            pstmt.setString(5, profileObject.BirthDate);
-            pstmt.setString(6, profileObject.City);
+            pstmt.setString(1, profile.Username);
+            pstmt.setString(2, profile.Password);
+            pstmt.setString(3, profile.FirstName);
+            pstmt.setString(4, profile.LastName);
+            pstmt.setString(5, profile.BirthDate);
+            pstmt.setString(6, profile.City);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
         }
-        if (profileObject.PhotoPath != null) {
-            SavePhoto(profileObject.PhotoPath, profileObject.Username);
+        if (profile.PhotoPath != null) {
+            SavePhoto(profile.PhotoPath, profile.Username);
         }
     }
 
@@ -77,18 +77,18 @@ public class DBManager implements IDBManager {
 
 
     @Override
-    public void UpdateProfile(String user, ProfileObject profileObject) {
+    public void UpdateProfile(String user, Profile profile) {
         String sql = "UPDATE Users SET USERNAME=? , PASSWORD=?, FIRSTNAME=?,LASTNAME=?, BIRTHDATE=?,CITY=? "
                 + "WHERE USERNAME = \"" + user + "\"";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // set the corresponding param
-            pstmt.setString(1, profileObject.Username);
-            pstmt.setString(2, profileObject.Password);
-            pstmt.setString(3, profileObject.FirstName);
-            pstmt.setString(4, profileObject.LastName);
-            pstmt.setString(5, profileObject.BirthDate);
-            pstmt.setString(6, profileObject.City);
+            pstmt.setString(1, profile.Username);
+            pstmt.setString(2, profile.Password);
+            pstmt.setString(3, profile.FirstName);
+            pstmt.setString(4, profile.LastName);
+            pstmt.setString(5, profile.BirthDate);
+            pstmt.setString(6, profile.City);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
@@ -153,7 +153,7 @@ public class DBManager implements IDBManager {
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
         }
-        createTable("CREATE TABLE IF NOT EXISTS Reasons (\n"
+        createTable("CREATE TABLE IF NOT EXISTS DeleteInfo (\n"
                 + "Username CHAR(8) NOT NULL, \n"
                 + "RID CHAR(2) NOT NULL,\n"
                 + "RegistrationDuration CHAR(20) NOT NULL\n"
@@ -229,8 +229,8 @@ public class DBManager implements IDBManager {
         }
     }
 
-    public void AddReason(String username, String RID, String RegistrD) {
-        String sql = "INSERT INTO Reasons(username,RID,RegistrationDuration) VALUES(?,?,?)";
+    public void AddDeleteInfo(String username, String RID, String RegistrD) {
+        String sql = "INSERT INTO DeleteInfo (username,RID,RegistrationDuration) VALUES(?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, username);
@@ -312,7 +312,7 @@ public class DBManager implements IDBManager {
         return result;
     }
 
-    public ArrayList<String> GetUserRequest(ArrayList<String> vacations) {
+    public ArrayList<String> GetUserRequestForApproval(ArrayList<String> vacations) {
         ArrayList<String> request = new ArrayList();
         for (int i = 0; i < vacations.size(); i++) {
             String sql = "SELECT VacationID FROM Requests WHERE VacationID=\"" + vacations.get(i) + "\" AND Status=\"WAITING_FOR_SELLER_RESPONSE\"";
@@ -334,11 +334,11 @@ public class DBManager implements IDBManager {
     }
 
 
-    public ArrayList<VacationObject> SearchResults(VacationObject vacationObject) {
-        ArrayList<VacationObject> searchresults = new ArrayList();
-        String sql = "SELECT * FROM Vacations WHERE LOWER(Destination)=\"" + vacationObject.Destination.toLowerCase() + "\" AND " +
-                " VacationDate =\"" + vacationObject.VacationDate
-                + "\" AND LOWER(Origin) =\"" + vacationObject.Origin.toLowerCase() + "\" AND Status=\"FOR_SALE\"";
+    public ArrayList<Vacation> SearchResults(Vacation vacation) {
+        ArrayList<Vacation> searchresults = new ArrayList();
+        String sql = "SELECT * FROM Vacations WHERE LOWER(Destination)=\"" + vacation.Destination.toLowerCase() + "\" AND " +
+                " VacationDate =\"" + vacation.VacationDate
+                + "\" AND LOWER(Origin) =\"" + vacation.Origin.toLowerCase() + "\" AND Status=\"FOR_SALE\"";
 
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
@@ -346,7 +346,7 @@ public class DBManager implements IDBManager {
             // loop through the result set
             while (rs.next()) {
                 //boolean is integer-buyall
-                searchresults.add(new VacationObject(rs.getInt("VacationID"), rs.getString("UserName_fk"), rs.getString("Status"), rs.getBoolean("HotVacation"), rs.getString("TicketType"), rs.getBoolean("BuyAll"), rs.getString("FlightCompany"), rs.getString("Origin"), rs.getString("Destination"), rs.getString("VacationDate"), rs.getInt("NumberOfSuitcases"), rs.getInt("MaxWeight"), rs.getInt("Price")));
+                searchresults.add(new Vacation(rs.getInt("VacationID"), rs.getString("UserName_fk"), rs.getString("Status"), rs.getBoolean("HotVacation"), rs.getString("TicketType"), rs.getBoolean("BuyAll"), rs.getString("FlightCompany"), rs.getString("Origin"), rs.getString("Destination"), rs.getString("VacationDate"), rs.getInt("NumberOfSuitcases"), rs.getInt("MaxWeight"), rs.getInt("Price")));
             }
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
@@ -405,19 +405,19 @@ public class DBManager implements IDBManager {
 
     }
 
-    public boolean InsertPayment(PaymentObject paymentObject) {
+    public boolean InsertPayment(Payment payment) {
         String sql = "INSERT INTO Payments(PaymentID,VacationID_fk,UserName_fk,Useridoc,LastName,FirstName,CardNumber,ExpirationDate,SecurityCode) VALUES(?,?,?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, paymentObject.PaymentID);
-            pstmt.setString(2, paymentObject.VacationID_fk);
-            pstmt.setString(3, paymentObject.UserName_fk);
-            pstmt.setString(4, paymentObject.Useridoc);
-            pstmt.setString(5, paymentObject.LastName);
-            pstmt.setString(6, paymentObject.FirstName);
-            pstmt.setString(7, paymentObject.CardNumber);
-            pstmt.setString(8, paymentObject.ExpirationDate);
-            pstmt.setString(9, paymentObject.SecurityCode);
+            pstmt.setString(1, payment.PaymentID);
+            pstmt.setString(2, payment.VacationID_fk);
+            pstmt.setString(3, payment.UserName_fk);
+            pstmt.setString(4, payment.Useridoc);
+            pstmt.setString(5, payment.LastName);
+            pstmt.setString(6, payment.FirstName);
+            pstmt.setString(7, payment.CardNumber);
+            pstmt.setString(8, payment.ExpirationDate);
+            pstmt.setString(9, payment.SecurityCode);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
@@ -427,23 +427,23 @@ public class DBManager implements IDBManager {
     }
 
 
-    public boolean InsertVacation(VacationObject vacationObject) {
+    public boolean InsertVacation(Vacation vacation) {
         String sql = "INSERT INTO Vacations(VacationID,UserName_fk,HotVacation,Status,TicketType,BuyAll,FlightCompany,Origin,Destination,VacationDate,NumberOfSuitcases,MaxWeight,Price,VacationType,RoomType,RoomIncluded,RoomRank,IsConnection) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, vacationObject.VacationID);
-            pstmt.setString(2, vacationObject.UserName_fk);
-            pstmt.setBoolean(3, vacationObject.HotVacation);
-            pstmt.setString(4, vacationObject.Status);
-            pstmt.setString(5, vacationObject.TicketType);
-            pstmt.setBoolean(6, vacationObject.BuyAll);
-            pstmt.setString(7, vacationObject.FlightCompany);
-            pstmt.setString(8, vacationObject.Origin);
-            pstmt.setString(9, vacationObject.Destination);
-            pstmt.setString(10, vacationObject.VacationDate);
-            pstmt.setInt(11, vacationObject.NumberOfSuitcases);
-            pstmt.setInt(12, vacationObject.MaxWeight);
-            pstmt.setInt(13, vacationObject.Price);
+            pstmt.setInt(1, vacation.VacationID);
+            pstmt.setString(2, vacation.UserName_fk);
+            pstmt.setBoolean(3, vacation.HotVacation);
+            pstmt.setString(4, vacation.Status);
+            pstmt.setString(5, vacation.TicketType);
+            pstmt.setBoolean(6, vacation.BuyAll);
+            pstmt.setString(7, vacation.FlightCompany);
+            pstmt.setString(8, vacation.Origin);
+            pstmt.setString(9, vacation.Destination);
+            pstmt.setString(10, vacation.VacationDate);
+            pstmt.setInt(11, vacation.NumberOfSuitcases);
+            pstmt.setInt(12, vacation.MaxWeight);
+            pstmt.setInt(13, vacation.Price);
             pstmt.setString(14, null);
             pstmt.setString(15, null);
             pstmt.setString(16, null);
@@ -457,21 +457,21 @@ public class DBManager implements IDBManager {
         return true;
     }
 
-    public boolean UpdateVacation(VacationObject vacationObject) {
+    public boolean UpdateVacation(Vacation vacation) {
         String sql = "UPDATE Vacations SET TicketType=?,BuyAll=?,FlightCompany=?,Origin=?,Destination=?,VacationDate=?,NumberOfSuitcases=?,MaxWeight=?,Price=? "
-                + "WHERE VacationID = \"" + vacationObject.VacationID + "\"";
+                + "WHERE VacationID = \"" + vacation.VacationID + "\"";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // set the corresponding param
-            pstmt.setString(1, vacationObject.TicketType);
-            pstmt.setBoolean(2, vacationObject.BuyAll);
-            pstmt.setString(3, vacationObject.FlightCompany);
-            pstmt.setString(4, vacationObject.Origin);
-            pstmt.setString(5, vacationObject.Destination);
-            pstmt.setString(6, vacationObject.VacationDate);
-            pstmt.setInt(7, vacationObject.NumberOfSuitcases);
-            pstmt.setInt(8, vacationObject.MaxWeight);
-            pstmt.setInt(9, vacationObject.Price);
+            pstmt.setString(1, vacation.TicketType);
+            pstmt.setBoolean(2, vacation.BuyAll);
+            pstmt.setString(3, vacation.FlightCompany);
+            pstmt.setString(4, vacation.Origin);
+            pstmt.setString(5, vacation.Destination);
+            pstmt.setString(6, vacation.VacationDate);
+            pstmt.setInt(7, vacation.NumberOfSuitcases);
+            pstmt.setInt(8, vacation.MaxWeight);
+            pstmt.setInt(9, vacation.Price);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
@@ -496,7 +496,7 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public VacationObject GetVacation(String vacationID) {
+    public Vacation GetVacation(String vacationID) {
         String sql = "SELECT * FROM Vacations WHERE VacationID=\"" + vacationID + "\"";
 
         try (Connection conn = this.connect();
@@ -505,7 +505,7 @@ public class DBManager implements IDBManager {
 
             // loop through the result set
             if (rs.next()) {
-                return (new VacationObject(rs.getInt("VacationID"), rs.getString("UserName_fk"), rs.getString("Status"), rs.getBoolean("HotVacation"), rs.getString("TicketType"), rs.getBoolean("BuyAll"), rs.getString("FlightCompany"), rs.getString("Origin"), rs.getString("Destination"), rs.getString("VacationDate"), rs.getInt("NumberOfSuitcases"), rs.getInt("MaxWeight"), rs.getInt("Price")));
+                return (new Vacation(rs.getInt("VacationID"), rs.getString("UserName_fk"), rs.getString("Status"), rs.getBoolean("HotVacation"), rs.getString("TicketType"), rs.getBoolean("BuyAll"), rs.getString("FlightCompany"), rs.getString("Origin"), rs.getString("Destination"), rs.getString("VacationDate"), rs.getInt("NumberOfSuitcases"), rs.getInt("MaxWeight"), rs.getInt("Price")));
             }
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
@@ -595,7 +595,7 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public ArrayList<ArrayList<String>> GetRequestTable(String currentUser) {
+    public ArrayList<ArrayList<String>> GetPendingRequestTable(String currentUser) {
         ArrayList<ArrayList<String>> request = new ArrayList();
         String sql = "SELECT VacationID,Status FROM Requests WHERE BuyerUserName_fk=\"" + currentUser + "\"";
         try (Connection conn = this.connect();
@@ -634,16 +634,16 @@ public class DBManager implements IDBManager {
 
     }
 
-    public ArrayList<VacationObject> getAllUsersVacations(String UserName) {
+    public ArrayList<Vacation> getAllUsersVacations(String UserName) {
         String sql = "SELECT * FROM Vacations WHERE UserName_fk=\"" + UserName + "\"";
-        ArrayList<VacationObject> result = new ArrayList<>();
+        ArrayList<Vacation> result = new ArrayList<>();
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
             while (rs.next()) {
-                result.add(new VacationObject(rs.getInt("VacationID"), rs.getString("UserName_fk"), rs.getString("Status"), rs.getBoolean("HotVacation"), rs.getString("TicketType"), rs.getBoolean("BuyAll"), rs.getString("FlightCompany"), rs.getString("Origin"), rs.getString("Destination"), rs.getString("VacationDate"), rs.getInt("NumberOfSuitcases"), rs.getInt("MaxWeight"), rs.getInt("Price")));
+                result.add(new Vacation(rs.getInt("VacationID"), rs.getString("UserName_fk"), rs.getString("Status"), rs.getBoolean("HotVacation"), rs.getString("TicketType"), rs.getBoolean("BuyAll"), rs.getString("FlightCompany"), rs.getString("Origin"), rs.getString("Destination"), rs.getString("VacationDate"), rs.getInt("NumberOfSuitcases"), rs.getInt("MaxWeight"), rs.getInt("Price")));
             }
         } catch (SQLException e) {
             model.showAlert(e.getMessage());
@@ -652,7 +652,24 @@ public class DBManager implements IDBManager {
         return result;
     }
 
-
+    @Override
+    public boolean isInMyRequests(String currentUser, String vacationID) {
+        String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currentUser + "\"";
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            // loop through the result set
+            while (rs.next()) {
+                if ((rs.getString(1)).equals(vacationID)){
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            model.showAlert(e.getMessage());
+            return false;
+        }
+        return false;
+    }
 }
 
 
