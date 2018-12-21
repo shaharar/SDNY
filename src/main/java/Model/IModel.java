@@ -30,4 +30,8 @@ public interface IModel {
     ArrayList<ArrayList<String>> GetResultRequest();
     ArrayList<Vacation> getAllUsersVacations();
     boolean isYourVacation(String vacationID);
+
+    boolean sellerAcceptedOrDeniedPayment(boolean accepted, String vacationID);
+
+    boolean PaymentConfirmation(String vacationID);
 }

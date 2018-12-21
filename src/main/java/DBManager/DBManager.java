@@ -547,7 +547,7 @@ public class DBManager implements IDBManager {
     @Override
     public ArrayList<String> GetNewPayments(String currUser) {
         ArrayList<String> payments = new ArrayList();
-        String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currUser + "\" AND Status=\"APPROVED\"";
+        String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currUser + "\" AND Status=\"REQUEST_APPROVED\"";
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

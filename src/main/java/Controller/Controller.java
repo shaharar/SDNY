@@ -148,16 +148,6 @@ public class Controller implements IController{
     }
 
     @Override
-    public boolean GetPayVisa(String[] Visa) {
-        return Model.ConfirmPaymentVisa(StringArrVisaToPay(Visa),Visa[6]);
-    }
-
-    @Override
-    public boolean GetPayPaypal(String[] paypal, String VacationId) {
-    return Model.ConfirmPaypal(paypal,VacationId);
-    }
-
-    @Override
     public void SellerAnswer(boolean answer, String vacationID) {
         Model.SellerAnswer(answer,vacationID);
     }
@@ -171,6 +161,18 @@ public class Controller implements IController{
         }
         return PaymentsArr;
     }
+
+    @Override
+    public boolean sellerAcceptedOrDeniedPayment(boolean accepted, String vacationID) {
+        //should we delete request? in what cases?
+        return Model.sellerAcceptedOrDeniedPayment(accepted,vacationID);
+    }
+
+    @Override
+    public boolean BuyerConfirmsPayment(String vacationID) {
+        return Model.PaymentConfirmation(vacationID);
+    }
+
 
     @Override //we transpose the array
     public String[][] GetVacationStatusvalues() {
@@ -241,11 +243,7 @@ public class Controller implements IController{
         values[11]=""+ vacation.Price ;
         return values;
     }
-    public Payment StringArrVisaToPay(String [] VisaValues){
 
-        return new Payment(null,VisaValues[6],null,VisaValues[0],VisaValues[2],VisaValues[1],VisaValues[3],VisaValues[4],VisaValues[5]);
-
-    }
 
     public boolean isYourVacation (String vacationID){
         return Model.isYourVacation(vacationID);
@@ -261,6 +259,21 @@ public class Controller implements IController{
         }
         return results;
     }
+    /*
+    @Override
+    public boolean GetPayVisa(String[] Visa) {
+        return Model.ConfirmPaymentVisa(StringArrVisaToPay(Visa),Visa[6]);
+    }
+
+    public Payment StringArrVisaToPay(String [] VisaValues){
+        return new Payment(null,VisaValues[6],null,VisaValues[0],VisaValues[2],VisaValues[1],VisaValues[3],VisaValues[4],VisaValues[5]);
+    }
+
+    @Override
+    public boolean GetPayPaypal(String[] paypal, String VacationId) {
+    return Model.ConfirmPaypal(paypal,VacationId);
+    }
+*/
 }
 
 

@@ -243,13 +243,13 @@ public class Model1 implements IModel {
     @Override
     public void SellerAnswer(boolean answer, String vacationID) {
         if (answer==true){
-            DBM.UpdateRequestStatus(RequestStatus.APPROVED,vacationID);
+            DBM.UpdateRequestStatus(RequestStatus.REQUEST_APPROVED,vacationID);
             DBM.UpdateVacationStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
             controller.showalert("Wait For Buyer's Payment");
 
         }
         else {
-            DBM.UpdateRequestStatus(RequestStatus.DISAPPROVED,vacationID);
+            DBM.UpdateRequestStatus(RequestStatus.REQUEST_DISAPPROVED,vacationID);
             DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
         }
     }
@@ -270,7 +270,7 @@ public class Model1 implements IModel {
 
         ArrayList<ArrayList<String>> DBMResult=DBM.GetPendingRequestTable(currentUser);
         for (int i = 0; i <DBMResult.size() ; i++) {
-            if(DBMResult.get(i).get(1).equals("APPROVED")){
+            if(DBMResult.get(i).get(1).equals("REQUEST_APPROVED")){
                 DBMResult.get(i).add("Yes");
             }
             else {
@@ -290,6 +290,27 @@ public class Model1 implements IModel {
     @Override
     public boolean isYourVacation(String vacationID) {
         return DBM.GetSeller(""+vacationID).equals(currentUser);
+    }
+
+    @Override
+    public boolean sellerAcceptedOrDeniedPayment(boolean accepted, String vacationID) {
+        if(accepted){
+            DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationID);
+            DBM.UpdateRequestStatus(RequestStatus.PAYMENT_APPROVED,vacationID);
+        }
+        else{
+            DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
+            DBM.UpdateRequestStatus(RequestStatus.PAYMENT_DISAPPROVED,vacationID);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean PaymentConfirmation(String vacationID) {
+        DBM.UpdateVacationStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
+        DBM.UpdateRequestStatus(RequestStatus.BUYER_CONFIRMED_PAYMENT,vacationID);
+        return true;
+
     }
 
     public boolean InsertVacation(Vacation vacation){
@@ -316,7 +337,7 @@ public class Model1 implements IModel {
     public boolean DeleteVacation(String VacationID){
        if(DBM.GetSeller(VacationID).equals(currentUser)){
          DBM.DeleteVacation(VacationID);
-         DBM.UpdateRequestStatus(RequestStatus.DISAPPROVED,VacationID);
+         DBM.UpdateRequestStatus(RequestStatus.REQUEST_DISAPPROVED,VacationID);
          return true;
        }
       else{
