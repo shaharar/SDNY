@@ -12,7 +12,8 @@ public class Model1 implements IModel {
 
     IController controller;
     IDBManager DBM;
-    String currentUser;
+  //  String currentUser;
+    Profile currentUser;
     int PaymentId;
     int VacationId; //counter for next id
 
@@ -25,7 +26,7 @@ public class Model1 implements IModel {
     public boolean SignUp(Profile profile) {
         if(isDataCorrect(profile)){
             DBM.InsertProfile(profile);
-            currentUser= profile.Username;
+            currentUser=profile; //changed during string-> object
             InitID();
             return true;
         }
@@ -38,7 +39,7 @@ public class Model1 implements IModel {
             controller.showalert("Your username is illegal.\nPlease press at 'Attention' button for more details");
             return false;
         }else
-        if(DBM.ReadProfile(profile.Username)&& (!profile.Username.equals(currentUser))){
+        if(DBM.ReadProfile(profile.Username)&& (!profile.Username.equals(currentUser.Username))){
             controller.showalert("Your username already exists, please choose another one");
             return false;
         }
@@ -78,14 +79,15 @@ public class Model1 implements IModel {
         return DBM.ReadProfile(username);
     }
 
-    public boolean UpdateProfile(Profile profile) {
-        if(!currentUser.equals(profile.Username)){
+    public boolean UpdateProfile(Profile Updatedprofile) {
+        if(!currentUser.Username.equals(Updatedprofile.Username)){
             showAlert("You cannot update your username");
             return false;
         }
-        if(isDataCorrect(profile)) {
-            DBM.UpdateProfile(currentUser, profile);
-            currentUser= profile.Username;
+        if(isDataCorrect(Updatedprofile)) {
+            DBM.UpdateProfile(currentUser.Username, Updatedprofile);
+            //currentUser= profile.Username;
+            currentUser=Updatedprofile;//changed during string-> object
             return true;
         }
         return false;
@@ -110,19 +112,20 @@ public class Model1 implements IModel {
                 reasonAsString="5";
                 break;
         }
-       ArrayList<String> vacationsToDelete= DBM.GetUserVacation(currentUser);
+       ArrayList<String> vacationsToDelete= DBM.GetUserVacation(currentUser.Username);
         for (int i = 0; i <vacationsToDelete.size() ; i++) {
             DBM.DeleteVacation(vacationsToDelete.get(i));
         }
-        DBM.DeleteProfile(currentUser, reasonAsString,registrationDuration);
-        DBM.AddDeleteInfo(currentUser, reasonAsString,registrationDuration);
+        DBM.DeleteProfile(currentUser.Username, reasonAsString,registrationDuration);
+        DBM.AddDeleteInfo(currentUser.Username, reasonAsString,registrationDuration);
+        currentUser=null;//changed during string-> object
     }
 
     public boolean Login(String username, String password) {
         if(DBM.ReadProfile(username)){ //if found in db
             String realpass=DBM.getPassword(username);
             if( realpass.equals(password)){
-                currentUser =  username;
+                currentUser = DBM.getFields(username);
                 InitID();
                 return true;
             }
@@ -148,16 +151,16 @@ public class Model1 implements IModel {
     /*
     gets user record devided to fields
      */
-    public String[] getProfileFields(String username) {
+    public Profile getProfileFields(String username) {
         if (username == null) {
-            return DBM.getFields(currentUser);
+            return new Profile(currentUser);
         }
         return DBM.getFields(username);
     }
 
     public ArrayList<String> GetNewRequests(){
 
-     ArrayList<String> VacationRequest= DBM.GetUserRequestForApproval(DBM.GetUserVacation(currentUser));//List  reqested vacations
+     ArrayList<String> VacationRequest= DBM.GetUserRequestForApproval(DBM.GetUserVacation(currentUser.Username));//List  reqested vacations
         return VacationRequest;
 
     }
@@ -176,13 +179,13 @@ public class Model1 implements IModel {
             controller.showalert("In order to purchase a vacation you have to sign in");
             return false;
         }
-        else if(DBM.isInMyRequests(currentUser, VacationID)){
+        else if(DBM.isInMyRequests(currentUser.Username, VacationID)){
             showAlert("You have already chosen this vacation. Please look at your pending requests");
             return false;
         }
         else {
             DBM.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,VacationID);
-            DBM.InsertNewRequest(VacationID,currentUser);
+            DBM.InsertNewRequest(VacationID,currentUser.Username);
             return true;
         }
     }
@@ -192,68 +195,6 @@ public class Model1 implements IModel {
         return DBM.GetVacation(VacationID);
     }
 
-    public boolean ConfirmPaymentVisa(Payment payment, String RequestId){
-        if(payment.Useridoc.length()!=9 || !payment.Useridoc.matches("[0-9]+") ){
-            controller.showalert("Your Id number invalid. make sure you added the check digits");
-            return false;
-        }
-       else if(payment.LastName.length()>20){
-            controller.showalert("Your last name is too long");
-            return false;
-        }
-       else if(payment.FirstName.length()>20){
-            controller.showalert("Your first name is too long");
-            return false;
-        }
-        else if(payment.CardNumber.length()!=16 || !payment.CardNumber.matches("[0-9]+")){
-            controller.showalert("Your credit number is invalid. please enter 16 digits");
-            return false;
-        }
-        int month=Integer.parseInt(payment.ExpirationDate.substring(0,2));
-        int year=Integer.parseInt(payment.ExpirationDate.substring(2,4));
-        if(year<18 || month>12 ||month<0){
-            controller.showalert("Your expiration date is invalid. Please insert date in format mmyy");
-            return false;
-        }
-        else if(payment.SecurityCode.length()!=3 || !payment.SecurityCode.matches("[0-9]+")){
-            controller.showalert("Your security code  is invalid. Please enter 3 digits");
-            return false;
-        }
-
-        payment.PaymentID=""+PaymentId;
-        PaymentId++;
-        payment.UserName_fk=currentUser;
-
-       if(DBM.InsertPayment(payment)){
-           DBM.DeleteRequest(RequestId);
-           DBM.UpdateVacationStatus(VacationStatus.SOLD, payment.VacationID_fk);
-           return true;
-       }
-       return false;
-
-    }
-
-    @Override
-    public boolean ConfirmPaypal(String[] paypal, String RequestId) {
-        DBM.InsertPaymentPaypal(paypal);
-        DBM.DeleteRequest(RequestId);
-        return true;
-    }
-
-    @Override
-    public void SellerAnswer(boolean answer, String vacationID) {
-        if (answer==true){
-            DBM.UpdateRequestStatus(RequestStatus.REQUEST_APPROVED,vacationID);
-            DBM.UpdateVacationStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
-            controller.showalert("Wait For Buyer's Payment");
-
-        }
-        else {
-            DBM.UpdateRequestStatus(RequestStatus.REQUEST_DISAPPROVED,vacationID);
-            DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
-        }
-    }
-
     @Override
     public void showAlert(String text) {
         controller.showalert(text);
@@ -261,14 +202,14 @@ public class Model1 implements IModel {
 
     @Override
     public ArrayList<String> GetNewPayments() {
-        ArrayList<String> VacationPayment= DBM.GetNewPayments(currentUser);//List  requested vacations
+        ArrayList<String> VacationPayment= DBM.GetNewPayments(currentUser.Username);//List  requested vacations
         return VacationPayment;
     }
 
     @Override
     public ArrayList<ArrayList<String>> GetResultRequest() {
 
-        ArrayList<ArrayList<String>> DBMResult=DBM.GetPendingRequestTable(currentUser);
+        ArrayList<ArrayList<String>> DBMResult=DBM.GetPendingRequestTable(currentUser.Username);
         for (int i = 0; i <DBMResult.size() ; i++) {
             if(DBMResult.get(i).get(1).equals("REQUEST_APPROVED")){
                 DBMResult.get(i).add("Yes");
@@ -284,12 +225,12 @@ public class Model1 implements IModel {
 
     @Override
     public ArrayList<Vacation> getAllUsersVacations() {
-        return DBM.getAllUsersVacations(currentUser);
+        return DBM.getAllUsersVacations(currentUser.Username);
     }
 
     @Override
     public boolean isYourVacation(String vacationID) {
-        return DBM.GetSeller(""+vacationID).equals(currentUser);
+        return DBM.GetSeller(""+vacationID).equals(currentUser.Username);
     }
 
     @Override
@@ -307,11 +248,11 @@ public class Model1 implements IModel {
 
     @Override
     public boolean PaymentConfirmation(String vacationID) {
-        DBM.UpdateVacationStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
+        DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationID);
         DBM.UpdateRequestStatus(RequestStatus.BUYER_CONFIRMED_PAYMENT,vacationID);
         return true;
-
     }
+
 
     public boolean InsertVacation(Vacation vacation){
         if(vacation == null){
@@ -322,7 +263,7 @@ public class Model1 implements IModel {
         }
         vacation.VacationID=VacationId;
         VacationId++;
-        vacation.UserName_fk=currentUser;
+        vacation.UserName_fk=currentUser.Username;
         vacation.Status=""+VacationStatus.FOR_SALE;
         return DBM.InsertVacation(vacation);
 
@@ -335,7 +276,7 @@ public class Model1 implements IModel {
     }
 
     public boolean DeleteVacation(String VacationID){
-       if(DBM.GetSeller(VacationID).equals(currentUser)){
+       if(DBM.GetSeller(VacationID).equals(currentUser.Username)){
          DBM.DeleteVacation(VacationID);
          DBM.UpdateRequestStatus(RequestStatus.REQUEST_DISAPPROVED,VacationID);
          return true;
@@ -391,6 +332,70 @@ public class Model1 implements IModel {
         return true;
     }
 
+
+
+    /*
+        public boolean ConfirmPaymentVisa(Payment payment, String RequestId){
+            if(payment.Useridoc.length()!=9 || !payment.Useridoc.matches("[0-9]+") ){
+                controller.showalert("Your Id number invalid. make sure you added the check digits");
+                return false;
+            }
+           else if(payment.LastName.length()>20){
+                controller.showalert("Your last name is too long");
+                return false;
+            }
+           else if(payment.FirstName.length()>20){
+                controller.showalert("Your first name is too long");
+                return false;
+            }
+            else if(payment.CardNumber.length()!=16 || !payment.CardNumber.matches("[0-9]+")){
+                controller.showalert("Your credit number is invalid. please enter 16 digits");
+                return false;
+            }
+            int month=Integer.parseInt(payment.ExpirationDate.substring(0,2));
+            int year=Integer.parseInt(payment.ExpirationDate.substring(2,4));
+            if(year<18 || month>12 ||month<0){
+                controller.showalert("Your expiration date is invalid. Please insert date in format mmyy");
+                return false;
+            }
+            else if(payment.SecurityCode.length()!=3 || !payment.SecurityCode.matches("[0-9]+")){
+                controller.showalert("Your security code  is invalid. Please enter 3 digits");
+                return false;
+            }
+
+            payment.PaymentID=""+PaymentId;
+            PaymentId++;
+            payment.UserName_fk=currentUser;
+
+           if(DBM.InsertPayment(payment)){
+               DBM.DeleteRequest(RequestId);
+               DBM.UpdateVacationStatus(VacationStatus.SOLD, payment.VacationID_fk);
+               return true;
+           }
+           return false;
+
+        }
+
+        @Override
+        public boolean ConfirmPaypal(String[] paypal, String RequestId) {
+            DBM.InsertPaymentPaypal(paypal);
+            DBM.DeleteRequest(RequestId);
+            return true;
+        }
+*/
+        @Override
+        public void SellerAnswer(boolean answer, String vacationID) {
+            if (answer==true){
+                DBM.UpdateRequestStatus(RequestStatus.REQUEST_APPROVED,vacationID);
+                DBM.UpdateVacationStatus(VacationStatus.WAITING_FOR_PAYMENT,vacationID);
+                controller.showalert("Wait For Buyer's Payment");
+
+            }
+            else {
+                DBM.UpdateRequestStatus(RequestStatus.REQUEST_DISAPPROVED,vacationID);
+                DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
+            }
+        }
 }
 
 

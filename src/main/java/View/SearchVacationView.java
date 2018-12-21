@@ -5,7 +5,9 @@ public class SearchVacationView extends AVacationView {
     public void SendToController() {
         String[][] results=controller.SearchVacation(BuyAll.isSelected(),GetValues());
         if(results!=null){
-            stage.close();
+            if(results.length>=1){
+                stage.close();
+            }
             controller.openwindow("ShowResult.fxml",results);
         }
 

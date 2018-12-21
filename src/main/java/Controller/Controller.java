@@ -29,7 +29,17 @@ public class Controller implements IController{
         return  (Model.Read(username));
     }
     public String[] getFields(String username){
-        return Model.getProfileFields(username);
+        Profile currProfile= Model.getProfileFields(username);
+        String[] fields=new String[7];
+        fields[0]=currProfile.Username ;
+        fields[1]= currProfile.Password;
+        fields[2]= currProfile.FirstName;
+        fields[3]= currProfile.LastName;
+        fields[4]= currProfile.BirthDate;
+        fields[5]= currProfile.City;
+        fields[6]= currProfile.PhotoPath;
+
+        return fields;
     }
     public boolean Update(String [] fields) {
         return Model.UpdateProfile(new Profile(fields));
@@ -147,10 +157,6 @@ public class Controller implements IController{
 
     }
 
-    @Override
-    public void SellerAnswer(boolean answer, String vacationID) {
-        Model.SellerAnswer(answer,vacationID);
-    }
 
     @Override
     public String[] GetnewPayments() {
@@ -274,6 +280,12 @@ public class Controller implements IController{
     return Model.ConfirmPaypal(paypal,VacationId);
     }
 */
+    @Override
+    public void SellerAnswer(boolean answer, String vacationID) {
+        Model.SellerAnswer(answer,vacationID);
+    }
+
+
 }
 
 

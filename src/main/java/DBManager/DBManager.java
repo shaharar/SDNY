@@ -270,7 +270,7 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public String[] getFields(String currentUser) {
+    public Profile getFields(String currentUser) {
         String[] fields = new String[7];
         String sql = "SELECT * FROM Users WHERE USERNAME=\"" + currentUser + "\"";
         try (Connection conn = this.connect();
@@ -280,10 +280,10 @@ public class DBManager implements IDBManager {
             // loop through the result set
             if (rs.next()) {
                 for (int j = 0; j < 6; j++) {
-                    fields[j] = rs.getString(j + 1); // j or j+1 ??
+                    fields[j] = rs.getString(j + 1);
                 }
                 fields[6] = "DB/pictures/" + fields[0];
-                return fields;
+                return new Profile(fields[0],fields[1],fields[2],fields[3],fields[4],fields[5],fields[6]);
             }
         } catch (SQLException e) {
             model.showAlert(e.getMessage());

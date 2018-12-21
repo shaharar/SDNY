@@ -12,7 +12,7 @@ public interface IDBManager {
     void DeleteProfile(String currentuser, String reason, String RegistrD);
     void CreateDB();
     String getPassword(String username);
-    String[] getFields(String currentUser);
+    Profile getFields(String currentUser);
     void AddDeleteInfo(String currentuser, String reason, String RegistrD);
     boolean InsertPayment(Payment payment);
     void UpdateVacationStatus(VacationStatus status, String VacationID);

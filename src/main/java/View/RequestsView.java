@@ -11,14 +11,14 @@ public class RequestsView extends AView {
 
     public void PushYes(){
         boolean answer=true;
-        controller.SellerAnswer(answer,VacationID.getText().substring(12));
+       controller.SellerAnswer(answer,VacationID.getText().substring(12));
         PushNext();
     }
 
 
     public void PushNo(){
         boolean answer =false;
-        controller.SellerAnswer(answer,VacationID.getText().substring(12));
+       controller.SellerAnswer(answer,VacationID.getText().substring(12));
         PushNext();
     }
 

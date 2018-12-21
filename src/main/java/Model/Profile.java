@@ -28,4 +28,13 @@ public class Profile {
         PhotoPath = fields[6];
     }
 
+    public Profile(Profile User) {
+        Username = User.Username;
+        Password =  User.Password;
+        FirstName =  User.FirstName;
+        LastName =  User.LastName;
+        BirthDate =  User.BirthDate;
+        City =  User.City;
+        PhotoPath =  User.PhotoPath;
+    }
 }

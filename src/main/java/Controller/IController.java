@@ -29,10 +29,6 @@ public interface IController {
 
     boolean ChooseVacation(String vacationId);
 
-
-
-    void SellerAnswer(boolean answer, String vacationID);
-
     String[] GetnewPayments();
 
     boolean sellerAcceptedOrDeniedPayment(boolean accepted, String vacationID);
@@ -47,8 +43,25 @@ public interface IController {
     boolean isYourVacation (String vacationID);
 
     ArrayList<String> getUsersVacations();
-    /*boolean GetPayVisa(String [] Visa);
 
+    /*
+        @Override
+        public boolean GetPayVisa(String[] Visa) {
+            return Model.ConfirmPaymentVisa(StringArrVisaToPay(Visa),Visa[6]);
+        }
+
+        public Payment StringArrVisaToPay(String [] VisaValues){
+            return new Payment(null,VisaValues[6],null,VisaValues[0],VisaValues[2],VisaValues[1],VisaValues[3],VisaValues[4],VisaValues[5]);
+        }
+
+        @Override
+        public boolean GetPayPaypal(String[] paypal, String VacationId) {
+        return Model.ConfirmPaypal(paypal,VacationId);
+        }
+    */
+    void SellerAnswer(boolean answer, String vacationID);
+    /*boolean GetPayVisa(String [] Visa);
+    void SellerAnswer(boolean answer, String vacationID);
     boolean GetPayPaypal(String[] paypal, String VacationId);
     */
 }
