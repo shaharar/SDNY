@@ -236,4 +236,8 @@ this function is unnecessery because it is defaulted on true but we might need t
     public void GetVacationStatus(){
         controller.openwindow("VacationStatus.fxml",controller.GetVacationStatusvalues());
     }
+
+    public void paymentsConfirmation(){
+        controller.openwindow("ConfirmPayments.fxml",controller.GetnewPayments());
+    }
 }

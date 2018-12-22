@@ -33,7 +33,7 @@ public class VacationStatusView extends AView {
 
 
 
-    public void Updatetableview(String [][] values){
+    public void UpdateTableView(String [][] values){
        this.vacationID=values[0];
        this.RequestStatus=values[1];
        this.Paymentstatus =values[2];
@@ -53,21 +53,20 @@ public class VacationStatusView extends AView {
                 e.printStackTrace();
             }
         }
-
-
-
     }
 
     public void ClickPayments(ActionEvent actionEvent) {
-        ((Button)actionEvent.getSource()).setDisable(true);
-            controller.openwindow("Payments.fxml",controller.GetnewPayments());
+      /*  ((Button)actionEvent.getSource()).setDisable(true);
+        controller.openwindow("Payments.fxml",controller.GetnewPayments());*/
 
+      controller.BuyerConfirmsPayment(""); ////////////////how to get the vacation id ?
+        showAlert("Please wait for seller confirmation of your payment");
 
-
+        ////disable button - how to know which one ?
     }
 
     @Override
     public void init(Object Parameter) {
-        Updatetableview((String[][])Parameter);
+        UpdateTableView((String[][])Parameter);
     }
 }

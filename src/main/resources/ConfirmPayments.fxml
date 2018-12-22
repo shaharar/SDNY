@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ConfirmPaymentsView">
+   <children>
+      <Button layoutX="338.0" layoutY="200.0" mnemonicParsing="false" onAction="#PushYes" prefHeight="59.0" prefWidth="91.0" style="-fx-background-color: #9fdf9f; -fx-border-color: #77933b; -fx-border-radius: 4;" text="Yes">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font></Button>
+      <Button layoutX="158.0" layoutY="200.0" mnemonicParsing="false" onAction="#PushNo" prefHeight="59.0" prefWidth="91.0" style="-fx-background-color: #ff4d4d; -fx-border-radius: 3;" text="No">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font></Button>
+      <Label layoutX="67.0" layoutY="145.0" prefHeight="33.0" prefWidth="452.0" text="Do you confirm getting payment for this vacation?">
+         <font>
+            <Font name="Calibri Bold" size="21.0" />
+         </font></Label>
+      <Label fx:id="VacationID" layoutX="67.0" layoutY="101.0" prefHeight="34.0" prefWidth="214.0" text="Vacation ID">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font></Label>
+      <Label layoutX="158.0" layoutY="22.0" prefHeight="53.0" prefWidth="301.0" text=" Confirm Payments" textFill="#105372">
+         <font>
+            <Font name="Calibri Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="410.0" layoutY="293.0" mnemonicParsing="false" onAction="#PushNext" prefHeight="45.0" prefWidth="144.0" text="Next Requset">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font></Button>
+      <ImageView fitHeight="121.0" fitWidth="182.0" layoutX="2.0" layoutY="272.0">
+         <image>
+            <Image url="newLogo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

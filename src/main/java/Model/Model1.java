@@ -248,7 +248,7 @@ public class Model1 implements IModel {
 
     @Override
     public boolean PaymentConfirmation(String vacationID) {
-        DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationID);
+        //DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationID);
         DBM.UpdateRequestStatus(RequestStatus.BUYER_CONFIRMED_PAYMENT,vacationID);
         return true;
     }

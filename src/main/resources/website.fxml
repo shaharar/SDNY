@@ -34,6 +34,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#GetVacationStatus" text="Pending Requests" />
                   <MenuItem mnemonicParsing="false" onAction="#lookForNewRequests" text="New Requests for approval" />
+                  <MenuItem mnemonicParsing="false" onAction="#paymentsConfirmation" text="Payments Confirmation" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Log Out">
