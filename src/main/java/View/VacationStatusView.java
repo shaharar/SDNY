@@ -6,9 +6,9 @@ import javafx.scene.control.Label;
 
 public class VacationStatusView extends AView {
 
-    public String [] vacationID;
-    public String [] RequestStatus;
-    public String [] Paymentstatus;
+    public String[] vacationID;
+    public String[] RequestStatus;
+    public String[] Paymentstatus;
     public Label id1;
     public Label status1;
     public Label id2;
@@ -32,19 +32,18 @@ public class VacationStatusView extends AView {
     public Button B7;
 
 
-
-    public void UpdateTableView(String [][] values){
-       this.vacationID=values[0];
-       this.RequestStatus=values[1];
-       this.Paymentstatus =values[2];
-        for (int i = 0; i <vacationID.length ; i++) {
+    public void UpdateTableView(String[][] values) {
+        this.vacationID = values[0];
+        this.RequestStatus = values[1];
+        this.Paymentstatus = values[2];
+        for (int i = 0; i < vacationID.length; i++) {
             try {
-                Label currid=(Label)getClass().getDeclaredField("id"+(i+1)).get(this);
-                Label currstatus=(Label)getClass().getDeclaredField("status"+(i+1)).get(this);
-                Button currbtn=(Button) getClass().getDeclaredField("B"+(i+1)).get(this);
+                Label currid = (Label) getClass().getDeclaredField("id" + (i + 1)).get(this);
+                Label currstatus = (Label) getClass().getDeclaredField("status" + (i + 1)).get(this);
+                Button currbtn = (Button) getClass().getDeclaredField("B" + (i + 1)).get(this);
                 currid.setText(vacationID[i]);
                 currstatus.setText(RequestStatus[i]);
-                if(Paymentstatus[i].equals("Yes")){
+                if (Paymentstatus[i].equals("Yes")) {
                     currbtn.setVisible(true);
                 }
             } catch (NoSuchFieldException e) {
@@ -56,10 +55,19 @@ public class VacationStatusView extends AView {
     }
 
     public void ClickPayments(ActionEvent actionEvent) {
-      /*  ((Button)actionEvent.getSource()).setDisable(true);
-        controller.openwindow("Payments.fxml",controller.GetnewPayments());*/
 
-      controller.BuyerConfirmsPayment(""); ////////////////how to get the vacation id ?
+       /* controller.openwindow("Payments.fxml",controller.GetnewPayments());*/
+        try {
+            String numberOfTheButtonClicked = ((Button) actionEvent.getSource()).getId().substring(1);
+            Label matchingLabelOfTheButton = (Label) getClass().getDeclaredField("id" + numberOfTheButtonClicked).get(this);
+            controller.BuyerConfirmsPayment(matchingLabelOfTheButton.getText()); ////////////////how to get the vacation id ?
+            ((Button)actionEvent.getSource()).setDisable(true);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
         showAlert("Please wait for seller confirmation of your payment");
 
         ////disable button - how to know which one ?
@@ -67,6 +75,6 @@ public class VacationStatusView extends AView {
 
     @Override
     public void init(Object Parameter) {
-        UpdateTableView((String[][])Parameter);
+        UpdateTableView((String[][]) Parameter);
     }
 }

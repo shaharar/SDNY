@@ -4,19 +4,18 @@ import javafx.scene.control.Label;
 
 public class ConfirmPaymentsView extends AView {
 
-
     public Label VacationID;
     public String [] AllVacationid;
     int i;
 
     public void PushYes(){
-        controller.sellerAcceptedOrDeniedPayment(true,VacationID.getText());
+        controller.sellerAcceptedOrDeniedPayment(true,VacationID.getText().substring(16)); //need to check ther numbers
         PushNext();
     }
 
 
     public void PushNo(){
-        controller.sellerAcceptedOrDeniedPayment(false,VacationID.getText());
+        controller.sellerAcceptedOrDeniedPayment(false,VacationID.getText().substring(16));
         PushNext();
     }
 
@@ -54,6 +53,5 @@ public class ConfirmPaymentsView extends AView {
     @Override
     public void init(Object Parameter) {
         SetVacationID((String[])Parameter);
-
     }
 }
