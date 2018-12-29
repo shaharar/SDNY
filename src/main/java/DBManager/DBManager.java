@@ -545,9 +545,9 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public ArrayList<String> GetNewPayments(String currUser) {
+    public ArrayList<String> GetNewPaymentsConfirmation(String currUser) {
         ArrayList<String> payments = new ArrayList();
-        String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currUser + "\" AND Status=\"REQUEST_APPROVED\"";
+        String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currUser + "\" AND Status=\"BUYER_CONFIRMED_PAYMENT\"";
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -669,6 +669,25 @@ public class DBManager implements IDBManager {
             return false;
         }
         return false;
+    }
+
+    @Override
+    public ArrayList<String> GetTradeRequest(String currentUser) {
+        ArrayList<String> result = new ArrayList<>();
+        String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currentUser + "\" AND Status=\"TRADE_REQUEST_SENT\"";
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            // loop through the result set
+            while (rs.next()) {
+                result.add(rs.getString("VacationID"));
+            }
+
+        } catch (SQLException e) {
+            model.showAlert(e.getMessage());
+            return result;
+        }
+        return result;
     }
 }
 

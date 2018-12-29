@@ -83,6 +83,9 @@ public class ShowResultView extends AView {
         i=i-2;
         ShowResult();
     }
+    public void TradeThisVacation(){
+        controller.NewTradeRequest(VacationId.getText().substring(14));
+    }
 
     @Override
     public void init(Object Parameter) {

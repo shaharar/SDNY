@@ -56,7 +56,7 @@ public class VacationStatusView extends AView {
 
     public void ClickPayments(ActionEvent actionEvent) {
 
-       /* controller.openwindow("Payments.fxml",controller.GetnewPayments());*/
+       /* controller.openwindow("Payments.fxml",controller.GetnewPaymentsConfirmation());*/
         try {
             String numberOfTheButtonClicked = ((Button) actionEvent.getSource()).getId().substring(1);
             Label matchingLabelOfTheButton = (Label) getClass().getDeclaredField("id" + numberOfTheButtonClicked).get(this);

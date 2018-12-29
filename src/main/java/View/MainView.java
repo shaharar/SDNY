@@ -32,7 +32,6 @@ public class MainView extends AView implements IMainView {
     public TextField txtfld_lastName_L;
     public TextField txtfld_regDuration;
     public Button btn_Login;
-    public AnchorPane Anchorpane;
     public Button btn_search_W;
     public javafx.scene.image.ImageView Img_profile_L;
     public ChoiceBox chobx_reason;
@@ -238,6 +237,13 @@ this function is unnecessery because it is defaulted on true but we might need t
     }
 
     public void paymentsConfirmation(){
-        controller.openwindow("ConfirmPayments.fxml",controller.GetnewPayments());
+        controller.openwindow("ConfirmPayments.fxml",controller.GetnewPaymentsConfirmation());
     }
+
+    public void TradeRequest(){
+        controller.openwindow("TradeRequests.fxml",controller.GetTradeRequests());
+    }
+
+
 }
+

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainView">
    <children>
       <MenuBar maxWidth="1024.0" minWidth="1024.0" prefHeight="31.0" prefWidth="1024.0" style="-fx-font-weight: bold;">
          <menus>
@@ -35,6 +35,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#GetVacationStatus" text="Pending Requests" />
                   <MenuItem mnemonicParsing="false" onAction="#lookForNewRequests" text="New Requests for approval" />
                   <MenuItem mnemonicParsing="false" onAction="#paymentsConfirmation" text="Payments Confirmation" />
+                  <MenuItem mnemonicParsing="false" onAction="#TradeRequest" text="Trade Requests" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Log Out">

@@ -201,8 +201,8 @@ public class Model1 implements IModel {
     }
 
     @Override
-    public ArrayList<String> GetNewPayments() {
-        ArrayList<String> VacationPayment= DBM.GetNewPayments(currentUser.Username);//List  requested vacations
+    public ArrayList<String> GetNewPaymentsConfirmation() {
+        ArrayList<String> VacationPayment= DBM.GetNewPaymentsConfirmation(currentUser.Username);//List  requested vacations
         return VacationPayment;
     }
 
@@ -396,6 +396,54 @@ public class Model1 implements IModel {
                 DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationID);
             }
         }
+
+    @Override
+    public void ConfirmTrade(boolean answer, String id) {
+            if(answer==true){
+                DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_APPROVED,id);
+                DBM.UpdateVacationStatus(VacationStatus.SOLD,id);
+                showAlert("The Trade In Is Succesful");
+            }
+            else {
+                DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_DISAPPROVED,id);
+                DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,id);
+                showAlert("The Trade In Is Cancelled");
+            }
+
+
+    }
+
+    @Override
+    public boolean NewTradeRequest(String vacationid) {
+        if(currentUser==null){
+            controller.showalert("In order to purchase a vacation you have to sign in");
+            return false;
+        }
+        else if(DBM.isInMyRequests(currentUser.Username, vacationid)){
+            showAlert("You have already chosen this vacation. Please look at your pending requests");
+            return false;
+        }
+        else {
+            DBM.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,vacationid);
+            DBM.InsertNewRequest(vacationid,currentUser.Username);
+            DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_SENT,vacationid);
+            showAlert("Your Request Is Sent");
+            return true;
+        }
+
+    }
+
+    @Override
+    public ArrayList<Vacation> GetTradeRequests() {
+            ArrayList<String> requestid=DBM.GetTradeRequest(currentUser.Username);
+            ArrayList<Vacation> vacations=new ArrayList<>();
+        for (int i = 0; i <requestid.size() ; i++) {
+            vacations.add(DBM.GetVacation(requestid.get(i)));
+
+        }
+
+        return vacations;
+    }
 }
 
 

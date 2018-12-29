@@ -29,7 +29,7 @@ public interface IController {
 
     boolean ChooseVacation(String vacationId);
 
-    String[] GetnewPayments();
+    String[] GetnewPaymentsConfirmation();
 
     boolean sellerAcceptedOrDeniedPayment(boolean accepted, String vacationID);
 
@@ -60,6 +60,12 @@ public interface IController {
         }
     */
     void SellerAnswer(boolean answer, String vacationID);
+
+    void ConfirmTrade(boolean answer, String s);
+
+    void NewTradeRequest(String substring);
+
+    String [][] GetTradeRequests();
     /*boolean GetPayVisa(String [] Visa);
     void SellerAnswer(boolean answer, String vacationID);
     boolean GetPayPaypal(String[] paypal, String VacationId);

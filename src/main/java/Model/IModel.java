@@ -22,7 +22,7 @@ public interface IModel {
     boolean ChooseVacation(String VacationID);
     Vacation getVacationFields(String parameter);
     void showAlert(String text);
-    ArrayList<String> GetNewPayments();
+    ArrayList<String> GetNewPaymentsConfirmation();
 
     ArrayList<ArrayList<String>> GetResultRequest();
     ArrayList<Vacation> getAllUsersVacations();
@@ -82,6 +82,12 @@ public interface IModel {
             }
     */
     void SellerAnswer(boolean answer, String vacationID);
+
+    void ConfirmTrade(boolean answer, String id);
+
+    boolean NewTradeRequest(String vacationid);
+
+    ArrayList<Vacation> GetTradeRequests();
 /*
     boolean PaymentConfirmation(String vacationID);
     boolean ConfirmPaymentVisa(Payment payment, String requestid);

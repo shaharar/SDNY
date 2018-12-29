@@ -27,11 +27,13 @@ public interface IDBManager {
     Vacation GetVacation(String vacationID);
     void InsertPaymentPaypal(String[] paypal);
     void UpdateRequestStatus(RequestStatus requestStatus, String vacationID);
-    ArrayList<String> GetNewPayments(String strings);
+    ArrayList<String> GetNewPaymentsConfirmation(String strings);
     int[] GetMaxId();
     ArrayList<ArrayList<String>> GetPendingRequestTable(String currentUser);
     void DeleteRequest(String requestId);
     ArrayList<Vacation> getAllUsersVacations(String UserName);
 
     boolean isInMyRequests(String currentUser, String vacationID);
+
+    ArrayList<String> GetTradeRequest(String currentUser);
 }
