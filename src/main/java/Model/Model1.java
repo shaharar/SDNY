@@ -3,6 +3,7 @@ package Model;
 import DBManager.IDBManager;
 import DBManager.DBManager;
 import Controller.IController;
+import javafx.util.Pair;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -398,15 +399,17 @@ public class Model1 implements IModel {
         }
 
     @Override
-    public void ConfirmTrade(boolean answer, String id) {
+    public void ConfirmTrade(boolean answer, String vacationOffered, String vacationWanted) {
             if(answer==true){
-                DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_APPROVED,id);
-                DBM.UpdateVacationStatus(VacationStatus.SOLD,id);
+                DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_APPROVED,vacationOffered);
+                DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationOffered);
+                DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_APPROVED,vacationWanted);
+                DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationWanted);
                 showAlert("The Trade In Is Succesful");
             }
             else {
-                DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_DISAPPROVED,id);
-                DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,id);
+                DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_DISAPPROVED,vacationOffered);
+                DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationOffered);
                 showAlert("The Trade In Is Cancelled");
             }
 
@@ -414,19 +417,20 @@ public class Model1 implements IModel {
     }
 
     @Override
-    public boolean NewTradeRequest(String vacationid) {
+    public boolean NewTradeRequest(TradeIn trade) {
         if(currentUser==null){
             controller.showalert("In order to purchase a vacation you have to sign in");
             return false;
         }
-        else if(DBM.isInMyRequests(currentUser.Username, vacationid)){
+        else if(DBM.isInMyRequests(currentUser.Username, ""+trade.vacationWanted)){
             showAlert("You have already chosen this vacation. Please look at your pending requests");
             return false;
         }
         else {
-            DBM.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,vacationid);
-            DBM.InsertNewRequest(vacationid,currentUser.Username);
-            DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_SENT,vacationid);
+            DBM.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,""+trade.vacationWanted);
+            DBM.InsertNewRequest(""+trade.vacationWanted,currentUser.Username);
+            DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_SENT,""+trade.vacationWanted);
+            DBM.InsertNewTrade(trade,DBM.GetSeller(""+trade.vacationWanted));
             showAlert("Your Request Is Sent");
             return true;
         }
@@ -434,15 +438,16 @@ public class Model1 implements IModel {
     }
 
     @Override
-    public ArrayList<Vacation> GetTradeRequests() {
-            ArrayList<String> requestid=DBM.GetTradeRequest(currentUser.Username);
-            ArrayList<Vacation> vacations=new ArrayList<>();
+    public Pair<ArrayList<Vacation>, ArrayList<String>> GetTradeRequests() {
+            ArrayList<TradeIn> requestid=DBM.GetTradeRequest(currentUser.Username);
+            ArrayList<Vacation> vacationsOffered=new ArrayList<>();
+        ArrayList<String> vacationsWanted=new ArrayList<>();
         for (int i = 0; i <requestid.size() ; i++) {
-            vacations.add(DBM.GetVacation(requestid.get(i)));
-
+            vacationsOffered.add(DBM.GetVacation(""+requestid.get(i).vacationOffered));
+            vacationsWanted.add(""+requestid.get(i).vacationWanted);
         }
 
-        return vacations;
+        return new Pair<ArrayList<Vacation>, ArrayList<String>>(vacationsOffered,vacationsWanted);
     }
 }
 

@@ -84,7 +84,7 @@ public class ShowResultView extends AView {
         ShowResult();
     }
     public void TradeThisVacation(){
-        controller.NewTradeRequest(VacationId.getText().substring(14));
+        controller.openwindow("VacationIDForTrade.fxml",VacationId.getText().substring(14));
     }
 
     @Override

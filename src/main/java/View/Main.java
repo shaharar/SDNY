@@ -26,6 +26,7 @@ public class Main extends Application {
       //  scene.getStylesheets().add(getClass().getClassLoader().getResource("ViewStyle.css").toExternalForm());
         primaryStage.show();
         mainView.btn_Login.requestFocus();
+       // con.Model.CreateDB();
            }
 
 

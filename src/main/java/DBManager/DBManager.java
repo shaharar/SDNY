@@ -209,6 +209,11 @@ public class DBManager implements IDBManager {
                 + "	UserName CHAR(8) NOT NULL,\n"
                 + "	Password CHAR(8) NOT NULL \n"
                 + ");");
+        createTable("CREATE TABLE IF NOT EXISTS TradeIn (\n"
+                +"	userForOffer CHAR(8) NOT NULL,\n"
+                + "	VacationWanted_fk CHAR(8) NOT NULL,\n"
+                + "	VacationOffered_fk CHAR(8) NOT NULL \n"
+                + ");");
     }
 
     public void createTable(String sql) {
@@ -672,15 +677,15 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public ArrayList<String> GetTradeRequest(String currentUser) {
-        ArrayList<String> result = new ArrayList<>();
-        String sql = "SELECT VacationID FROM Requests WHERE BuyerUserName_fk=\"" + currentUser + "\" AND Status=\"TRADE_REQUEST_SENT\"";
+    public ArrayList<TradeIn> GetTradeRequest(String currentUser) {
+        ArrayList<TradeIn> result = new ArrayList<>();
+        String sql = "SELECT * FROM TradeIn WHERE userForOffer=\"" + currentUser + "\"";
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             // loop through the result set
             while (rs.next()) {
-                result.add(rs.getString("VacationID"));
+                result.add(new TradeIn(Integer.parseInt(rs.getString("VacationOffered_fk")),Integer.parseInt(rs.getString("VacationWanted_fk"))));
             }
 
         } catch (SQLException e) {
@@ -688,6 +693,20 @@ public class DBManager implements IDBManager {
             return result;
         }
         return result;
+    }
+    public void InsertNewTrade(TradeIn tradeIn,String userForOffer) {
+        String sql = "INSERT INTO TradeIn(userForOffer,VacationWanted_fk,VacationOffered_fk) VALUES(?,?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, ""+userForOffer);
+            pstmt.setString(2, ""+tradeIn.vacationWanted);
+            pstmt.setString(3, ""+tradeIn.vacationOffered);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            model.showAlert(e.getMessage());
+        }
+
     }
 }
 

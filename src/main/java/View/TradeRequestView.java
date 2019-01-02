@@ -5,25 +5,26 @@ import javafx.scene.control.Label;
 public class TradeRequestView extends AView {
 
     public Label VacationData;
-    public String [] AllVacationid;
-    public String [] VacationDataArr;
+    public String [] AllVacationidOffered;
+    public String [] OfferedVacationDataArr;
+    public String []  WantedVacationID;
     int i;
 
     public void PushYes(){
         boolean answer=true;
-        controller.ConfirmTrade(answer,AllVacationid[i-1]);
+        controller.ConfirmTrade(answer, AllVacationidOffered[i-1],WantedVacationID[i-1]);
         PushNext();
     }
 
 
     public void PushNo(){
         boolean answer =false;
-        controller.ConfirmTrade(answer,AllVacationid[i-1]);
+        controller.ConfirmTrade(answer, AllVacationidOffered[i-1], WantedVacationID[i - 1]);
         PushNext();
     }
 
     public void PushNext(){
-        if(i==AllVacationid.length){
+        if(i== AllVacationidOffered.length){
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -32,9 +33,9 @@ public class TradeRequestView extends AView {
             showAlert("No more requests.");
             stage.close();
         }else {
-            VacationData.setText(VacationDataArr[i]);
+            VacationData.setText(OfferedVacationDataArr[i]);
             i++;
-            if(i==AllVacationid.length){
+            if(i== AllVacationidOffered.length){
                 showAlert("No more requests.");
             }
         }
@@ -47,9 +48,10 @@ public class TradeRequestView extends AView {
             showAlert("There aren't new requests");
         }
         else {
-            AllVacationid=vacationinformation[0];
-            VacationDataArr=vacationinformation[1];
-            VacationData.setText(VacationDataArr[i]);
+            AllVacationidOffered =vacationinformation[0];
+            OfferedVacationDataArr =vacationinformation[1];
+            WantedVacationID=vacationinformation[2];
+            VacationData.setText(OfferedVacationDataArr[i]);
         }
         i++;
     }

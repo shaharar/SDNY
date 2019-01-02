@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 
 public interface IModel {
@@ -83,11 +85,11 @@ public interface IModel {
     */
     void SellerAnswer(boolean answer, String vacationID);
 
-    void ConfirmTrade(boolean answer, String id);
+    void ConfirmTrade(boolean answer, String id, String vacationWanted);
 
-    boolean NewTradeRequest(String vacationid);
+    boolean NewTradeRequest(TradeIn vacationid);
 
-    ArrayList<Vacation> GetTradeRequests();
+    Pair<ArrayList<Vacation>, ArrayList<String>> GetTradeRequests();
 /*
     boolean PaymentConfirmation(String vacationID);
     boolean ConfirmPaymentVisa(Payment payment, String requestid);

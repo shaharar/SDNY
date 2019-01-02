@@ -61,9 +61,9 @@ public interface IController {
     */
     void SellerAnswer(boolean answer, String vacationID);
 
-    void ConfirmTrade(boolean answer, String s);
+    void ConfirmTrade(boolean answer, String s, String s1);
 
-    void NewTradeRequest(String substring);
+    void NewTradeRequest(String wanted, String offered);
 
     String [][] GetTradeRequests();
     /*boolean GetPayVisa(String [] Visa);

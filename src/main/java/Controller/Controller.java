@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -291,31 +292,39 @@ public class Controller implements IController {
     }
 
     @Override
-    public void ConfirmTrade(boolean answer, String id) {
-        Model.ConfirmTrade(answer, id);
+    public void ConfirmTrade(boolean answer, String vacationOffered, String vacationWanted) {
+        Model.ConfirmTrade(answer, vacationOffered,vacationWanted);
 
 
     }
 
     @Override
-    public void NewTradeRequest(String Vacationid) {
-        Model.NewTradeRequest(Vacationid);
+    public void NewTradeRequest(String wanted, String offered) {
+        int intOffered= Integer.parseInt(offered);
+        int intWanted=Integer.parseInt(wanted);
+        Model.NewTradeRequest(new TradeIn(intOffered,intWanted));
     }
 
     @Override
     public String[][] GetTradeRequests() {
-        ArrayList<Vacation> vacationdata = Model.GetTradeRequests();
-        String[][] ans = new String[2][];
-        String[] idvacation = new String[vacationdata.size()];
-        String[] Vacationdata = new String[vacationdata.size()];
-        for (int i = 0; i <vacationdata.size() ; i++) {
-            idvacation[i]=""+vacationdata.get(i).VacationID;
-            Vacation vacObj=vacationdata.get(i);
+        Pair<ArrayList<Vacation>,ArrayList<String>> allTradeIns = Model.GetTradeRequests();
+        String[][] ans = new String[3][];
+        ArrayList<Vacation> OfferedVacationList=allTradeIns.getKey();
+        ArrayList<String> WantedVacationList=allTradeIns.getValue();
+        String[] vacationIDOffered = new String[OfferedVacationList.size()];
+        String[] vacationOfferedData = new String[OfferedVacationList.size()];
+        String[] vacationIDWanted = new String[OfferedVacationList.size()];
+
+        for (int i = 0; i <OfferedVacationList.size() ; i++) {
+            vacationIDOffered[i]=""+OfferedVacationList.get(i).VacationID;
+            Vacation vacObj=OfferedVacationList.get(i);
             String[] vacArr = VacToStringArr(vacObj);
-            Vacationdata[i]=("Vacation ID : " + vacObj.VacationID + "\n" + "Origin : " + vacObj.Origin + ",  Destination : " + vacObj.Destination + "\nDates : " + vacObj.VacationDate + "\n" + "Adults : " + vacArr[1] + ",  Children : " + vacArr[2] + ",   Babies : " + vacArr[3] + "\nFlight Company : " + vacObj.FlightCompany + "  Number of suitcases : " + vacObj.NumberOfSuitcases + ",   Max weight of suitcase : " + vacObj.MaxWeight + " kg\nPrice: " + vacObj.Price + "$,  Enable partial purchase : " + vacObj.BuyAll);
+            vacationOfferedData[i]=("Vacation ID : " + vacObj.VacationID + "\n" + "Origin : " + vacObj.Origin + ",  Destination : " + vacObj.Destination + "\nDates : " + vacObj.VacationDate + "\n" + "Adults : " + vacArr[1] + ",  Children : " + vacArr[2] + ",   Babies : " + vacArr[3] + "\nFlight Company : " + vacObj.FlightCompany + "  Number of suitcases : " + vacObj.NumberOfSuitcases + ",   Max weight of suitcase : " + vacObj.MaxWeight + " kg\nPrice: " + vacObj.Price + "$,  Enable partial purchase : " + vacObj.BuyAll);
+            vacationIDWanted[i]=WantedVacationList.get(i);
         }
-        ans[0]=idvacation;
-        ans[1]=Vacationdata;
+        ans[0]=vacationIDOffered;
+        ans[1]=vacationOfferedData;
+        ans[2]=vacationIDWanted;
         return ans;
     }
 
