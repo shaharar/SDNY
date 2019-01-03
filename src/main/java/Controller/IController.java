@@ -11,8 +11,8 @@ public interface IController {
     boolean SignUp(String [] fields);
     boolean SearchProfile(String username);
     String[] getFields(String username);
-    boolean Update(String [] fields);
-    void Delete(String registrationDuration, Reason reason);
+    boolean UpdateProfile(String [] fields);
+    void DeleteProfile(String registrationDuration, Reason reason);
     void openwindow(String fxmlfile, Object parameter);
     void LogOut();
     String[][] SearchVacation(boolean buyAll, String[] TextFields);

@@ -11,7 +11,7 @@ public interface IModel {
     boolean SignUp(Profile profile);
     boolean Read (String username);
     boolean UpdateProfile(Profile profile);
-    void  Delete(String registrationDuration, Reason reason);
+    void DeleteProfile(String registrationDuration, Reason reason);
     boolean Login(String username, String password);
     void Logout();
     void CreateDB();

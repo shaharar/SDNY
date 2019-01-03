@@ -45,7 +45,7 @@ public class Controller implements IController {
         return fields;
     }
 
-    public boolean Update(String[] fields) {
+    public boolean UpdateProfile(String[] fields) {
         return Model.UpdateProfile(new Profile(fields));
     }
 
@@ -58,8 +58,8 @@ public class Controller implements IController {
         return false;
     }
 
-    public void Delete(String registrationDuration, Reason reason) {
-        Model.Delete(registrationDuration, reason);
+    public void DeleteProfile(String registrationDuration, Reason reason) {
+        Model.DeleteProfile(registrationDuration, reason);
     }
 
     /* get fxml file and opens a new window on top of the main window(which stays untouchable)*/

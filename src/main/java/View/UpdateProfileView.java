@@ -65,7 +65,7 @@ after filling fields in te update window the info is sent to be checked and upda
 
     public void saveChanges() {
         String [] fields= { txtfld_username_U.getText(), pswfld_password_U.getText(), txtfld_firstName_U.getText(), txtfld_lastName_U.getText(), DP_birthdate_U.getValue().toString(),txtfld_city_U.getText(),null};
-        if(controller.Update(fields))
+        if(controller.UpdateProfile(fields))
             stage.close(); //auto closin window if the data is not problematic
     }
 

@@ -135,7 +135,7 @@ A stage for secondary windows
             }
             //the user answered both of the questions
             else {
-                controller.Delete(txtfld_regDuration.getText(), reason);
+                controller.DeleteProfile(txtfld_regDuration.getText(), reason);
              //   ChangeScene("website.fxml");
                 Logout(); //disconnect and go back to Login window
             }
@@ -147,7 +147,7 @@ A stage for secondary windows
             }
             //the user didn't answer the questions
             else {
-                controller.Delete("No Answer", Reason.NO_ANSWER);
+                controller.DeleteProfile("No Answer", Reason.NO_ANSWER);
                 stage.close();
                 Logout(); //disconnect and go back to Login window
             }

@@ -94,7 +94,7 @@ public class Model1 implements IModel {
         return false;
     }
 
-    public void Delete(String registrationDuration, Reason reason) {
+    public void DeleteProfile(String registrationDuration, Reason reason) {
         String reasonAsString="";
         switch (reason) {
             case I_FOUND_WHAT_I_WAS_LOOKING_FOR:
