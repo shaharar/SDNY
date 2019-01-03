@@ -417,7 +417,7 @@ public class Model1 implements IModel {
     }
 
     @Override
-    public boolean NewTradeRequest(TradeIn trade) {
+    public boolean NewTradeRequest(TradeInDeal trade) {
         if(currentUser==null){
             controller.showalert("In order to purchase a vacation you have to sign in");
             return false;
@@ -439,7 +439,7 @@ public class Model1 implements IModel {
 
     @Override
     public Pair<ArrayList<Vacation>, ArrayList<String>> GetTradeRequests() {
-            ArrayList<TradeIn> requestid=DBM.GetTradeRequest(currentUser.Username);
+            ArrayList<TradeInDeal> requestid=DBM.GetTradeRequest(currentUser.Username);
             ArrayList<Vacation> vacationsOffered=new ArrayList<>();
         ArrayList<String> vacationsWanted=new ArrayList<>();
         for (int i = 0; i <requestid.size() ; i++) {

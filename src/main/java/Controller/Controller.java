@@ -302,7 +302,7 @@ public class Controller implements IController {
     public void NewTradeRequest(String wanted, String offered) {
         int intOffered= Integer.parseInt(offered);
         int intWanted=Integer.parseInt(wanted);
-        Model.NewTradeRequest(new TradeIn(intOffered,intWanted));
+        Model.NewTradeRequest(new TradeInDeal(intOffered,intWanted));
     }
 
     @Override

@@ -1,10 +1,10 @@
 package Model;
 
-public class TradeIn {
+public class TradeInDeal {
     public int vacationOffered;
    public  int vacationWanted;
 
-    public TradeIn(int vacationOffered, int vacationWanted) {
+    public TradeInDeal(int vacationOffered, int vacationWanted) {
         this.vacationOffered = vacationOffered;
         this.vacationWanted = vacationWanted;
     }

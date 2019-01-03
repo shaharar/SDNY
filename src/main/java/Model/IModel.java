@@ -87,7 +87,7 @@ public interface IModel {
 
     void ConfirmTrade(boolean answer, String id, String vacationWanted);
 
-    boolean NewTradeRequest(TradeIn vacationid);
+    boolean NewTradeRequest(TradeInDeal vacationid);
 
     Pair<ArrayList<Vacation>, ArrayList<String>> GetTradeRequests();
 /*

@@ -209,7 +209,7 @@ public class DBManager implements IDBManager {
                 + "	UserName CHAR(8) NOT NULL,\n"
                 + "	Password CHAR(8) NOT NULL \n"
                 + ");");
-        createTable("CREATE TABLE IF NOT EXISTS TradeIn (\n"
+        createTable("CREATE TABLE IF NOT EXISTS TradeInDeal (\n"
                 +"	userForOffer CHAR(8) NOT NULL,\n"
                 + "	VacationWanted_fk CHAR(8) NOT NULL,\n"
                 + "	VacationOffered_fk CHAR(8) NOT NULL \n"
@@ -677,15 +677,15 @@ public class DBManager implements IDBManager {
     }
 
     @Override
-    public ArrayList<TradeIn> GetTradeRequest(String currentUser) {
-        ArrayList<TradeIn> result = new ArrayList<>();
-        String sql = "SELECT * FROM TradeIn WHERE userForOffer=\"" + currentUser + "\"";
+    public ArrayList<TradeInDeal> GetTradeRequest(String currentUser) {
+        ArrayList<TradeInDeal> result = new ArrayList<>();
+        String sql = "SELECT * FROM TradeInDeal WHERE userForOffer=\"" + currentUser + "\"";
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             // loop through the result set
             while (rs.next()) {
-                result.add(new TradeIn(Integer.parseInt(rs.getString("VacationOffered_fk")),Integer.parseInt(rs.getString("VacationWanted_fk"))));
+                result.add(new TradeInDeal(Integer.parseInt(rs.getString("VacationOffered_fk")),Integer.parseInt(rs.getString("VacationWanted_fk"))));
             }
 
         } catch (SQLException e) {
@@ -694,13 +694,13 @@ public class DBManager implements IDBManager {
         }
         return result;
     }
-    public void InsertNewTrade(TradeIn tradeIn,String userForOffer) {
-        String sql = "INSERT INTO TradeIn(userForOffer,VacationWanted_fk,VacationOffered_fk) VALUES(?,?,?)";
+    public void InsertNewTrade(TradeInDeal tradeInDeal, String userForOffer) {
+        String sql = "INSERT INTO TradeInDeal(userForOffer,VacationWanted_fk,VacationOffered_fk) VALUES(?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, ""+userForOffer);
-            pstmt.setString(2, ""+tradeIn.vacationWanted);
-            pstmt.setString(3, ""+tradeIn.vacationOffered);
+            pstmt.setString(2, ""+ tradeInDeal.vacationWanted);
+            pstmt.setString(3, ""+ tradeInDeal.vacationOffered);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

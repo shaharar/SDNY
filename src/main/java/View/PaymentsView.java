@@ -4,7 +4,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class PaymentsView extends AView {
-
+/*
     public TextField Id;
     public TextField FirstName;
     public TextField LastName;
@@ -27,9 +27,9 @@ public class PaymentsView extends AView {
         Visa[4] = ExperationDate.getText();
         Visa[5] = SecurityNum.getText();
         Visa[6]=VacationID[i];
-        /*if(controller.GetPayVisa(Visa)){
+        if(controller.GetPayVisa(Visa)){
             PushConfirm();
-        }*/
+        }
 
     }
 
@@ -37,9 +37,9 @@ public class PaymentsView extends AView {
         String[] Paypal = new String[2];
         Paypal[0] = UserName.getText();
         Paypal[1] = Password.getText();
-       /* if(controller.GetPayPaypal(Paypal,VacationID[i])){
+        if(controller.GetPayPaypal(Paypal,VacationID[i])){
             PushConfirm();
-        }*/
+        }
     }
 
     public void SetVacationID(String[] payments) {
@@ -79,4 +79,5 @@ public class PaymentsView extends AView {
     public void init(Object Parameter) {
         SetVacationID((String[])Parameter);
     }
+    */
 }
