@@ -13,7 +13,7 @@ public class DeleteVacationView extends AView {
     public void deletevacation(){
         if(controller.DeleteVacation(InsertVacID.getText())){
             stage.close();
-            showAlert("DeleteProfile Successful");
+            showAlert("Delete vacation Successful");
         }
     }
 

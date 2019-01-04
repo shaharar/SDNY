@@ -320,7 +320,7 @@ public class Model1 implements IModel {
             controller.showalert("Your dates are invalid, please choose them again");
             return false;
         }else{
-            vacation.VacationDate=""+startDay+"-"+startMonth+"-"+startYear+"_"+finishDay+"-"+finishMonth+"-"+finishYear;
+            vacation.VacationDate=""+changeToTwoDigits(startDay)+"-"+changeToTwoDigits(startMonth)+"-"+startYear+"_"+changeToTwoDigits(finishDay)+"-"+changeToTwoDigits(finishMonth)+"-"+finishYear;
         }
         if(vacation.NumberOfSuitcases > 3){
             controller.showalert("Max number of suitcases per person is 3");
@@ -448,6 +448,16 @@ public class Model1 implements IModel {
         }
 
         return new Pair<ArrayList<Vacation>, ArrayList<String>>(vacationsOffered,vacationsWanted);
+    }
+    public String changeToTwoDigits(int number){
+            String numberToString=""+number;
+            if(numberToString.length()>=2){
+                return numberToString;
+            }
+            else if(numberToString.length()==1){
+              return "0"+numberToString ;
+            }
+            return "11"; // so it will not create exceptions, should never happen anyway
     }
 }
 
