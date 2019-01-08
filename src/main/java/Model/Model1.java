@@ -184,7 +184,10 @@ public class Model1 implements IModel {
             showAlert("You have already chosen this vacation. Please look at your pending requests");
             return false;
         }
-        else {
+        else if(DBM.GetSeller(VacationID).equals(currentUser.Username)){
+            showAlert("You cannot buy your own vacartion, but nice try  :)))))))))");
+            return false;
+        }        else {
             DBM.UpdateVacationStatus(VacationStatus.NOT_AVAILABLE,VacationID);
             DBM.InsertNewRequest(VacationID,currentUser.Username);
             return true;
@@ -424,6 +427,10 @@ public class Model1 implements IModel {
         }
         else if(DBM.isInMyRequests(currentUser.Username, ""+trade.vacationWanted)){
             showAlert("You have already chosen this vacation. Please look at your pending requests");
+            return false;
+        }
+        else if(!DBM.GetVacation("" + trade.vacationOffered).Status.equals(VacationStatus.FOR_SALE.toString())){
+            showAlert("The vacation that was entered isn't available");
             return false;
         }
         else {

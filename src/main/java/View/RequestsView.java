@@ -34,9 +34,6 @@ public class RequestsView extends AView {
         }else {
             VacationID.setText("VacationId :"+AllVacationid[i]);
             i++;
-            if(i==AllVacationid.length){
-                showAlert("No more requests.");
-            }
         }
 
     }

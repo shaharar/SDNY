@@ -9,6 +9,7 @@ public class TradeRequestView extends AView {
     public String [] OfferedVacationDataArr;
     public String []  WantedVacationID;
     int i;
+    public Label offerText;
 
     public void PushYes(){
         boolean answer=true;
@@ -33,11 +34,10 @@ public class TradeRequestView extends AView {
             showAlert("No more requests.");
             stage.close();
         }else {
+            offerText.setText(offerText.getText().replace(WantedVacationID[i-1],WantedVacationID[i]));
             VacationData.setText(OfferedVacationDataArr[i]);
             i++;
-            if(i== AllVacationidOffered.length){
-                showAlert("No more requests.");
-            }
+
         }
 
     }
@@ -52,6 +52,7 @@ public class TradeRequestView extends AView {
             OfferedVacationDataArr =vacationinformation[1];
             WantedVacationID=vacationinformation[2];
             VacationData.setText(OfferedVacationDataArr[i]);
+            offerText.setText(offerText.getText().replace("#",WantedVacationID[i]));
         }
         i++;
     }
@@ -59,7 +60,6 @@ public class TradeRequestView extends AView {
     @Override
     public void init(Object Parameter) {
         SetVacationID(((String[][])Parameter));
-
     }
 
 }

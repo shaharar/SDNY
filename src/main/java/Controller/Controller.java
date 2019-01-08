@@ -319,7 +319,12 @@ public class Controller implements IController {
             vacationIDOffered[i]=""+OfferedVacationList.get(i).VacationID;
             Vacation vacObj=OfferedVacationList.get(i);
             String[] vacArr = VacToStringArr(vacObj);
-            vacationOfferedData[i]=("Vacation ID : " + vacObj.VacationID + "\n" + "Origin : " + vacObj.Origin + ",  Destination : " + vacObj.Destination + "\nDates : " + vacObj.VacationDate + "\n" + "Adults : " + vacArr[1] + ",  Children : " + vacArr[2] + ",   Babies : " + vacArr[3] + "\nFlight Company : " + vacObj.FlightCompany + "  Number of suitcases : " + vacObj.NumberOfSuitcases + ",   Max weight of suitcase : " + vacObj.MaxWeight + " kg\nPrice: " + vacObj.Price + "$,  Enable partial purchase : " + vacObj.BuyAll);
+            vacationOfferedData[i]=("Vacation offered by : "+vacObj.UserName_fk+"  Vacation ID : " + vacObj.VacationID + "\n"
+                    + "Origin : " + vacObj.Origin + ", \t  Destination : " + vacObj.Destination + "\n" +
+                    "Dates : " + vacObj.VacationDate + "\n"
+                    + "Adults : " + vacArr[1] + ",  Children : " + vacArr[2] + ",   Babies : " + vacArr[3] + "\n" +
+                    "Flight Company : " + vacObj.FlightCompany + "  Number of suitcases : " + vacObj.NumberOfSuitcases + ",   Max weight of suitcase : " + vacObj.MaxWeight + " kg\n" +
+                    "Price: " + vacObj.Price + "$,  Enable partial purchase : " + vacObj.BuyAll);
             vacationIDWanted[i]=WantedVacationList.get(i);
         }
         ans[0]=vacationIDOffered;

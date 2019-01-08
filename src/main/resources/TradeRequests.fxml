@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="447.0" prefWidth="660.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TradeRequestView">
+<AnchorPane prefHeight="447.0" prefWidth="660.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TradeRequestView">
    <children>
       <Button layoutX="351.0" layoutY="317.0" mnemonicParsing="false" onAction="#PushYes" prefHeight="59.0" prefWidth="91.0" style="-fx-background-color: #9fdf9f; -fx-border-color: #77933b; -fx-border-radius: 4;" text="Yes">
          <font>
@@ -18,7 +18,7 @@
          <font>
             <Font name="Calibri Bold" size="23.0" />
          </font></Button>
-      <Label layoutX="201.0" layoutY="282.0" prefHeight="33.0" prefWidth="353.0" text="Do you approve trading this vacation?">
+      <Label fx:id="offerText" layoutX="16.0" layoutY="282.0" prefHeight="33.0" prefWidth="538.0" text="Do you approve trading this vacation with your vacation # ?">
          <font>
             <Font name="Calibri Bold" size="21.0" />
          </font></Label>
