@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-
-public abstract class AVacationWindow extends Awindow {
+public abstract class AVacationView extends AView {
     public String vacationID;
     public ChoiceBox Adults;
     public ChoiceBox Children;

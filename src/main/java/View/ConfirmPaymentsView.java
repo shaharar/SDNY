@@ -2,40 +2,37 @@ package View;
 
 import javafx.scene.control.Label;
 
-public class RequestsView extends AView {
-
+public class ConfirmPaymentsView extends AView {
 
     public Label VacationID;
     public String [] AllVacationid;
     int i;
 
     public void PushYes(){
-        boolean answer=true;
-       controller.SellerAnswer(answer,VacationID.getText().substring(12));
+        controller.sellerAcceptedOrDeniedPayment(true,VacationID.getText().substring(16)); //need to check ther numbers
         PushNext();
     }
 
 
     public void PushNo(){
-        boolean answer =false;
-       controller.SellerAnswer(answer,VacationID.getText().substring(12));
+        controller.sellerAcceptedOrDeniedPayment(false,VacationID.getText().substring(16));
         PushNext();
     }
 
     public void PushNext(){
-        if(i==AllVacationid.length){
+        if(i == AllVacationid.length){
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            showAlert("No more requests.");
+            showAlert("No more payments to confirm.");
             stage.close();
         }else {
-            VacationID.setText("VacationId :"+AllVacationid[i]);
+            VacationID.setText("Vacation ID : " + AllVacationid[i]);
             i++;
-            if(i==AllVacationid.length){
-                showAlert("No more requests.");
+            if(i == AllVacationid.length){
+                showAlert("No more payments to confirm.");
             }
         }
 
@@ -44,11 +41,11 @@ public class RequestsView extends AView {
     public void SetVacationID(String[] vacationid){
         if(vacationid.length==0){
             stage.close();
-            showAlert("There aren't new requests");
+            showAlert("You have no pending payments to confirm");
         }
         else {
             AllVacationid=vacationid;
-            VacationID.setText("VacationId :"+ vacationid[i]);
+            VacationID.setText("Vacation ID : "+ vacationid[i]);
         }
         i++;
     }
@@ -56,6 +53,5 @@ public class RequestsView extends AView {
     @Override
     public void init(Object Parameter) {
         SetVacationID((String[])Parameter);
-
     }
 }

@@ -44,7 +44,7 @@
       </Label>
       <ImageView fitHeight="121.0" fitWidth="182.0" layoutX="415.0" layoutY="278.0">
          <image>
-            <Image url="logo.png" />
+            <Image url="newLogo.png" />
          </image>
       </ImageView>
     </children>

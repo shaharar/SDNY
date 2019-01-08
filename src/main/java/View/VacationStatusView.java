@@ -1,19 +1,14 @@
 package View;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableView;
-public class VacationStatusView extends Awindow{
 
-    public String [] vacationID;
-    public String [] RequestStatus;
-    public String [] Paymentstatus;
+public class VacationStatusView extends AView {
+
+    public String[] vacationID;
+    public String[] RequestStatus;
+    public String[] Paymentstatus;
     public Label id1;
     public Label status1;
     public Label id2;
@@ -37,19 +32,18 @@ public class VacationStatusView extends Awindow{
     public Button B7;
 
 
-
-    public void Updatetableview(String [][] values ){
-       this.vacationID=values[0];
-       this.RequestStatus=values[1];
-       this.Paymentstatus =values[2];
-        for (int i = 0; i <vacationID.length ; i++) {
+    public void UpdateTableView(String[][] values) {
+        this.vacationID = values[0];
+        this.RequestStatus = values[1];
+        this.Paymentstatus = values[2];
+        for (int i = 0; i < vacationID.length; i++) {
             try {
-                Label currid=(Label)getClass().getDeclaredField("id"+(i+1)).get(this);
-                Label currstatus=(Label)getClass().getDeclaredField("status"+(i+1)).get(this);
-                Button currbtn=(Button) getClass().getDeclaredField("B"+(i+1)).get(this);
+                Label currid = (Label) getClass().getDeclaredField("id" + (i + 1)).get(this);
+                Label currstatus = (Label) getClass().getDeclaredField("status" + (i + 1)).get(this);
+                Button currbtn = (Button) getClass().getDeclaredField("B" + (i + 1)).get(this);
                 currid.setText(vacationID[i]);
                 currstatus.setText(RequestStatus[i]);
-                if(Paymentstatus[i].equals("Yes")){
+                if (Paymentstatus[i].equals("Yes")) {
                     currbtn.setVisible(true);
                 }
             } catch (NoSuchFieldException e) {
@@ -58,21 +52,29 @@ public class VacationStatusView extends Awindow{
                 e.printStackTrace();
             }
         }
-
-
-
     }
 
     public void ClickPayments(ActionEvent actionEvent) {
-        ((Button)actionEvent.getSource()).setDisable(true);
-            controller.openwindow("Payments.fxml",controller.GetnewPayments());
 
+       /* controller.openwindow("Payments.fxml",controller.GetnewPaymentsConfirmation());*/
+        try {
+            String numberOfTheButtonClicked = ((Button) actionEvent.getSource()).getId().substring(1);
+            Label matchingLabelOfTheButton = (Label) getClass().getDeclaredField("id" + numberOfTheButtonClicked).get(this);
+            controller.BuyerConfirmsPayment(matchingLabelOfTheButton.getText()); ////////////////how to get the vacation id ?
+            ((Button)actionEvent.getSource()).setDisable(true);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
 
+        showAlert("Please wait for seller confirmation of your payment");
 
+        ////disable button - how to know which one ?
     }
 
     @Override
     public void init(Object Parameter) {
-        Updatetableview((String[][])Parameter);
+        UpdateTableView((String[][]) Parameter);
     }
 }

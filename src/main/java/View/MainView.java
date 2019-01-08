@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class View extends Awindow implements IView {
+public class MainView extends AView implements IMainView {
 
     @FXML
     public TextField txtfld_username_W;
@@ -32,7 +32,6 @@ public class View extends Awindow implements IView {
     public TextField txtfld_lastName_L;
     public TextField txtfld_regDuration;
     public Button btn_Login;
-    public AnchorPane Anchorpane;
     public Button btn_search_W;
     public javafx.scene.image.ImageView Img_profile_L;
     public ChoiceBox chobx_reason;
@@ -136,7 +135,7 @@ A stage for secondary windows
             }
             //the user answered both of the questions
             else {
-                controller.Delete(txtfld_regDuration.getText(), reason);
+                controller.DeleteProfile(txtfld_regDuration.getText(), reason);
              //   ChangeScene("website.fxml");
                 Logout(); //disconnect and go back to Login window
             }
@@ -148,7 +147,7 @@ A stage for secondary windows
             }
             //the user didn't answer the questions
             else {
-                controller.Delete("No Answer", Reason.NO_ANSWER);
+                controller.DeleteProfile("No Answer", Reason.NO_ANSWER);
                 stage.close();
                 Logout(); //disconnect and go back to Login window
             }
@@ -206,8 +205,8 @@ this function is unnecessery because it is defaulted on true but we might need t
         Scene scene = new Scene(root, 290, 300);
         newStage.setScene(scene);
 
-        View NewView = fxmlLoader.getController();
-        NewView.setStage(newStage);
+        MainView newMainView = fxmlLoader.getController();
+        newMainView.setStage(newStage);
         newStage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
         newStage.show();
     }
@@ -236,4 +235,15 @@ this function is unnecessery because it is defaulted on true but we might need t
     public void GetVacationStatus(){
         controller.openwindow("VacationStatus.fxml",controller.GetVacationStatusvalues());
     }
+
+    public void paymentsConfirmation(){
+        controller.openwindow("ConfirmPayments.fxml",controller.GetnewPaymentsConfirmation());
+    }
+
+    public void TradeRequest(){
+        controller.openwindow("TradeRequests.fxml",controller.GetTradeRequests());
+    }
+
+
 }
+

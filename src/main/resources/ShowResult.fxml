@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowResultView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowResultView">
     <children>
         <Label fx:id="VacationId" layoutX="25.0" layoutY="63.0" prefHeight="27.0" prefWidth="226.0" text="VacationID ">
          <font>
@@ -58,7 +58,7 @@
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>
-      <Button layoutX="187.0" layoutY="273.0" mnemonicParsing="false" onAction="#ChooseVacation" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: #adebeb;" text="Choose This Vacation">
+      <Button layoutX="187.0" layoutY="273.0" mnemonicParsing="false" onAction="#ChooseVacation" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #adebeb;" text="Choose This Vacation">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
@@ -80,7 +80,7 @@
       </Label>
       <ImageView fitHeight="121.0" fitWidth="188.0" layoutX="5.0" layoutY="273.0">
          <image>
-            <Image url="logo.png" />
+            <Image url="newLogo.png" />
          </image>
       </ImageView>
       <Button fx:id="PrevRes" layoutX="223.0" layoutY="348.0" mnemonicParsing="false" onAction="#prevOption" prefHeight="38.0" prefWidth="179.0" text="&lt;- Previous Vacation">
@@ -91,6 +91,13 @@
             <Font name="System Italic" size="17.0" />
          </font>
       </Button>
+      <Button style="-fx-background-color: #adebeb;" layoutX="381.0" layoutY="272.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="157.0" text="Trade This Vacation" onAction="#TradeThisVacation" >
+        <font>
+            <Font name="Calibri Bold" size="16.0" />
+        </font>
+        <effect>
+            <DropShadow />
+        </effect></Button>
     </children>
 
 </AnchorPane>

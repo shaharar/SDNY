@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public abstract class Awindow {
+public abstract class AView {
 
  static IController controller;
  Stage stage;
@@ -24,7 +24,7 @@ public abstract class Awindow {
     }
 
    public static void setController(IController controller){
-        Awindow.controller=controller;
+        AView.controller=controller;
 
     };
     public void ChangeScene(String fxml){

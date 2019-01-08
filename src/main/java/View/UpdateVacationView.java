@@ -1,11 +1,11 @@
 package View;
 
-import Model.VacationObject;
+import Model.Vacation;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class UpdateVacationView extends AVacationWindow{
+public class UpdateVacationView extends AVacationView {
 
     @Override
     public void SendToController() {
@@ -40,7 +40,7 @@ public class UpdateVacationView extends AVacationWindow{
         stage.setHeight(610);
         stage.setWidth(980);
         SetLists();
-        VacationObject currvac=controller.getVacationFields(Parameter);
+        Vacation currvac=controller.getVacationFields(Parameter);
         SetValues(controller.VacToStringArr(currvac),currvac.BuyAll);
     }
 }

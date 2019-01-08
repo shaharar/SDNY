@@ -3,8 +3,8 @@ package View;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class PaymentsView extends Awindow {
-
+public class PaymentsView extends AView {
+/*
     public TextField Id;
     public TextField FirstName;
     public TextField LastName;
@@ -79,4 +79,5 @@ public class PaymentsView extends Awindow {
     public void init(Object Parameter) {
         SetVacationID((String[])Parameter);
     }
+    */
 }

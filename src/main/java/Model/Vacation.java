@@ -1,6 +1,6 @@
 package Model;
 
-public class VacationObject {
+public class Vacation {
 
     public int VacationID;
     public String UserName_fk;
@@ -16,7 +16,7 @@ public class VacationObject {
     public int MaxWeight;
     public int Price;
 
-    public VacationObject(int vacationID, String userName_fk, String status, boolean hotVacation, String ticketType, boolean buyAll, String flightCompany, String origin, String destination, String vacationDate, int numberOfSuitcases, int maxWeight, int price) {
+    public Vacation(int vacationID, String userName_fk, String status, boolean hotVacation, String ticketType, boolean buyAll, String flightCompany, String origin, String destination, String vacationDate, int numberOfSuitcases, int maxWeight, int price) {
         VacationID = vacationID;
         UserName_fk = userName_fk;
         Status = status;
