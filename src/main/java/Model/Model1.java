@@ -408,11 +408,13 @@ public class Model1 implements IModel {
                 DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationOffered);
                 DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_APPROVED,vacationWanted);
                 DBM.UpdateVacationStatus(VacationStatus.SOLD,vacationWanted);
+                DBM.DeleteTradeRequest(vacationOffered);
                 showAlert("The Trade In Is Succesful");
             }
             else {
                 DBM.UpdateRequestStatus(RequestStatus.TRADE_REQUEST_DISAPPROVED,vacationOffered);
                 DBM.UpdateVacationStatus(VacationStatus.FOR_SALE,vacationOffered);
+                DBM.DeleteTradeRequest(vacationOffered);
                 showAlert("The Trade In Is Cancelled");
             }
 

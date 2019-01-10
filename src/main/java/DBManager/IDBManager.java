@@ -36,4 +36,6 @@ public interface IDBManager {
     boolean isInMyRequests(String currentUser, String vacationID);
     void InsertNewTrade(TradeInDeal tradeInDeal, String userForOffer);
     ArrayList<TradeInDeal> GetTradeRequest(String currentUser);
+
+    void DeleteTradeRequest(String vacationOffered);
 }

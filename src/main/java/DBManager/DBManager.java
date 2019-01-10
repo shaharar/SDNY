@@ -694,6 +694,22 @@ public class DBManager implements IDBManager {
         }
         return result;
     }
+
+    @Override
+    public void DeleteTradeRequest(String vacationOffered) {
+        String sql = "DELETE FROM TradeInDeal WHERE VacationOffered_fk = \"" + vacationOffered + "\"";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            model.showAlert(e.getMessage());
+        }
+    }
+
     public void InsertNewTrade(TradeInDeal tradeInDeal, String userForOffer) {
         String sql = "INSERT INTO TradeInDeal(userForOffer,VacationWanted_fk,VacationOffered_fk) VALUES(?,?,?)";
         try (Connection conn = this.connect();
